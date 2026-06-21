@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donații - Colectivul Blană</title>
+    <!-- LINIA PENTRU LOGO ÎN TAB (FAVICON) -->
+    <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
+    
+    <!-- Restul legăturilor tale (Google Fonts, style.css etc.) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome pentru iconițe -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        
+        
+        <div style="max-width: 1200px; margin: 0 auto; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
+            
+           
+    <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+    <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+</a>
+            
+            <!-- Link-urile din dreapta -->
+            <ul class="nav-links" style="display: flex; align-items: center; gap: 25px; list-style: none; margin: 0; padding: 0;">
+                <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
+                <li class="dropdown">
+                    <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
+                        <li><a href="#adoptii.html">Adopții</a></li>
+                    </ul>
+                </li>
+                <li><a href="parteneri-afaceri.html" style="position: relative; z-index: 9999; pointer-events: auto !important;">Parteneri afaceri locale</a></li>
+                <!-- Caută butonul din taskbar în celelalte pagini și pune link-ul curat: -->
+<li><a href="proiecte.html">Proiecte curente</a></li>
+                <!-- Caută clasa .btn-donatie în taskbar-urile din celelalte pagini și pune: -->
+<li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+                <li>
+                    <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <!-- Aici se termină taskbar-ul tău -->
+    </nav>
+    </header>
+
+    <!-- Blocul invizibil care împiedică lipirea de taskbar -->
+    <div style="height: 160px; width: 100%;"></div>
+
+    <!-- SECȚIUNEA DONAȚII -->
+    <section class="partners-section">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <span class="subtitle">Implică-te și tu!</span>
+            <h2>Ajută proiectele speciale în derulare</h2>
+            <p style="color: #666; max-width: 600px; margin: 10px auto 0 auto;">
+                Fiecare donație se transformă în hrană, tratamente medicale și o șansă la o viață mai bună pentru animăluțele din comunitate.
+            </p>
+        </div>
+
+        <!-- CONTAINERUL DE DONAȚII (Același stil compact de 800px) -->
+        <!-- CONTAINERUL DE DONAȚII (Centrat și optimizat) -->
+        <!-- CONTAINERUL DE DONAȚII -->
+        <div class="partners-list-container" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+            
+            <!-- CARD DETALII BANCARE CENTRAT -->
+            <div class="partner-card" style="flex-direction: column; padding: 40px 30px; align-items: center; text-align: center; width: 100%; max-width: 600px;">
+                
+                <div style="background-color: #629E53; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 15px;">
+                    <i class="fas fa-university"></i>
+                </div>
+                
+                <h3 style="margin: 0 0 5px 0; font-size: 22px; color: #2D4A22;">Transfer Bancar (IBAN)</h3>
+                <p style="margin: 0 0 25px 0; font-size: 14px; color: #777;">Donații directe în contul asociației</p>
+
+                <!-- CĂSUȚA CU IBAN-UL ȘI BUTONUL DE COPY -->
+                <div style="background-color: #F5EFEB; padding: 20px; border-radius: 12px; border-top: 4px solid #629E53; width: 100%; box-sizing: border-box; margin-bottom: 20px;">
+                    <span style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #777; display: block; margin-bottom: 8px; letter-spacing: 0.5px;">Cod IBAN:</span>
+                    
+                    <strong id="iban-text" style="font-size: 18px; color: #2D4A22; letter-spacing: 1px; font-family: monospace; display: block; margin-bottom: 15px; word-break: break-all;">RO15 RNCB 0551 1861 8262 0001</strong>
+                    
+                    <button onclick="copyIBAN()" id="copy-btn" style="background-color: #2D4A22; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease;">
+                        <i class="fas fa-copy"></i> <span id="btn-text">Copiază IBAN</span>
+                    </button>
+
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #E5DFDA; text-align: left; font-size: 14px; color: #555; display: flex; flex-direction: column; gap: 5px;">
+                        <span><strong>Banca:</strong> BCR (Banca Comercială Română)</span>
+                        <span><strong>Beneficiar:</strong> Colectivul Blană</span>
+                        <span><strong>Detalii plată:</strong> „Donație animale / Sprijin proiecte”</span>
+                    </div>
+                </div>
+
+                <!-- NOTA DE TRANSPARENȚĂ REFORMULATĂ ELEGANT -->
+                <div style="background-color: #FAFAFA; border: 1px dashed #629E53; padding: 15px; border-radius: 8px; margin-bottom: 25px; width: 100%; box-sizing: border-box; text-align: left;">
+                    <p style="margin: 0; font-size: 13px; color: #555; line-height: 1.5;">
+                        <i class="fas fa-shield-heart" style="color: #629E53; margin-right: 6px; font-size: 14px;"></i> 
+                        <strong>Solidari pentru blănoși:</strong> Din dorința de a fi mereu pregătiți pentru situații neprevăzute, <strong>10%</strong> din donațiile direcționate către proiectele speciale vor fi alocate unui <strong>fond de urgență comun</strong>, gata să vină în sprijinul oricăruia dintre ONG-urile partenere la nevoie.
+                    </p>
+                </div>
+
+                <p style="font-size: 13px; color: #888; margin: 0; line-height: 1.5; font-style: italic;">
+                    <i class="fas fa-heart" style="color: #629E53;"></i> Îți mulțumim din suflet pentru sprijin!
+                </p>
+            </div>
+
+        </div>
+
+        <!-- SCRIPTUL JAVASCRIPT PENTRU COPIERE AUTOMATĂ -->
+        <script>
+        function copyIBAN() {
+            const ibanStr = document.getElementById('iban-text').innerText;
+            navigator.clipboard.writeText(ibanStr).then(() => {
+                const btn = document.getElementById('copy-btn');
+                const btnText = document.getElementById('btn-text');
+                btn.style.backgroundColor = '#629E53';
+                btnText.innerText = 'Copiat!';
+                setTimeout(() => {
+                    btn.style.backgroundColor = '#2D4A22';
+                    btnText.innerText = 'Copiază IBAN';
+                }, 2000);
+            }).catch(err => {
+                console.error('Eroare la copiere: ', err);
+            });
+        }
+        </script>
+
+        <!-- SCRIPTUL JAVASCRIPT PENTRU COPIERE AUTOMATĂ -->
+        <script>
+        function copyIBAN() {
+            // Luăm textul din elementul cu ID-ul iban-text
+            const ibanStr = document.getElementById('iban-text').innerText;
+            
+            // Îl copiem în clipboard
+            navigator.clipboard.writeText(ibanStr).then(() => {
+                // Modificăm aspectul butonului pentru confirmare vizuală
+                const btn = document.getElementById('copy-btn');
+                const btnText = document.getElementById('btn-text');
+                
+                btn.style.backgroundColor = '#629E53'; // Se face verde când e copiat
+                btnText.innerText = 'Copiat!';
+                
+                // Revenim la starea inițială după 2 secunde
+                setTimeout(() => {
+                    btn.style.backgroundColor = '#2D4A22';
+                    btnText.innerText = 'Copiază IBAN';
+                }, 2000);
+            }).catch(err => {
+                console.error('Eroare la copiere: ', err);
+            });
+        }
+        </script>
+    </section>
+
+</body>
+</html>

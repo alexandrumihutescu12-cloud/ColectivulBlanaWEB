@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colectivul Blană - ONG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Taskbar / Navigație -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#povestea-noastra">Povestea noastră</a></li>
+                <li><a href="#parteneri-ong">Parteneri ONG</a></li>
+                <li><a href="#parteneri-afaceri">Parteneri afaceri locale</a></li>
+                <li><a href="#proiecte-curente">Proiecte curente</a></li>
+                <li><a href="#donatii" class="btn-donatie">Donații</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Secțiune de test pentru a vedea cum curge pagina -->
+    <main style="padding: 100px 20px; text-align: center;">
+        <h1>Bine ai venit la Colectivul Blană!</h1>
+        <p>Aici va fi conținutul principal al site-ului.</p>
+    </main>
+
+</body>
+</html>

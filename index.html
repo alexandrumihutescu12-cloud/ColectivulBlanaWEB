@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colectivul Blană - ONG</title>
+    
+    <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+<header class="navbar">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
+            
+           
+    <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+    <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+            
+            <!-- Link-urile din dreapta -->
+            <ul class="nav-links">
+    <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
+    
+    <li class="dropdown">
+                    <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
+                        <li><a href="#adoptii.html">Adopții</a></li>
+                    </ul>
+                </li>
+
+    <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
+    <li><a href="proiecte.html">Proiecte curente</a></li>
+    <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+    <li>
+        <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </li>
+</ul>
+
+        </div>
+    </nav>
+    <!-- Aici se termină taskbar-ul tău -->
+    </nav>
+    </header>
+
+    <main>
+        <section id="povestea-noastra" class="about-section">
+            <div class="about-container">
+                
+                <div class="about-slideshow">
+                    <div class="slides">
+                        <img class="slide active" src="Animale/poza1.jpeg" alt="Cățel Colectivul Blană">
+                        <img class="slide" src="Animale/poza2.jpeg" alt="Cățel Colectivul Blană">
+                        <img class="slide" src="Animale/poza3.jpeg" alt="Cățel Colectivul Blană">
+                        <img class="slide" src="Animale/poza4.jpeg" alt="Cățel Colectivul Blană">
+                        <img class="slide" src="Animale/poza5.jpeg" alt="Cățel Colectivul Blană">
+                    </div>
+                </div>
+
+                <div class="about-bullets">
+                    <span class="subtitle">Începuturile noastre</span>
+                    <h2>De unde a început inițiativa?</h2>
+                    <p class="story-intro-text">
+                        Povestea a început din dragoste pentru animaluțe și pentru Timișoara. 
+                        Cunoscând mai multe ONG-uri și afaceri mici locale și poveștile lor frumoase, 
+                        ne-am propus să creăm un colectiv strâns în care să lucrăm împreună pentru 
+                        succesul și vizibilitatea fiecăruia.
+                    </p>
+
+                    <ul class="story-bullets">
+                        <li><strong>Colaborare locală:</strong> Conectăm asociațiile cu micile afaceri din Timișoara.</li>
+                        <li><strong>Vizibilitate sporită:</strong> Promovăm cazurile și poveștile care merită auzite.</li>
+                        <li><strong>Impact real:</strong> Fiecare acțiune colectivă ajută direct un animăluț în nevoie.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mission-vision-container">
+                <div class="mv-box mission">
+                    <h3>Misiunea Noastră</h3>
+                    <p>
+                        Să creăm un colectiv și parteneriat strâns între ONG-uri, firme locale, donatori și voluntari. 
+                        Dorim să aducem vizibilitate cazurilor sociale și proiectelor locale, să direcționăm ajutorul 
+                        unde nevoia e cea mai mare. Împreună facem mai mult bine!
+                    </p>
+                </div>
+                <div class="mv-box vision">
+                    <h3>Viziunea Noastră</h3>
+                    <p>
+                        Ne dorim o Timișoară în care nicio inițiativă bună nu e lăsată singură și niciun animăluț în suferință nu e uitat. 
+                        Viziunea noastră este să devenim inima unei rețele locale puternice, capabilă să mobilizeze resurse instant, 
+                        transformând solidaritatea într-un obicei zilnic și accesibil oricui.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 3000);
+    </script>
+
+</body>
+</html>
