@@ -16,7 +16,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+<div id="dachshund-scroll-wrapper">
+    <img src="Imagini/dachshund_rear.png" id="dachshund-rear" alt="Rear">
+    <div id="dachshund-body">
+        <img src="Imagini/dachshund_head.png" id="dachshund-head" alt="Head">
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
+<script>
+window.addEventListener('scroll', function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    
+    // Extindem corpul solid
+    document.getElementById("dachshund-body").style.height = scrolled + "%";
+});
+</script>
     <header class="navbar">
         
         
@@ -43,7 +64,7 @@
                 <!-- Caută clasa .btn-donatie în taskbar-urile din celelalte pagini și pune: -->
 <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
                 <li>
-                    <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" title="Instagram">
+                    <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" title="Instagram" rel="noopener noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </li>
@@ -161,5 +182,21 @@
         </script>
     </section>
 
+<!-- Footer actualizat pentru Colectivul Blană -->
+
+<footer>
+    <div class="footer-content">
+        <h3>Colectivul Blană</h3>
+        <p>Email: <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a></p>
+        
+        <div class="footer-social">
+            <a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer" class="social-link insta-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <!-- Dacă mai ai și Facebook, îl poți adăuga aici cu clasa fb-icon -->
+        </div>
+        <p class="copyright">&copy; 2026 Colectivul Blană. Toate drepturile rezervate.</p>
+    </div>
+</footer>
 </body>
 </html>

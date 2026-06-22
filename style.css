@@ -106,61 +106,282 @@ body {
 .partner-socials a i { color: #2D4A22 !important; }
 .partner-socials a:hover i { color: #629E53 !important; }
 
-/* Containerul secțiunii */
-.insta-section {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 20px;
-}
+/* Import font jucăuș */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 
-/* 1. Wrapper principal: Sidebar fix de 350px + Conținut variabil */
-.adoption-wrapper {
+/* Containerul principal pentru carduri */
+.container-carduri {
     display: grid;
-    grid-template-columns: 350px 1fr; /* 350px fix pentru stânga, restul pentru grid */
-    gap: 40px;
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    align-items: start;
-}
-
-/* 2. Grid-ul de Instagram: 3 coloane */
-.instagram-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Aici setăm cele 3 coloane */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    padding: 40px 20px;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* Stilul Cardului */
+.card {
+    background-color: #fcf8f0; /* Crem */
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Quicksand', sans-serif;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Poza cu border alb și fără trunchiere */
+.card-image-wrapper {
+    background-color: #ffffff; 
+    padding: 8px; 
     width: 100%;
+    height: 250px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* <--- ADĂUGAT: Forțează tot ce e în interior să respecte rotunjirea */
 }
 
-/* 3. Containerul fiecărei postări: Aici rezolvăm problema dimensiunii */
-.insta-post {
+.card-image-wrapper img {
     width: 100%;
-    min-width: 0; /* Esențial: forțează elementul să nu iasă din coloană */
-    background: transparent;
+    height: 100%;
+    object-fit: cover; /* Am pus cover pentru a umple spațiul frumos */
+    border-radius: 15px; /* Rotunjire explicită */
+    display: block;
 }
 
-/* 4. Forțăm Instagram Embed-ul să se muleze pe celulă */
-.instagram-media {
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
+/* Stil pentru pictograma de confirmare (în loc de emoji) */
+.health-check i {
+    color: #27ae60;
+    margin-right: 6px;
+    font-size: 0.9rem;
 }
 
-/* RESPONSIVITATE (Foarte important) */
-/* Când ecranul devine prea mic, adaptăm numărul de coloane */
+/* Content */
+.card-content {
+    padding: 20px;
+    text-align: center; /* Centrează automat Titlul, Statusul și Bio */
+}
 
+.card-content h2 {
+    font-size: 24px;
+    color: #1A330E;
+    margin-bottom: 5px;
+}
+
+.status {
+    font-size: 0.85rem;
+    color: #D97736;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    justify-content: center; /* Centrează tag-urile pe rând */
+}
+
+.tags span {
+    background: #e0d8c3;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: #1A330E;
+}
+
+.bio {
+    background-color: #004d40;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.footer-info {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center; /* Aceasta forțează centrarea pe orizontală */
+    align-items: center;     /* Aceasta aliniază pe verticală (mijloc) */
+    gap: 15px;               /* Spațiul dintre logo și iconiță */
+}
+
+.health-check {
+    font-size: 0.8rem;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.org-logo {
+    height: 40px; /* Ajustează înălțimea dacă e prea mare */
+    width: auto;
+    cursor: pointer;
+}
+
+/* Responsivitate (Pentru ecrane mai mici) */
 @media (max-width: 1024px) {
-    .instagram-grid {
-        grid-template-columns: repeat(2, 1fr); /* Trecem la 2 coloane pe tablete */
-    }
+    .container-carduri { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .container-carduri { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-    .adoption-wrapper {
-        grid-template-columns: 1fr; /* Sidebar-ul sare deasupra pe mobil */
-    }
-    .instagram-grid {
-        grid-template-columns: 1fr; /* Totul pe o singură coloană pe mobil */
-    }
+/* Stil pentru Modal (Pop-up) */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #fcf8f0;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1A330E;
+}
+
+.modal-content h2 { color: #1A330E; margin-bottom: 20px; }
+.modal-content p { color: #4A5A43; margin: 10px 0; }
+
+.contact-icon {
+    font-size: 24px;
+    color: #1A330E;
+    cursor: pointer;
+}
+
+.contact-icon:hover {
+    color: #629E53; /* Verdele mai deschis la hover */
+    transform: scale(1.1);
+}
+
+.insta-icon {
+    font-size: 24px;
+    color: #E1306C; /* Culoarea specifică Instagram */
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-left: 15px;
+    text-decoration: none;
+}
+.insta-icon:hover { transform: scale(1.1); }
+
+/* Ascundem scrollbar-ul nativ pe toate browserele */
+html, body { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+#dachshund-scroll-wrapper {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 60px; /* Lățimea containerului care găzduiește tot */
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dachshund-rear {
+    width: 55px;
+    height: 55px;
+    transform: rotate(90deg); /* Rotire 90 grade */
+    flex-shrink: 0;
+}
+
+#dachshund-body {
+    width: 14px; /* Am micșorat lățimea ca să arate mai natural cu pozele */
+    background-color: #986629; /* Culoarea ta */
+    height: 0%; /* Începe de la 0 */
+    position: relative; /* Necesar pentru a ancora capul */
+    transition: height 0.1s ease-out;
+}
+
+#dachshund-head {
+    width: 55px;
+    height: 60px;
+    position: absolute;
+    bottom: -40px; /* Ajustează valoarea asta ca să se lipească perfect de capătul corpului */
+    left: -20px; /* Centrează capul față de corpul subțire */
+    transform: rotate(90deg); /* Rotire 90 grade */
+}
+
+.social-link {
+    font-size: 1.2rem;
+    margin-left: 10px;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+/* Culori specifice */
+.fb-icon { color: #1877f2; }    /* Albastru Facebook */
+.insta-icon { color: #e1306c; } /* Roz Instagram */
+.web-icon { color: #333; }      /* Gri închis pentru Website */
+
+/* Efect la hover */
+.social-link:hover { opacity: 0.8; }
+
+footer {
+    background-color: #2c3e50; /* O culoare închisă, neutră */
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 50px; /* Distanță față de conținutul de sus */
+}
+
+.footer-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.footer-content a {
+    color: #f1c40f; /* O culoare de accent, vizibilă pe fundal închis */
+    text-decoration: none;
+}
+
+.footer-social {
+    margin: 20px 0;
+    font-size: 1.5rem;
+}
+
+.footer-social .social-link {
+    margin: 0 10px;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    opacity: 0.7;
 }
