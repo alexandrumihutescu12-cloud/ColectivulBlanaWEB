@@ -16,7 +16,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+<div id="dachshund-scroll-wrapper">
+    <img src="Imagini/dachshund_rear.png" id="dachshund-rear" alt="Rear">
+    <div id="dachshund-body">
+        <img src="Imagini/dachshund_head.png" id="dachshund-head" alt="Head">
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
+<script>
+window.addEventListener('scroll', function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    
+    // Extindem corpul solid
+    document.getElementById("dachshund-body").style.height = scrolled + "%";
+});
+</script>
     <header class="navbar">
         
         
@@ -160,6 +181,7 @@
         }
         </script>
     </section>
+
 
 </body>
 </html>

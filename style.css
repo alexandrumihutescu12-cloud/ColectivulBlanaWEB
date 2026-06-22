@@ -332,3 +332,18 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
     left: -20px; /* Centrează capul față de corpul subțire */
     transform: rotate(90deg); /* Rotire 90 grade */
 }
+
+.social-link {
+    font-size: 1.2rem;
+    margin-left: 10px;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+/* Culori specifice */
+.fb-icon { color: #1877f2; }    /* Albastru Facebook */
+.insta-icon { color: #e1306c; } /* Roz Instagram */
+.web-icon { color: #333; }      /* Gri închis pentru Website */
+
+/* Efect la hover */
+.social-link:hover { opacity: 0.8; }
