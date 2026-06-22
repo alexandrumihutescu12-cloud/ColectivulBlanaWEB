@@ -291,3 +291,44 @@ body {
     text-decoration: none;
 }
 .insta-icon:hover { transform: scale(1.1); }
+
+/* Ascundem scrollbar-ul nativ pe toate browserele */
+html, body { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+#dachshund-scroll-wrapper {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 60px; /* Lățimea containerului care găzduiește tot */
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dachshund-rear {
+    width: 55px;
+    height: 55px;
+    transform: rotate(90deg); /* Rotire 90 grade */
+    flex-shrink: 0;
+}
+
+#dachshund-body {
+    width: 14px; /* Am micșorat lățimea ca să arate mai natural cu pozele */
+    background-color: #986629; /* Culoarea ta */
+    height: 0%; /* Începe de la 0 */
+    position: relative; /* Necesar pentru a ancora capul */
+    transition: height 0.1s ease-out;
+}
+
+#dachshund-head {
+    width: 55px;
+    height: 60px;
+    position: absolute;
+    bottom: -40px; /* Ajustează valoarea asta ca să se lipească perfect de capătul corpului */
+    left: -20px; /* Centrează capul față de corpul subțire */
+    transform: rotate(90deg); /* Rotire 90 grade */
+}
