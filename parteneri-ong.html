@@ -4,51 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parteneri ONG - Colectivul Blană</title>
-    <!-- LINIA PENTRU LOGO ÎN TAB (FAVICON) -->
     <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
-    
-    <!-- Restul legăturilor tale (Google Fonts, style.css etc.) -->
-    <link rel="stylesheet" href="style.css">
-</head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #213a14;
+            background-image: url(Doodles/Background.png);
+            background-repeat: repeat;
+            background-size: 400px;
+        }
+    </style>
 </head>
 <body>
-<div id="dachshund-scroll-wrapper">
-    <img src="Imagini/dachshund_rear.png" id="dachshund-rear" alt="Rear">
-    <div id="dachshund-body">
-        <img src="Imagini/dachshund_head.png" id="dachshund-head" alt="Head">
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
-<script>
-window.addEventListener('scroll', function() {
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-    
-    // Extindem corpul solid
-    document.getElementById("dachshund-body").style.height = scrolled + "%";
-});
-</script>
+<div id="content-wrap">
+
+    <!-- Animația dachshund -->
+    <div id="dachshund-scroll-wrapper">
+        <img src="Imagini/dachshund_rear.png" id="dachshund-rear" alt="Rear">
+        <div id="dachshund-body">
+            <img src="Imagini/dachshund_head.png" id="dachshund-head" alt="Head">
+        </div>
+    </div>
+
+    <!-- Navbar -->
     <header class="navbar">
-        
-        
-        <div style="max-width: 1200px; margin: 0 auto; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
-            
-           
-    <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
-    <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
-</a>
-            
-            <!-- Link-urile din dreapta -->
-            <ul class="nav-links" style="display: flex; align-items: center; gap: 25px; list-style: none; margin: 0; padding: 0;">
+        <div style="max-width:1200px; margin:0 auto; padding:20px 50px; display:flex; justify-content:space-between; align-items:center; width:100%; box-sizing:border-box;">
+            <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+            <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+            <ul class="nav-links">
                 <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
                 <li class="dropdown">
                     <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <span class="arrow">▼</span></a>
@@ -57,196 +42,153 @@ window.addEventListener('scroll', function() {
                         <li><a href="adoptii.html">Adopții</a></li>
                     </ul>
                 </li>
-                <li><a href="parteneri-afaceri.html" style="position: relative; z-index: 9999; pointer-events: auto !important;">Parteneri afaceri locale</a></li>
-                <!-- Caută butonul din taskbar în celelalte pagini și pune link-ul curat: -->
-<li><a href="proiecte.html">Proiecte curente</a></li>
-                <!-- Caută clasa .btn-donatie în taskbar-urile din celelalte pagini și pune: -->
-<li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+                <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
+                <li><a href="proiecte.html">Proiecte curente</a></li>
+                <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
                 <li>
-                    <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" title="Instagram" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" rel="noopener noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </li>
             </ul>
-
         </div>
-    </nav>
-    <!-- Aici se termină taskbar-ul tău -->
-    </nav>
     </header>
 
-<!-- Aici începe secțiunea ta cu parteneri -->
-<section class="partners-section">
-
+    <!-- Conținut principal -->
     <main>
-        <div class="partners-list-container">
-    
-    <!-- SINGURUL PARTENER MOMENTAN: ASOCIAȚIA POLI -->
-    <div class="partner-card">
-        <!-- Stânga: Logo Oficial Poli -->
-        <!-- Caută zona asta și modifică src-ul așa: -->
-<div class="partner-logo">
-    <img src="Imagini/AsociatiaPoli.png" alt="Logo Asociația Poli" style="background-color: #ffffff; padding: 10px;">
-</div>
-        
-        <!-- Dreapta: Detalii și Contact -->
-        <div class="partner-info">
-            <h3>Asociația Poli</h3>
-            <p class="partner-description">
-                Primul partener oficial din Colectivul Blană. O asociație dedicată protecției animalelor, salvării sufletelor nevinovate și creării unei comunități mai bune pentru ele.
-            </p>
-            
-            <div class="partner-meta">
-                <!-- Adresă și Telefon -->
-                <div class="partner-contact-details">
-                    <p class="partner-address">
-                        <i class="fas fa-map-marker-alt"></i> Strada Înfrățirea nr. 93, Giarmata Vii, Timiș
-                    </p>
-                    <p class="partner-phone" style="font-size: 14px; color: #629E53; font-weight: 500; margin-top: 5px;">
-                        <i class="fas fa-phone-alt"></i> 0731 473 824
-                    </p>
-                </div>
-                
-                <!-- Rețele Sociale și Web -->
-                <div class="partner-socials">
-                    <a href="https://www.facebook.com/profile.php?id=61554698213251" target="_blank" title="Facebook Poli"><i class="fab fa-facebook" rel="noopener noreferrer"></i></a>
-                    <a href="https://www.instagram.com/asociatiapoli/" target="_blank" title="Instagram Poli"><i class="fab fa-instagram" rel="noopener noreferrer"></i></a>
-                    <a href="https://asociatia-poli.ro/" target="_blank" title="Website Oficial"><i class="fas fa-globe" rel="noopener noreferrer"></i></a>
-                </div>
+        <section class="partners-section">
+            <div style="text-align:center; margin-bottom:40px;">
+                <span class="subtitle">Comunitatea Locală</span>
+                <h2>Parteneri ONG</h2>
+                <p style="color:#EFEAE4; max-width:600px; margin:10px auto 0 auto;">
+                    Asociațiile care fac bine în Timișoara.
+                </p>
             </div>
-        </div>
-    </div>
-<div class="partners-list-container">
-    
-    
+            <div class="partners-list-container">
 
-    <!-- NOU! PARTENER 2: BUCURIILE MĂRIUCĂI -->
-    <div class="partner-card">
-        <!-- Stânga: Logo Bucuriile Măriucăi -->
-        <div class="partner-logo">
-            <img src="Imagini/BucuriileMariucai.png" alt="Logo Bucuriile Măriucăi" style="background-color: #ffffff; padding: 10px;">
-        </div>
-        
-        <!-- Dreapta: Detalii și Contact -->
-        <div class="partner-info">
-            <h3>Bucuriile Măriucăi</h3>
-            <p class="partner-description">
-                O asociație plină de căldură care aduce bucurie și speranță sufletelor necuvântătoare. Împreună înmulțim faptele bune și oferim sprijin acolo unde este cea mai mare nevoie.
-            </p>
-            
-            <div class="partner-meta">
-                <!-- Adresă, Telefon și Email -->
-                <div class="partner-contact-details">
-                    <p class="partner-address">
-                        <i class="fas fa-map-marker-alt"></i> Giarmata, Timiș, 307210
-                    </p>
-                    <p class="partner-phone" style="font-size: 14px; color: #629E53; font-weight: 500; margin-top: 5px;">
-                        <i class="fas fa-phone-alt"></i> +40 728 790 581
-                    </p>
-                    <p class="partner-email" style="font-size: 14px; color: #629E53; font-weight: 500; margin-top: 5px;">
-                        <i class="fas fa-envelope"></i> bucuriilemariucai@gmail.com
-                    </p>
+                <!-- ASOCIAȚIA POLI -->
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="Imagini/AsociatiaPoli.png" alt="Logo Asociația Poli" style="background-color:#ffffff; padding:10px;">
+                    </div>
+                    <div class="partner-info">
+                        <h3>Asociația Poli</h3>
+                        <p class="partner-description">
+                            Primul partener oficial din Colectivul Blană. O asociație dedicată protecției animalelor, salvării sufletelor nevinovate și creării unei comunități mai bune pentru ele.
+                        </p>
+                        <div class="partner-meta">
+                            <div class="partner-contact-details">
+                                <p class="partner-address"><i class="fas fa-map-marker-alt"></i> Strada Înfrățirea nr. 93, Giarmata Vii, Timiș</p>
+                                <p style="font-size:14px; color:#629E53; font-weight:500; margin-top:5px;"><i class="fas fa-phone-alt"></i> 0731 473 824</p>
+                            </div>
+                            <div class="partner-socials">
+                                <a href="https://www.facebook.com/profile.php?id=61554698213251" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/asociatiapoli/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://asociatia-poli.ro/" target="_blank" rel="noopener noreferrer" title="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- Rețele Sociale și Web -->
-                <div class="partner-socials">
-                    <a href="https://www.facebook.com/profile.php?id=61576627142441" target="_blank" title="Facebook Bucuriile Măriucăi"><i class="fab fa-facebook" rel="noopener noreferrer"></i></a>
-                    <a href="https://www.instagram.com/asociatiabucuriilemariucai/" target="_blank" title="Instagram Bucuriile Măriucăi"><i class="fab fa-instagram" rel="noopener noreferrer"></i></a>
-                    <a href="https://bucuriile-mariucai.ro/" target="_blank" title="Website Oficial"><i class="fas fa-globe" rel="noopener noreferrer"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- PARTENER 3: ASOCIAȚIA MICAELA -->
-    <div class="partner-card">
-        <!-- Stânga: Logo Asociația Micaela -->
-        <div class="partner-logo">
-            <img src="Imagini/AsociatiaMicaela.jpg" alt="Logo Asociația Micaela" style="background-color: #ffffff; padding: 10px;">
-        </div>
-        
-        <!-- Dreapta: Detalii și Contact -->
-        <div class="partner-info">
-            <h3>Asociația Micaela</h3>
-            <p class="partner-description">
-                Un pilon de sprijin important în comunitatea noastră. Ne unim forțele cu ei pentru a aduce speranță, resurse și o viață mai bună animăluțelor și cazurilor sociale din Timișoara.
-            </p>
-            
-            <div class="partner-meta">
-                <!-- Adresă, Telefon (dacă va fi cazul) și Email -->
-                <div class="partner-contact-details">
-                    <p class="partner-address">
-                        <i class="fas fa-map-marker-alt"></i> Timișoara, România
-                    </p>
-                    <p class="partner-email" style="font-size: 14px; color: #629E53; font-weight: 500; margin-top: 5px;">
-                        <i class="fas fa-envelope"></i> asociatiamicaelatm@yahoo.com
-                    </p>
-                </div>
-                
-                <!-- Rețele Sociale și Web -->
-                <div class="partner-socials">
-                    <a href="https://www.facebook.com/mmpr.eu/?locale=ro_RO" target="_blank" title="Facebook Asociația Micaela"><i class="fab fa-facebook" rel="noopener noreferrer"></i></a>
-                    <a href="https://www.instagram.com/asociatiamicaelatm/" target="_blank" title="Instagram Asociația Micaela"><i class="fab fa-instagram" rel="noopener noreferrer"></i></a>
-                    <a href="https://asociatiamicaela.de" target="_blank" title="Website Oficial"><i class="fas fa-globe" rel="noopener noreferrer"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- PARTENER 4: STRADA VESELĂ -->
-    <div class="partner-card">
-        <!-- Stânga: Logo Strada Veselă -->
-        <div class="partner-logo">
-            <img src="Imagini/StradaVesela.jpg" alt="Logo Strada Veselă" style="background-color: #ffffff; padding: 10px;">
-        </div>
-        
-        <!-- Dreapta: Detalii și Contact -->
-        <div class="partner-info">
-            <h3>Strada Veselă</h3>
-            <p class="partner-description">
-                Aducem optimism și energie pe Strada Veselă! Ne bucurăm să îi avem alături în Colectivul Blană pentru a dezvolta proiecte frumoase, pline de zâmbete și sprijin dedicat comunității noastre.
-            </p>
-            
-            <div class="partner-meta">
-                <!-- Adresă și Telefon -->
-                <div class="partner-contact-details">
-                    <p class="partner-address">
-                        <i class="fas fa-map-marker-alt"></i> Strada Alexandru Mocioni nr. 3, Giarmata, Timiș
-                    </p>
-                    <p class="partner-phone" style="font-size: 14px; color: #629E53; font-weight: 500; margin-top: 5px;">
-                        <i class="fas fa-phone-alt"></i> 0723 393 031
-                    </p>
+                <!-- BUCURIILE MĂRIUCĂI -->
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="Imagini/BucuriileMariucai.png" alt="Logo Bucuriile Măriucăi" style="background-color:#ffffff; padding:10px;">
+                    </div>
+                    <div class="partner-info">
+                        <h3>Bucuriile Măriucăi</h3>
+                        <p class="partner-description">
+                            O asociație plină de căldură care aduce bucurie și speranță sufletelor necuvântătoare. Împreună înmulțim faptele bune și oferim sprijin acolo unde este cea mai mare nevoie.
+                        </p>
+                        <div class="partner-meta">
+                            <div class="partner-contact-details">
+                                <p class="partner-address"><i class="fas fa-map-marker-alt"></i> Giarmata, Timiș, 307210</p>
+                                <p style="font-size:14px; color:#629E53; font-weight:500; margin-top:5px;"><i class="fas fa-phone-alt"></i> +40 728 790 581</p>
+                                <p style="font-size:14px; color:#629E53; font-weight:500; margin-top:5px;"><i class="fas fa-envelope"></i> bucuriilemariucai@gmail.com</p>
+                            </div>
+                            <div class="partner-socials">
+                                <a href="https://www.facebook.com/profile.php?id=61576627142441" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/asociatiabucuriilemariucai/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://bucuriile-mariucai.ro/" target="_blank" rel="noopener noreferrer" title="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- Rețele Sociale -->
-                <div class="partner-socials">
-                    <a href="https://www.facebook.com/p/Strada-Vesela-61557147540152/" target="_blank" title="Facebook Strada Veselă"><i class="fab fa-facebook" rel="noopener noreferrer"></i></a>
-                    <a href="https://www.instagram.com/facemstradavesela/" target="_blank" title="Instagram Strada Veselă"><i class="fab fa-instagram" rel="noopener noreferrer"></i></a>
-                    <!-- Nu am pus iconița de Web (fa-globe) deoarece nu au un site propriu listat, rămân doar social media -->
+
+                <!-- ASOCIAȚIA MICAELA -->
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="Imagini/AsociatiaMicaela.jpg" alt="Logo Asociația Micaela" style="background-color:#ffffff; padding:10px;">
+                    </div>
+                    <div class="partner-info">
+                        <h3>Asociația Micaela</h3>
+                        <p class="partner-description">
+                            Un pilon de sprijin important în comunitatea noastră. Ne unim forțele cu ei pentru a aduce speranță, resurse și o viață mai bună animăluțelor și cazurilor sociale din Timișoara.
+                        </p>
+                        <div class="partner-meta">
+                            <div class="partner-contact-details">
+                                <p class="partner-address"><i class="fas fa-map-marker-alt"></i> Timișoara, România</p>
+                                <p style="font-size:14px; color:#629E53; font-weight:500; margin-top:5px;"><i class="fas fa-envelope"></i> asociatiamicaelatm@yahoo.com</p>
+                            </div>
+                            <div class="partner-socials">
+                                <a href="https://www.facebook.com/mmpr.eu/?locale=ro_RO" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/asociatiamicaelatm/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://asociatiamicaela.de" target="_blank" rel="noopener noreferrer" title="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- STRADA VESELĂ -->
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="Imagini/StradaVesela.jpg" alt="Logo Strada Veselă" style="background-color:#ffffff; padding:10px;">
+                    </div>
+                    <div class="partner-info">
+                        <h3>Strada Veselă</h3>
+                        <p class="partner-description">
+                            Aducem optimism și energie pe Strada Veselă! Ne bucurăm să îi avem alături în Colectivul Blană pentru a dezvolta proiecte frumoase, pline de zâmbete și sprijin dedicat comunității noastre.
+                        </p>
+                        <div class="partner-meta">
+                            <div class="partner-contact-details">
+                                <p class="partner-address"><i class="fas fa-map-marker-alt"></i> Strada Alexandru Mocioni nr. 3, Giarmata, Timiș</p>
+                                <p style="font-size:14px; color:#629E53; font-weight:500; margin-top:5px;"><i class="fas fa-phone-alt"></i> 0723 393 031</p>
+                            </div>
+                            <div class="partner-socials">
+                                <a href="https://www.facebook.com/p/Strada-Vesela-61557147540152/" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/facemstradavesela/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </div>
+        </section>
     </main>
-</div>
-</div>
 
-
-
-    <!-- Footer actualizat pentru Colectivul Blană -->
+</div><!-- /content-wrap -->
 
 <footer>
     <div class="footer-content">
         <h3>Colectivul Blană</h3>
         <p>Email: <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a></p>
-        
         <div class="footer-social">
             <a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer" class="social-link insta-icon">
                 <i class="fab fa-instagram"></i>
             </a>
-            <!-- Dacă mai ai și Facebook, îl poți adăuga aici cu clasa fb-icon -->
         </div>
         <p class="copyright">&copy; 2026 Colectivul Blană. Toate drepturile rezervate.</p>
     </div>
 </footer>
+
+<script>
+window.addEventListener('scroll', function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    document.getElementById("dachshund-body").style.height = scrolled + "%";
+});
+</script>
+
 </body>
 </html>

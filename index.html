@@ -4,77 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colectivul Blană - ONG</title>
-    
     <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #213a14;
+            background-image: url(Doodles/Background.png);
+            background-repeat: repeat;
+            background-size: 400px;
+        }
+    </style>
 </head>
 <body>
-    <div id="dachshund-scroll-wrapper">
-    <img src="Imagini/dachshund_rear.png" id="dachshund-rear" alt="Rear">
-    <div id="dachshund-body">
-        <img src="Imagini/dachshund_head.png" id="dachshund-head" alt="Head">
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
-<script>
-window.addEventListener('scroll', function() {
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-    
-    // Extindem corpul solid
-    document.getElementById("dachshund-body").style.height = scrolled + "%";
-});
-</script>
-    
-<header class="navbar">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
-            
-           
-    <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
-    <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
-            
-            <!-- Link-urile din dreapta -->
+<div id="content-wrap">
+
+    <!-- Animația dachshund -->
+    <div id="dachshund-scroll-wrapper">
+        <img src="Imagini/dachshund_rear.png" id="dachshund-rear" alt="Rear">
+        <div id="dachshund-body">
+            <img src="Imagini/dachshund_head.png" id="dachshund-head" alt="Head">
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div style="max-width:1200px; margin:0 auto; padding:20px 50px; display:flex; justify-content:space-between; align-items:center; width:100%; box-sizing:border-box;">
+            <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+            <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
             <ul class="nav-links">
-    <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
-    
-    <li class="dropdown">
+                <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
+                <li class="dropdown">
                     <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <span class="arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
                         <li><a href="adoptii.html">Adopții</a></li>
                     </ul>
                 </li>
-
-    <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
-    <li><a href="proiecte.html">Proiecte curente</a></li>
-    <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
-    <li>
-        <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
-        </a>
-    </li>
-</ul>
-
+                <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
+                <li><a href="proiecte.html">Proiecte curente</a></li>
+                <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+                <li>
+                    <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </nav>
-    <!-- Aici se termină taskbar-ul tău -->
-    </nav>
     </header>
 
+    <!-- Conținut principal -->
     <main>
         <section id="povestea-noastra" class="about-section">
-            <div class="about-container">
-                
+            <div class="about-container mv-box">
                 <div class="about-slideshow">
                     <div class="slides">
                         <img class="slide active" src="Animale/poza1.jpeg" alt="Cățel Colectivul Blană">
@@ -84,17 +68,15 @@ window.addEventListener('scroll', function() {
                         <img class="slide" src="Animale/poza5.jpeg" alt="Cățel Colectivul Blană">
                     </div>
                 </div>
-
                 <div class="about-bullets">
                     <span class="subtitle">Începuturile noastre</span>
                     <h2>De unde a început inițiativa?</h2>
                     <p class="story-intro-text">
-                        Povestea a început din dragoste pentru animaluțe și pentru Timișoara. 
-                        Cunoscând mai multe ONG-uri și afaceri mici locale și poveștile lor frumoase, 
-                        ne-am propus să creăm un colectiv strâns în care să lucrăm împreună pentru 
+                        Povestea a început din dragoste pentru animaluțe și pentru Timișoara.
+                        Cunoscând mai multe ONG-uri și afaceri mici locale și poveștile lor frumoase,
+                        ne-am propus să creăm un colectiv strâns în care să lucrăm împreună pentru
                         succesul și vizibilitatea fiecăruia.
                     </p>
-
                     <ul class="story-bullets">
                         <li><strong>Colaborare locală:</strong> Conectăm asociațiile cu micile afaceri din Timișoara.</li>
                         <li><strong>Vizibilitate sporită:</strong> Promovăm cazurile și poveștile care merită auzite.</li>
@@ -103,57 +85,55 @@ window.addEventListener('scroll', function() {
                     </ul>
                 </div>
             </div>
-
             <div class="mission-vision-container">
                 <div class="mv-box mission">
                     <h3>Misiunea Noastră</h3>
-                    <p>
-                        Să creăm un colectiv și parteneriat strâns între ONG-uri, firme locale, donatori și voluntari. 
-                        Dorim să aducem vizibilitate cazurilor sociale și proiectelor locale, și să direcționăm ajutorul 
-                        unde nevoia e cea mai mare. Împreună facem mai mult bine!
-                    </p>
+                    <p>Să creăm un colectiv și parteneriat strâns între ONG-uri, firme locale, donatori și voluntari.
+                    Dorim să aducem vizibilitate cazurilor sociale și proiectelor locale, și să direcționăm ajutorul
+                    unde nevoia e cea mai mare. Împreună facem mai mult bine!</p>
                 </div>
                 <div class="mv-box vision">
                     <h3>Viziunea Noastră</h3>
-                    <p>
-                        Ne dorim o Timișoară în care nicio inițiativă bună nu e lăsată singură și niciun animăluț în suferință nu e uitat. 
-                        Viziunea noastră este să devenim inima unei rețele locale puternice, capabilă să mobilizeze resurse instant, 
-                        transformând solidaritatea într-un obicei zilnic și accesibil oricui.
-                    </p>
+                    <p>Ne dorim o Timișoară în care nicio inițiativă bună nu e lăsată singură și niciun animăluț în suferință nu e uitat.
+                    Viziunea noastră este să devenim inima unei rețele locale puternice, capabilă să mobilizeze resurse instant,
+                    transformând solidaritatea într-un obicei zilnic și accesibil oricui.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(nextSlide, 3000);
-    </script>
-
-
-<!-- Footer actualizat pentru Colectivul Blană -->
+</div><!-- /content-wrap -->
 
 <footer>
     <div class="footer-content">
         <h3>Colectivul Blană</h3>
         <p>Email: <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a></p>
-        
         <div class="footer-social">
             <a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer" class="social-link insta-icon">
                 <i class="fab fa-instagram"></i>
             </a>
-            <!-- Dacă mai ai și Facebook, îl poți adăuga aici cu clasa fb-icon -->
         </div>
         <p class="copyright">&copy; 2026 Colectivul Blană. Toate drepturile rezervate.</p>
     </div>
 </footer>
+
+<script>
+window.addEventListener('scroll', function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    document.getElementById("dachshund-body").style.height = scrolled + "%";
+});
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+setInterval(nextSlide, 3000);
+</script>
+
 </body>
 </html>
