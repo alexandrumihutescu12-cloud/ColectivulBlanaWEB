@@ -699,7 +699,7 @@ li.dropdown {
     position: fixed;
     right: 0;
     top: 0;
-    width: 60px;
+    width: 45px;
     height: 100vh;
     z-index: 9999;
     pointer-events: none;
@@ -709,26 +709,29 @@ li.dropdown {
 }
 
 #dachshund-rear {
-    width: 56px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     transform: rotate(90deg);
     flex-shrink: 0;
+    margin-right: 3px;
 }
 
 #dachshund-body {
-    width: 14px;
+    width: 17px;
     background-color: #986629;
     height: 0%;
     position: relative;
     transition: height 0.1s ease-out;
+    border-left: 1px solid #0b0808;
+    border-right: 1px solid #0b0808;
 }
 
 #dachshund-head {
-    width: 55px;
-    height: 60px;
+    width: 56px;
+    height: 61px;
     position: absolute;
     bottom: -40px;
-    left: -20px;
+    left: -21px;
     transform: rotate(90deg);
 }
 
