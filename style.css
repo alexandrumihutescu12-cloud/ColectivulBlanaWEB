@@ -40,7 +40,7 @@ body {
    ============================================================ */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Menține logo în stânga și linkuri în dreapta */
     align-items: center;
     width: 92%;
     max-width: 1250px;
@@ -53,6 +53,17 @@ body {
     position: sticky;
     top: 20px;
     z-index: 1050;
+    gap: 20px; /* Adaugă acest gap pentru a controla distanța minimă */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 25px;
+    flex-grow: 0; /* MODIFICARE: Elimină sau schimbă în 0 pentru a opri întinderea */
 }
 
 .logo-img {
@@ -78,15 +89,7 @@ span.logo-text .accent {
     font-weight: 900;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 25px;
-    flex-grow: 1;
-}
+
 
 .nav-links a {
     white-space: nowrap;
