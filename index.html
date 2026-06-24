@@ -38,29 +38,34 @@
 
     <!-- Navbar -->
     <header class="navbar">
-        <div style="max-width:1200px; margin:0 auto; padding:20px 50px; display:flex; justify-content:space-between; align-items:center; width:100%; box-sizing:border-box;">
-            <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
-            <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
-            <ul class="nav-links">
-                <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
-                <li class="dropdown">
-                    <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <span class="arrow">▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
-                        <li><a href="adoptii.html">Adopții</a></li>
-                    </ul>
-                </li>
-                <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
-                <li><a href="proiecte.html">Proiecte curente</a></li>
-                <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
-                <li>
-                    <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </li>
+    <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+    <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+
+    <button class="hamburger" id="hamburger" aria-label="Meniu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul class="nav-links">
+        <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
+        <li class="dropdown">
+            <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <span class="arrow">▼</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
+                <li><a href="adoptii.html">Adopții</a></li>
             </ul>
-        </div>
-    </header>
+        </li>
+        <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
+        <li><a href="proiecte.html">Proiecte curente</a></li>
+        <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+        <li>
+            <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+    </ul>
+</header>
 
     <!-- Conținut principal -->
     <main>
@@ -141,6 +146,14 @@ function nextSlide() {
 }
 setInterval(nextSlide, 3000);
 </script>
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
 
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+});
+</script>
 </body>
 </html>

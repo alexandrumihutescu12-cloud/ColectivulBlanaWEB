@@ -782,16 +782,83 @@ footer {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 768px) {
+
+    /* Ascunde dachshund pe mobil */
+    #dachshund-scroll-wrapper {
+        display: none;
+    }
+
+    /* Navbar */
     .navbar {
         width: 100%;
         margin: 0;
         border-radius: 0;
         top: 0;
         padding: 15px 20px;
+        position: relative;
+        flex-wrap: wrap;
     }
 
+    /* Ascunde link-urile implicit */
     .nav-links {
-        gap: 15px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 10px;
+        padding: 15px 0 5px 0;
+    }
+
+    /* Când e deschis */
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        padding: 5px 0;
+    }
+
+    /* Butonul hamburger */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #1A330E;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    /* Animație X când e deschis */
+    .hamburger.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.open span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Dropdown pe mobil */
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: #EFEAE4;
+        border-radius: 8px;
+        padding: 5px 10px;
+        margin-top: 5px;
     }
 
     .about-container,
@@ -820,14 +887,4 @@ footer {
     }
 }
 
-@media (max-width: 1024px) {
-    .container-carduri {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-@media (max-width: 600px) {
-    .container-carduri {
-        grid-template-columns: 1fr;
-    }
-}
