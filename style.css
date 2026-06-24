@@ -875,15 +875,34 @@ footer {
         margin-top: 5px;
     }
 
-    /* Carduri adopții */
-    .container-carduri {
-        grid-template-columns: 1fr;
-        padding: 20px 15px;
-    }
+   .container-carduri {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    padding: 20px 15px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* ascunde scrollbar pe Firefox */
+}
 
-    .card-image-wrapper {
-        height: 200px;
-    }
+.container-carduri::-webkit-scrollbar {
+    display: none; /* ascunde scrollbar pe Chrome/Safari */
+}
+
+.card {
+    flex: 0 0 85vw;
+    max-width: 85vw;
+    scroll-snap-align: center;
+}
+
+.card-image-wrapper {
+    height: 300px;
+}
+
+.card-image-wrapper img {
+    object-fit: cover;
+}
 
     .card-content h2 {
         font-size: 18px;
