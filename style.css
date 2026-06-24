@@ -799,24 +799,36 @@ footer {
         flex-wrap: wrap;
     }
 
-    /* Ascunde link-urile implicit */
+    /* Nav links - ascunse implicit */
     .nav-links {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        gap: 10px;
-        padding: 15px 0 5px 0;
+        display: none !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+        gap: 10px !important;
+        padding: 15px 0 5px 0 !important;
     }
 
     /* Când e deschis */
     .nav-links.open {
-        display: flex;
+        display: flex !important;
     }
 
     .nav-links a {
         font-size: 16px;
         padding: 5px 0;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    /* Butonul Donații */
+    .btn-donatie {
+        display: inline-block !important;
+        width: auto !important;
+        padding: 8px 16px !important;
+        font-size: 14px !important;
     }
 
     /* Butonul hamburger */
@@ -826,6 +838,8 @@ footer {
         gap: 5px;
         cursor: pointer;
         padding: 5px;
+        background: none;
+        border: none;
     }
 
     .hamburger span {
@@ -861,6 +875,21 @@ footer {
         margin-top: 5px;
     }
 
+    /* Carduri adopții */
+    .container-carduri {
+        grid-template-columns: 1fr;
+        padding: 20px 15px;
+    }
+
+    .card-image-wrapper {
+        height: 200px;
+    }
+
+    .card-content h2 {
+        font-size: 18px;
+    }
+
+    /* Secțiunea despre noi */
     .about-container,
     .mission-vision-container {
         grid-template-columns: 1fr;
@@ -875,6 +904,7 @@ footer {
         height: 280px;
     }
 
+    /* Parteneri */
     .partner-card {
         flex-direction: column;
         text-align: center;
@@ -886,5 +916,3 @@ footer {
         align-items: center;
     }
 }
-
-
