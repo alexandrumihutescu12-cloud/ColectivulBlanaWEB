@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperSeniori - Colectivul Blană</title>
+    <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta property="og:image" content="https://colectivulblana.ro/Imagini/logocolectiv.png">
+    <meta property="og:title" content="SuperSeniori - Colectivul Blană">
+    <meta property="og:description" content="Câinii noștri seniori care nu pot fi adoptați, dar aduc bucurie în fiecare zi.">
+    <meta property="og:url" content="https://colectivulblana.ro/superseniori.html">
+    <meta property="og:type" content="website">
+</head>
+<body>
+
+<div id="content-wrap">
+
+    <div id="dachshund-scroll-wrapper">
+        <img src="Imagini/dachshund_rear.png" id="dachshund-rear" alt="Rear">
+        <div id="dachshund-body">
+            <img src="Imagini/dachshund_head.png" id="dachshund-head" alt="Head">
+        </div>
+    </div>
+
+    <header class="navbar">
+        <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+        <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+        
+        <button class="hamburger" id="hamburger" aria-label="Meniu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
+            <li class="dropdown">
+                <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <span class="arrow">▼</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
+                    <li><a href="adoptii.html">Adopții</a></li>
+                    <li><a href="super-seniori.html">#SuperSeniori</a></li>
+                </ul>
+            </li>
+            <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
+            <li><a href="proiecte.html">Proiecte curente</a></li>
+            <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+            <li>
+                <a href="https://www.instagram.com/colectivulblana/" target="_blank" class="btn-instagram" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+
+    <main>
+
+        <div class="seniori-intro">
+            <span class="subtitle">#SuperSeniori</span>
+            <h1>Bătrânei, dar <span>neînvinși</span> 🐾</h1>
+            <p>
+                Unii dintre ei au trăit mai mult decât mulți oameni își amintesc.
+                Au văzut anotimpuri, au iubit și au așteptat.
+                Nu pot pleca acasă la tine, dar asta nu înseamnă că viața lor
+                e mai puțin valoroasă sau că bucuria lor e mai mică.
+            </p>
+            <div class="heart-divider">♥ ♥ ♥</div>
+            <p>
+                Fiecare senior din lista asta aduce în fiecare zi dovada că vârsta
+                nu înseamnă sfârșitul — ci o altă formă de frumusețe.
+                Poți să îi sprijini printr-o <a href="donatii.html">donație</a>
+                care se transformă direct în hrană, îngrijire și zile mai bune pentru ei.
+            </p>
+        </div>
+
+<div class="container-carduri">
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Wilpi.jpeg" alt="Wilpi">
+                    <div class="tags">
+                        <span>9 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Wilpi</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Nona.jpeg" alt="Nona">
+                    <div class="tags">
+                        <span>9 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Nona</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Dandy.jpeg" alt="Dandy">
+                    <div class="tags">
+                        <span>14 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Dandy</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Lidia.jpeg" alt="Lidia">
+                    <div class="tags">
+                        <span>10 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Lidia</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Bambi.jpeg" alt="Bambi">
+                    <div class="tags">
+                        <span>14 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Bambi</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+   
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Foxy.jpeg" alt="Foxy">
+                    <div class="tags">
+                        <span>14 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Foxy</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Ria.jpeg" alt="Ria">
+                    <div class="tags">
+                        <span>9 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Ria</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Nuca.jpeg" alt="Nuca">
+                    <div class="tags">
+                        <span>10 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Nuca</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Snoofy.jpeg" alt="Snoofy">
+                    <div class="tags">
+                        <span>10 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Snoofy</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Forty.jpeg" alt="Forty">
+                    <div class="tags">
+                        <span>14 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Forty</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Frumusica.jpeg" alt="Frumușica">
+                    <div class="tags">
+                        <span>15 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Frumușica</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Miruna.jpeg" alt="Miruna">
+                    <div class="tags">
+                        <span>12 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Miruna</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Anja.jpeg" alt="Anja">
+                    <div class="tags">
+                        <span>14 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Anja</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Natasa.jpeg" alt="Natașa">
+                    <div class="tags">
+                        <span>13 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Natașa</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+       
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Albush.jpeg" alt="Albush">
+                    <div class="tags">
+                        <span>10 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Albush</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Archie.jpeg" alt="Archie">
+                    <div class="tags">
+                        <span>7 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Archie</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="Seniori/Tina.jpeg" alt="Tina">
+                    <div class="tags">
+                        <span>7 ani</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="badge-super-senior">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                        Super Senior
+                    </div>
+                    <h2>Tina</h2>
+                    <span class="status">Rezident permanent</span>
+                    <div class="footer-info">
+                        <span class="asociatie-text">Asociația Micaela</span>
+                        <button class="btn-contact-card" onclick="openModal(this)" data-nume="Asociația Micaela" data-telefon="07xx xxx xxx" data-email="contact@asociatiamicaela.ro" data-adresa="Adresa Asociației">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2 id="modal-nume">Nume Asociație</h2>
+        <p><strong>Telefon:</strong> <span id="modal-telefon">-</span></p>
+        <p><strong>Email:</strong> <span id="modal-email">-</span></p>
+        <p><strong>Adresă:</strong> <span id="modal-adresa">-</span></p>
+        
+        <!-- AICI adaugi noua zonă pentru linkuri -->
+        <div id="modal-socials" class="modal-socials"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <h3>Colectivul Blană</h3>
+        <p>Email: <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a></p>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer" class="social-link insta-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <p class="copyright">&copy; 2026 Colectivul Blană. Toate drepturile rezervate.</p>
+    </div>
+</footer>
+
+<script>
+// Datele de contact ale asociației (le modifici doar aici, o singură dată!)
+// Datele de contact fixe ale asociației (actualizate conform imaginii tale)
+// Datele de contact și linkurile asociației
+// Datele de contact fixe ale asociației
+// Datele de contact fixe ale asociației
+const dateContactAsociatie = {
+    telefon: "-",
+    email: "asociatiamicaelatm@yahoo.com",
+    adresa: "Timișoara, România",
+    linkuri: {
+        facebook: "https://www.facebook.com/mmpr.eu/?locale=ro_RO",
+        instagram: "https://www.instagram.com/asociatiamicaelatm/",
+        website: "https://asociatiamicaela.de/"
+    }
+};
+
+// Ascultăm click-urile pe containerul de carduri
+const containerCarduri = document.querySelector('.container-carduri');
+
+if (containerCarduri) {
+    containerCarduri.addEventListener('click', function(e) {
+        const butonContact = e.target.closest('.btn-contact-card');
+        
+        if (butonContact) {
+            e.preventDefault();
+            
+            const card = butonContact.closest('.card');
+            const numeAsociatie = card.querySelector('.asociatie-text').innerText;
+
+            // Populăm datele text
+            document.getElementById("modal-nume").innerText = numeAsociatie;
+            document.getElementById("modal-telefon").innerText = dateContactAsociatie.telefon;
+            document.getElementById("modal-email").innerText = dateContactAsociatie.email;
+            document.getElementById("modal-adresa").innerText = dateContactAsociatie.adresa;
+            
+            // Generăm butoanele folosind clasele Font Awesome (fa-brands, fa-globe)
+            const zonaSocials = document.getElementById("modal-socials");
+            zonaSocials.innerHTML = `
+                <a href="${dateContactAsociatie.linkuri.facebook}" target="_blank" class="btn-social fb" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="${dateContactAsociatie.linkuri.instagram}" target="_blank" class="btn-social ins" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="${dateContactAsociatie.linkuri.website}" target="_blank" class="btn-social web" title="Website">
+                    <i class="fa-solid fa-globe"></i>
+                </a>
+            `;
+            
+            document.getElementById("contactModal").style.display = "block";
+        }
+    });
+}
+
+function closeModal() { 
+    document.getElementById("contactModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById("contactModal")) {
+        closeModal();
+    }
+}
+
+window.addEventListener('scroll', function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    document.getElementById("dachshund-body").style.height = scrolled + "%";
+});
+
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

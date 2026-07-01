@@ -24,10 +24,13 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: #213a14;
+
+    background-color: #e9efe4;
     background-image: url(Doodles/Background.png);
     background-repeat: repeat;
-    background-size: 400px;
+    background-size: 420px;
+
+    color: #1A330E;
 }
 
 #content-wrap {
@@ -40,20 +43,27 @@ body {
    ============================================================ */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Menține logo în stânga și linkuri în dreapta */
+    justify-content: space-between;
     align-items: center;
     width: 92%;
     max-width: 1250px;
     margin: 20px auto 0 auto;
     padding: 12px 40px;
     border-radius: 50px;
-    background-color: #F5EFEB;
+    
+    /* Fundalul texturat identic cu cel de la carduri, modal și intro */
+    background-color: #FDF9F3; 
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     position: sticky;
     top: 20px;
     z-index: 1050;
-    gap: 20px; /* Adaugă acest gap pentru a controla distanța minimă */
+    gap: 20px;
 }
 
 .nav-links {
@@ -63,7 +73,7 @@ body {
     align-items: center;
     justify-content: flex-end;
     gap: 25px;
-    flex-grow: 0; /* MODIFICARE: Elimină sau schimbă în 0 pentru a opri întinderea */
+    flex-grow: 0;
 }
 
 .logo-img {
@@ -88,8 +98,6 @@ span.logo-text .accent {
     color: #D97736;
     font-weight: 900;
 }
-
-
 
 .nav-links a {
     white-space: nowrap;
@@ -301,7 +309,18 @@ li.dropdown {
 }
 
 .mv-box {
-    background-color: #F5EFEB;
+    /* Schimbat spre cremul deschis pentru a se potrivi perfect cu noile carduri */
+    background-color: #faf8f5; 
+    
+    /* Aceeași textură de hârtie cu mască caldă */
+    background-image: 
+        linear-gradient(rgba(238, 237, 236, 0.2), rgba(212, 211, 207, 0.2)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    
+    /* Activăm efectul de relief */
+    background-blend-mode: color-burn, normal;
+    
+    /* Proprietățile tale originale neschimbate */
     padding: 35px;
     border-radius: 15px;
     border-left: 5px solid #629E53;
@@ -326,7 +345,6 @@ li.dropdown {
     color: #4A5A43;
 }
 
-/* Override pentru secțiunea povestea-noastra de pe index */
 #povestea-noastra h2,
 #povestea-noastra .story-bullets li,
 #povestea-noastra .story-intro-text {
@@ -395,25 +413,34 @@ li.dropdown {
 }
 
 .partner-card {
+    /* Fundalul identic cu cel de la .card, .modal-content și .seniori-intro */
+    background-color: #FDF9F3; 
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+
     display: flex;
-    background-color: #F5EFEB;
-    border-radius: 16px;
+    gap: 30px;
     padding: 35px;
-    gap: 40px;
+    border-radius: 20px;
+    border-left: 5px solid #2D4A22;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     align-items: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    width: 100%;
-    border-left: 4px solid transparent;
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-                border-color 0.4s ease;
 }
 
 .partner-card:hover {
     transform: translateY(-5px);
     border-left-color: #629E53;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-    background-color: #ffffff;
+    
+    /* Păstrăm textura la hover, doar facem gradientul de deasupra o idee mai luminos */
+    background-color: #FDF9F3;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.85)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
 }
 
 .partner-logo {
@@ -488,135 +515,334 @@ li.dropdown {
 
 
 /* ============================================================
-   CARDURI ADOPȚII
+   INTRO SUPER-SENIORI
+   ============================================================ */
+.seniori-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 60px auto 50px auto;
+    padding: 40px 35px;
+    
+    /* Fundalul identic cu cel de la .card și .modal-content */
+    background-color: #FDF9F3; 
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #D97736;
+    font-family: 'Nunito', sans-serif;
+}
+.seniori-intro .subtitle {
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 2px;
+}
+.seniori-intro h1 {
+    font-size: 42px;
+    color: #1A330E;
+    margin: 10px 0 20px 0;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+.seniori-intro h1 span {
+    color: #D97736;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+.seniori-intro p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #2D4A22;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+}
+.seniori-intro a {
+    color: #D97736;
+    font-weight: 700;
+    text-decoration: none;
+}
+.seniori-intro a:hover {
+    text-decoration: underline;
+}
+.seniori-intro .heart-divider {
+    color: #D97736;
+    font-size: 22px;
+    margin: 25px 0;
+    letter-spacing: 8px;
+}
+
+/* ============================================================
+   CARDURI ADOPȚII & SENIORI (100% Corelat cu imagine_fcf878.png)
    ============================================================ */
 .container-carduri {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 40px 20px;
+    gap: 24px;
+    padding: 40px 30px;
     max-width: 1250px;
     margin: 0 auto;
 }
 
 .card {
-    background-color: #fcf8f0;
-    border-radius: 25px;
+    /* Schimbat fundalul într-un crem cald, fin și primitor */
+    background-color: #FDF9F3; 
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    border-radius: 24px;       
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
     display: flex;
     flex-direction: column;
     font-family: 'Quicksand', sans-serif;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 0 0 0.5px rgba(0,0,0,0.08);
 }
-
 .card-image-wrapper {
-    background-color: #ffffff;
-    padding: 8px;
+    position: relative;
     width: 100%;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 240px;
     overflow: hidden;
+    padding: 0; 
+    box-sizing: border-box;
 }
 
 .card-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: 0; 
     display: block;
+    transition: transform 0.4s ease;
 }
 
-.card-content {
-    padding: 20px;
-    text-align: center;
+.card:hover .card-image-wrapper img {
+    transform: scale(1.04);
 }
-
-.card-content h2 {
-    font-size: 24px;
-    color: #1A330E;
-    margin-bottom: 5px;
-}
-
-.status {
-    font-size: 0.85rem;
-    color: #D97736;
-    font-weight: 700;
-    margin-bottom: 10px;
-    display: block;
+.tags span {
+    background: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
 }
 
 .tags {
+    position: absolute;
     display: flex;
-    gap: 8px;
-    margin-bottom: 15px;
-    justify-content: center;
+    gap: 6px;
     flex-wrap: wrap;
+    justify-content: flex-end;
+    margin: 0;
+    top: 12px;
+    right: 12px;
+    
+    /* Ascuns implicit */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.tags span {
-    background: #e0d8c3;
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-size: 0.8rem;
+.card:hover .tags {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card-content {
+    padding: 20px 22px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.card-content h2 {
+    font-size: 26px;
     color: #1A330E;
+    margin: 0;
+    font-weight: 700;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #D97736;
+    font-weight: 700;
+    margin: 4px 0;
+}
+
+.status svg {
+    width: 14px;
+    height: 14px;
+    fill: #D97736;
+}
+
+.status.neadoptabil {
+    color: #7f8c8d;
 }
 
 .bio {
-    background-color: #004d40;
-    color: white;
-    padding: 15px;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin-bottom: 15px;
+    background-color: #1A330E;
+    color: #ffffff;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 12px 0;
 }
 
 .health-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(39, 174, 96, 0.15); /* Verde deschis, transparent */
+    color: #1e7e34; /* Text verde închis lizibil */
+    padding: 6px 14px;
+    border-radius: 20px; /* Transformă linia într-o pastilă curată */
     font-size: 0.8rem;
-    color: #27ae60;
-    font-weight: bold;
+    font-weight: 700;
+    margin: 8px 0;
+    width: fit-content; /* Să nu se întindă pe tot cardul */
+}
+
+.health-check svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0; /* Previne comprimarea iconiței */
+    margin-right: 6px;
 }
 
 .health-check i {
     color: #27ae60;
-    margin-right: 6px;
+    margin-right: 5px;
     font-size: 0.9rem;
 }
 
 .footer-info {
-    margin-top: 15px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 15px;
 }
 
 .org-logo {
-    height: 40px;
-    width: auto;
-    cursor: pointer;
+    display: none !important;
 }
 
-.contact-icon {
-    font-size: 24px;
+.asociatie-text {
+    font-size: 0.85rem;
     color: #1A330E;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    max-width: 80px;      /* Forțează textul să treacă pe rândul următor */
+    line-height: 1.2;     /* Apropie puțin rândurile ca să arate compact și bine */
+}
+
+.asociatie-text::before {
+    content: "•";
+    color: #2f80ed; 
+    font-size: 1.5rem;
+    margin-right: 6px;
+    line-height: 0;
+}
+
+
+
+/* Modificat pentru a se potrivi perfect cu cercul curat din imagine_fcf878.png */
+/* Butonul de Contact tip pastilă (exact ca în randarea image_094cc1.png) */
+/* Buton de contact exact ca în randare (cu transparență și iconiță fină) */
+/* BADGE-UL SUPER SENIOR (Conform image_09a75a.png) */
+.badge-super-senior {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(61, 35, 0, 0.20); /* Mutat pe opacitate redusă (15%) */
+    color: #a66a00;            /* Textul auriu puțin mai închis pentru contrast pe fundal deschis */
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px; 
+    width: fit-content;
+}
+
+.badge-super-senior svg {
+    width: 13px;
+    height: 13px;
+    stroke: #a66a00;           /* Corelat cu culoarea textului */
+    stroke-width: 2.5; 
+    fill: none;
+}
+
+.badge-adoptie {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(217, 119, 54, 0.15);
+    color: #b85c1d;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    width: fit-content;
+}
+
+/* Aici forțăm iconița să rămână mică (12px) și să nu mai strice cardul */
+.badge-adoptie svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    display: block;
+}
+
+
+.asociatie-container { display: flex; align-items: center; gap: 10px; }
+.btn-insta-small { color: #E1306C; text-decoration: none; font-size: 1.2rem; }
+/* BUTONUL CONTACT (Transparența exactă din image_09a75a.png) */
+.btn-contact-card {
+    background-color: rgba(7, 29, 55, 0.20); /* Doar 12% opacitate pentru fundal */
+    color: #071d37;            /* Textul rămâne închis pentru lizibilitate maximă */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
-
-.contact-icon:hover {
-    color: #629E53;
-    transform: scale(1.1);
+.btn-contact-card:hover {
+    background-color: rgba(7, 29, 55, 0.15); /* Se întunecă subtil la hover */
 }
-
-
+.btn-contact-card svg {
+    width: 14px;
+    height: 14px;
+    stroke: #071d37;           /* Corelat cu culoarea textului închis */
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
 /* ============================================================
    ICONIȚE SOCIALE
    ============================================================ */
@@ -631,18 +857,61 @@ li.dropdown {
     opacity: 0.8;
 }
 
-.fb-icon { color: #1877f2; }
-.web-icon { color: #333; }
-
 .insta-icon {
-    font-size: 24px;
+    font-size: 16px;
     color: #E1306C;
     cursor: pointer;
     transition: transform 0.2s;
     text-decoration: none;
+    background: #fce4ec;
+    padding: 6px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .insta-icon:hover {
+    transform: scale(1.1);
+}
+
+.fb-icon {
+    color: #1877f2;
+    font-size: 16px;
+    background: #e3f0ff;
+    padding: 6px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.fb-icon:hover {
+    transform: scale(1.1);
+}
+
+.web-icon {
+    color: #555;
+    font-size: 16px;
+    background: #f0f0f0;
+    padding: 6px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.web-icon:hover {
     transform: scale(1.1);
 }
 
@@ -650,8 +919,9 @@ li.dropdown {
 /* ============================================================
    MODAL
    ============================================================ */
+
 .modal {
-    display: none;
+    display: none; /* Ascuns implicit, JS îl face 'block' */
     position: fixed;
     z-index: 2000;
     left: 0;
@@ -661,8 +931,15 @@ li.dropdown {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
+
 .modal-content {
-    background-color: #fcf8f0;
+    /* Fundalul texturat identic cu cardurile și seniori-intro */
+    background-color: #FDF9F3; 
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    
     margin: 15% auto;
     padding: 30px;
     border: 1px solid #888;
@@ -674,6 +951,37 @@ li.dropdown {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+.modal-socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    border-top: 1px solid rgba(26, 51, 14, 0.1);
+    padding-top: 20px;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;              
+    height: 44px;             
+    border-radius: 50%;       
+    font-size: 18px;          
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+}
+
+/* Culorile deschise/crem uniforme, așa cum ai cerut */
+.btn-social.fb { background-color: #e2ecd9; color: #1A330E; }
+.btn-social.ins { background-color: #d1e2c4; color: #1A330E; }
+.btn-social.web { background-color: #e2ecd9; color: #1A330E; }
+
+.btn-social:hover {
+    transform: scale(1.1);
+    background-color: #c4d7b5; 
+}
 .close-modal {
     position: absolute;
     top: 15px;
@@ -683,15 +991,16 @@ li.dropdown {
     cursor: pointer;
     color: #1A330E;
 }
-
 .modal-content h2 {
     color: #1A330E;
     margin-bottom: 20px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .modal-content p {
     color: #4A5A43;
     margin: 10px 0;
+    font-family: 'Quicksand', sans-serif;
 }
 
 
@@ -786,12 +1095,10 @@ footer {
    ============================================================ */
 @media (max-width: 768px) {
 
-    /* Ascunde dachshund pe mobil */
     #dachshund-scroll-wrapper {
         display: none;
     }
 
-    /* Navbar */
     .navbar {
         width: 100%;
         margin: 0;
@@ -802,7 +1109,6 @@ footer {
         flex-wrap: wrap;
     }
 
-    /* Nav links - ascunse implicit */
     .nav-links {
         display: none !important;
         flex-direction: column !important;
@@ -812,7 +1118,6 @@ footer {
         padding: 15px 0 5px 0 !important;
     }
 
-    /* Când e deschis */
     .nav-links.open {
         display: flex !important;
     }
@@ -826,7 +1131,6 @@ footer {
         width: 100%;
     }
 
-    /* Butonul Donații */
     .btn-donatie {
         display: inline-block !important;
         width: auto !important;
@@ -834,7 +1138,6 @@ footer {
         font-size: 14px !important;
     }
 
-    /* Butonul hamburger */
     .hamburger {
         display: flex;
         flex-direction: column;
@@ -854,7 +1157,6 @@ footer {
         transition: all 0.3s ease;
     }
 
-    /* Animație X când e deschis */
     .hamburger.open span:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -865,7 +1167,6 @@ footer {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Dropdown pe mobil */
     .dropdown-menu {
         position: static;
         opacity: 1;
@@ -878,40 +1179,35 @@ footer {
         margin-top: 5px;
     }
 
-   .container-carduri {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 15px;
-    padding: 20px 15px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* ascunde scrollbar pe Firefox */
-}
+    .container-carduri {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding: 20px 15px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
 
-.container-carduri::-webkit-scrollbar {
-    display: none; /* ascunde scrollbar pe Chrome/Safari */
-}
+    .container-carduri::-webkit-scrollbar {
+        display: none;
+    }
 
-.card {
-    flex: 0 0 85vw;
-    max-width: 85vw;
-    scroll-snap-align: center;
-}
+    .card {
+        flex: 0 0 80vw;
+        max-width: 80vw;
+        scroll-snap-align: center;
+    }
 
-.card-image-wrapper {
-    height: 300px;
-}
-
-.card-image-wrapper img {
-    object-fit: cover;
-}
+    .card-image-wrapper {
+        height: 260px;
+    }
 
     .card-content h2 {
         font-size: 18px;
     }
 
-    /* Secțiunea despre noi */
     .about-container,
     .mission-vision-container {
         grid-template-columns: 1fr;
@@ -926,7 +1222,6 @@ footer {
         height: 280px;
     }
 
-    /* Parteneri */
     .partner-card {
         flex-direction: column;
         text-align: center;
