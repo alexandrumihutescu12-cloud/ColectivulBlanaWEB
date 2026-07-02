@@ -51,7 +51,6 @@ body {
     padding: 12px 40px;
     border-radius: 50px;
     
-    /* Fundalul texturat identic cu cel de la carduri, modal și intro */
     background-color: #FDF9F3; 
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
@@ -309,18 +308,14 @@ li.dropdown {
 }
 
 .mv-box {
-    /* Schimbat spre cremul deschis pentru a se potrivi perfect cu noile carduri */
     background-color: #faf8f5; 
     
-    /* Aceeași textură de hârtie cu mască caldă */
     background-image: 
         linear-gradient(rgba(238, 237, 236, 0.2), rgba(212, 211, 207, 0.2)), 
         url("https://www.transparenttextures.com/patterns/cream-paper.png");
     
-    /* Activăm efectul de relief */
     background-blend-mode: color-burn, normal;
     
-    /* Proprietățile tale originale neschimbate */
     padding: 35px;
     border-radius: 15px;
     border-left: 5px solid #629E53;
@@ -413,7 +408,6 @@ li.dropdown {
 }
 
 .partner-card {
-    /* Fundalul identic cu cel de la .card, .modal-content și .seniori-intro */
     background-color: #FDF9F3; 
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
@@ -435,7 +429,6 @@ li.dropdown {
     border-left-color: #629E53;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
     
-    /* Păstrăm textura la hover, doar facem gradientul de deasupra o idee mai luminos */
     background-color: #FDF9F3;
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.85)), 
@@ -523,7 +516,6 @@ li.dropdown {
     margin: 60px auto 50px auto;
     padding: 40px 35px;
     
-    /* Fundalul identic cu cel de la .card și .modal-content */
     background-color: #FDF9F3; 
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
@@ -575,12 +567,12 @@ li.dropdown {
 }
 
 /* ============================================================
-   CARDURI ADOPȚII & SENIORI (100% Corelat cu imagine_fcf878.png)
+   CARDURI ADOPȚII & SENIORI
    ============================================================ */
 .container-carduri {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    align-items: start; /* fiecare card are înălțimea lui naturală, fără stretch */
+    align-items: start;
     gap: 24px;
     padding: 40px 30px;
     max-width: 1250px;
@@ -588,7 +580,6 @@ li.dropdown {
 }
 
 .card {
-    /* Schimbat fundalul într-un crem cald, fin și primitor */
     background-color: #FDF9F3; 
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
@@ -601,8 +592,8 @@ li.dropdown {
     flex-direction: column;
     font-family: 'Quicksand', sans-serif;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    perspective: 1000px;   /* pt. efectul de flip */
-    min-height: 0;         /* previne overflow-ul cardurilor stretch-uite de grid */
+    perspective: 1000px;
+    min-height: 0;
 }
 .card:hover {
     transform: translateY(-4px);
@@ -615,6 +606,7 @@ li.dropdown {
     overflow: hidden;
     padding: 0; 
     box-sizing: border-box;
+    border-bottom: 2px solid rgba(26, 51, 14, 0.4);
 }
 
 .card-image-wrapper img {
@@ -649,7 +641,6 @@ li.dropdown {
     top: 12px;
     right: 12px;
     
-    /* Ascuns implicit */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -710,20 +701,20 @@ li.dropdown {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background-color: rgba(39, 174, 96, 0.15); /* Verde deschis, transparent */
-    color: #1e7e34; /* Text verde închis lizibil */
+    background-color: rgba(39, 174, 96, 0.15);
+    color: #1e7e34;
     padding: 6px 14px;
-    border-radius: 20px; /* Transformă linia într-o pastilă curată */
+    border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
     margin: 8px 0;
-    width: fit-content; /* Să nu se întindă pe tot cardul */
+    width: fit-content;
 }
 
 .health-check svg {
     width: 14px;
     height: 14px;
-    flex-shrink: 0; /* Previne comprimarea iconiței */
+    flex-shrink: 0;
     margin-right: 6px;
 }
 
@@ -740,6 +731,8 @@ li.dropdown {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;  
 }
 
 .org-logo {
@@ -752,8 +745,8 @@ li.dropdown {
     font-weight: 700;
     display: inline-flex;
     align-items: center;
-    max-width: 80px;      /* Forțează textul să treacă pe rândul următor */
-    line-height: 1.2;     /* Apropie puțin rândurile ca să arate compact și bine */
+    max-width: 80px;
+    line-height: 1.2;
 }
 
 .asociatie-text::before {
@@ -764,18 +757,12 @@ li.dropdown {
     line-height: 0;
 }
 
-
-
-/* Modificat pentru a se potrivi perfect cu cercul curat din imagine_fcf878.png */
-/* Butonul de Contact tip pastilă (exact ca în randarea image_094cc1.png) */
-/* Buton de contact exact ca în randare (cu transparență și iconiță fină) */
-/* BADGE-UL SUPER SENIOR (Conform image_09a75a.png) */
 .badge-super-senior {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background-color: rgba(61, 35, 0, 0.20); /* Mutat pe opacitate redusă (15%) */
-    color: #a66a00;            /* Textul auriu puțin mai închis pentru contrast pe fundal deschis */
+    background-color: rgba(61, 35, 0, 0.20);
+    color: #a66a00;
     padding: 5px 12px;
     border-radius: 12px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -788,7 +775,7 @@ li.dropdown {
 .badge-super-senior svg {
     width: 13px;
     height: 13px;
-    stroke: #a66a00;           /* Corelat cu culoarea textului */
+    stroke: #a66a00;
     stroke-width: 2.5; 
     fill: none;
 }
@@ -807,7 +794,6 @@ li.dropdown {
     width: fit-content;
 }
 
-/* Aici forțăm iconița să rămână mică (12px) și să nu mai strice cardul */
 .badge-adoptie svg {
     width: 14px;
     height: 14px;
@@ -816,12 +802,11 @@ li.dropdown {
 }
 
 
-.asociatie-container { display: flex; align-items: center; gap: 10px; }
+.asociatie-container { display: flex; align-items: center; gap: 10px; flex-shrink: 0;}
 .btn-insta-small { color: #E1306C; text-decoration: none; font-size: 1.2rem; }
-/* BUTONUL CONTACT (Transparența exactă din image_09a75a.png) */
 .btn-contact-card {
-    background-color: rgba(7, 29, 55, 0.20); /* Doar 12% opacitate pentru fundal */
-    color: #071d37;            /* Textul rămâne închis pentru lizibilitate maximă */
+    background-color: rgba(7, 29, 55, 0.20);
+    color: #071d37;
     border: none;
     padding: 8px 16px;
     border-radius: 20px;
@@ -835,12 +820,12 @@ li.dropdown {
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .btn-contact-card:hover {
-    background-color: rgba(7, 29, 55, 0.15); /* Se întunecă subtil la hover */
+    background-color: rgba(7, 29, 55, 0.15);
 }
 .btn-contact-card svg {
     width: 14px;
     height: 14px;
-    stroke: #071d37;           /* Corelat cu culoarea textului închis */
+    stroke: #071d37;
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -851,7 +836,7 @@ li.dropdown {
    ============================================================ */
 .social-link {
     font-size: 1.2rem;
-    margin-left: 10px;
+    margin-left: 0;
     transition: color 0.3s, opacity 0.3s;
     text-decoration: none;
 }
@@ -874,6 +859,13 @@ li.dropdown {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.insta-icon,
+.fb-icon,
+.web-icon {
+    flex-shrink: 0;
+    margin-left: 0;
 }
 
 .insta-icon:hover {
@@ -924,7 +916,7 @@ li.dropdown {
    ============================================================ */
 
 .modal {
-    display: none; /* Ascuns implicit, JS îl face 'block' */
+    display: none;
     position: fixed;
     z-index: 2000;
     left: 0;
@@ -936,7 +928,6 @@ li.dropdown {
 
 
 .modal-content {
-    /* Fundalul texturat identic cu cardurile și seniori-intro */
     background-color: #FDF9F3; 
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
@@ -976,7 +967,6 @@ li.dropdown {
     cursor: pointer;
 }
 
-/* Culorile deschise/crem uniforme, așa cum ai cerut */
 .btn-social.fb { background-color: #e2ecd9; color: #1A330E; }
 .btn-social.ins { background-color: #d1e2c4; color: #1A330E; }
 .btn-social.web { background-color: #e2ecd9; color: #1A330E; }
@@ -1107,7 +1097,7 @@ footer {
 }
 
 .card-front {
-    position: relative;      /* rămâne în flux normal: el dictează înălțimea naturală a cardului */
+    position: relative;
     width: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -1118,7 +1108,7 @@ footer {
 }
 
 .card-back {
-    position: absolute;      /* suprapus peste front, nu influențează niciodată înălțimea cardului */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -1216,6 +1206,90 @@ footer {
     fill: none;
 }
 
+.partners-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    padding: 40px 35px;
+    
+    background-color: #FDF9F3; 
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #D97736;
+    font-family: 'Nunito', sans-serif;
+}
+
+.partners-intro .subtitle {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.partners-intro h2 {
+    font-size: 32px;
+    color: #1A330E;
+    margin: 10px 0 20px 0;
+    font-weight: 700;
+}
+
+.partners-intro p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #2D4A22;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.partners-section .partners-intro h2 {
+    color: #1A330E !important;
+}
+
+.partners-section .partners-intro p {
+    color: #2D4A22 !important;
+}
+
+.partners-section .partners-intro .subtitle {
+    color: #629E53 !important;
+}
+
+.adoptie-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 60px auto 50px auto;
+    padding: 40px 35px;
+    
+    background-color: #FDF9F3; 
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #D97736;
+    font-family: 'Nunito', sans-serif;
+}
+.adoptie-intro .subtitle {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.adoptie-intro h1 {
+    font-size: 42px;
+    color: #1A330E;
+    margin: 10px 0 20px 0;
+    font-weight: 700;
+}
+.adoptie-intro p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #2D4A22;
+    font-weight: 500;
+}
 
 /* ============================================================
    RESPONSIVE
