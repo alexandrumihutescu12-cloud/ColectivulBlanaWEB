@@ -1118,12 +1118,15 @@ footer {
     border-radius: 16px;
     overflow: hidden;
     transform: rotateY(180deg);
-    background-color: #1A330E;
+    background-color: #1c330f;
     padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-image: url("https://www.transparenttextures.com/patterns/subtle-dark-vertical.png");
+background-color: #14270a;
 }
+
 
 .card-back .bio-text {
     font-size: 0.92rem;
