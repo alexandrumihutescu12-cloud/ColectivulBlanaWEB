@@ -508,6 +508,212 @@ li.dropdown {
 
 
 /* ============================================================
+   PARTENERI AFACERI LOCALE — clase dedicate (independente de .partner-card)
+   Folosite doar pe parteneri-afaceri.html
+   ============================================================ */
+.biz-partners-section {
+    padding: 80px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.biz-partners-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    padding: 40px 35px;
+
+    background-color: #FDF9F3;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)),
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #D97736;
+    font-family: 'Nunito', sans-serif;
+}
+
+.biz-partners-intro .subtitle {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.biz-partners-intro h2 {
+    font-size: 32px;
+    color: #1A330E;
+    margin: 10px 0 20px 0;
+    font-weight: 700;
+}
+
+.biz-partners-intro p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #2D4A22;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.biz-partners-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.biz-partner-card {
+    background-color: #FDF9F3;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)),
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.biz-partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* Prelata — dungi rotunjite, culorile verzi din brand */
+.biz-partner-scallops {
+    display: flex;
+    height: 26px;
+}
+
+.biz-partner-scallops span {
+    flex: 1;
+    border-radius: 0 0 60% 60%;
+}
+
+.biz-partner-scallops span:nth-child(odd)  { background-color: var(--biz-scallop-1, #2D4A22); }
+.biz-partner-scallops span:nth-child(even) { background-color: var(--biz-scallop-2, #629E53); }
+
+/* Header: logo rotund + nume */
+.biz-partner-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 35px 0;
+}
+
+.biz-partner-logo {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #2D4A22;
+    background-color: #fff;
+    padding: 6px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s ease;
+}
+
+.biz-partner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.biz-partner-card:hover .biz-partner-logo {
+    border-color: #629E53;
+}
+
+.biz-partner-name {
+    font-size: 22px;
+    color: #1A330E;
+    font-weight: 700;
+}
+
+/* Body */
+.biz-partner-body {
+    padding: 18px 35px 30px;
+}
+
+.biz-partner-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4A5A43;
+    margin-bottom: 20px;
+}
+
+.biz-partner-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #EFEAE4;
+    padding-top: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.biz-partner-contact p {
+    font-size: 14px;
+    color: #2D4A22;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.biz-partner-contact p:first-child {
+    margin-top: 0;
+}
+
+.biz-partner-contact p i {
+    margin-right: 6px;
+    color: #629E53;
+}
+
+.biz-partner-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.biz-partner-socials a,
+.biz-partner-socials a i {
+    color: #2D4A22;
+    font-size: 18px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.biz-partner-socials a:hover,
+.biz-partner-socials a:hover i {
+    color: #629E53;
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .biz-partner-header {
+        padding: 18px 20px 0;
+    }
+    .biz-partner-body {
+        padding: 16px 20px 24px;
+    }
+    .biz-partner-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .biz-partner-socials {
+        justify-content: flex-start;
+    }
+}
+
+
+/* ============================================================
    INTRO SUPER-SENIORI
    ============================================================ */
 .seniori-intro {
