@@ -582,7 +582,17 @@ li.dropdown {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }
 
-/* Prelata — dungi rotunjite, culorile verzi din brand */
+/* Acoperiș — bara plată de sus, ca în iconița brandului */
+.biz-partner-roof {
+    height: 8px;
+    background-color: var(--biz-scallop-1, #2D4A22);
+    filter: brightness(0.6);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+/* Prelata — dungi rotunjite, cu relief (lumină sus, umbră jos) */
 .biz-partner-scallops {
     display: flex;
     height: 26px;
@@ -591,6 +601,17 @@ li.dropdown {
 .biz-partner-scallops span {
     flex: 1;
     border-radius: 0 0 60% 60%;
+    background-image: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.05) 35%,
+        rgba(0, 0, 0, 0.22) 100%
+    );
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.biz-partner-scallops span:last-child {
+    border-right: none;
 }
 
 .biz-partner-scallops span:nth-child(odd)  { background-color: var(--biz-scallop-1, #2D4A22); }
