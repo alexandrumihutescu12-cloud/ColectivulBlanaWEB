@@ -135,20 +135,24 @@
             Sâmbătă, <strong>11 iulie</strong>, între <strong>10:00 și 18:00</strong>, te așteptăm la Institutul Francez pentru o zi dedicată prietenilor noștri necuvântători. Vei putea cunoaște căței și pisici care își caută o familie, iar pe parcursul zilei te vei bucura de cafea, mâncare bună, băuturi și o tombolă cu premii. Vino să susții o cauză frumoasă și, cine știe, poate chiar să îți găsești noul cel mai bun prieten!
         </p>
 
-        <!-- Link-uri -->
         <div style="display:flex; gap:15px; flex-wrap:wrap;">
 
-            <a href="https://www.instagram.com/p/DaPiQXNMk8x/" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
-                <i class="fab fa-instagram" style="margin-right:5px;"></i>
-                Detalii Eveniment
-            </a>
+    <a href="https://www.instagram.com/p/DaPiQXNMk8x/" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+        <i class="fab fa-instagram" style="margin-right:5px;"></i>
+        Detalii Eveniment
+    </a>
 
-            <a href="https://maps.google.com/?q=Institutul+Francez+Timișoara" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
-    <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
-    Vezi locația
-</a>
+    <a href="https://maps.google.com/?q=Institutul+Francez+Timișoara" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+        <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+        Vezi locația
+    </a>
 
-        </div>
+    <a href="#" onclick="openTombolaDrawer(event)" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+        <i class="fas fa-scroll" style="margin-right:5px;"></i>
+        Regulament Tombolă
+    </a>
+
+</div>
 
     </div>
 
@@ -253,5 +257,42 @@ hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
 });
 </script>
+
+<script>
+function openTombolaDrawer(e) {
+    if (e) e.preventDefault();
+    document.getElementById('tombola-drawer').classList.add('open');
+    document.getElementById('tombola-overlay').classList.add('active');
+    document.getElementById('dachshund-scroll-wrapper').classList.add('hidden-by-drawer');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeTombolaDrawer() {
+    document.getElementById('tombola-drawer').classList.remove('open');
+    document.getElementById('tombola-overlay').classList.remove('active');
+    document.getElementById('dachshund-scroll-wrapper').classList.remove('hidden-by-drawer');
+    document.body.style.overflow = '';
+}
+</script>
+
+<div id="tombola-overlay" class="drawer-overlay" onclick="closeTombolaDrawer()"></div>
+
+<aside id="tombola-drawer" class="side-drawer">
+    <div class="drawer-header">
+        <h3>Regulament Tombolă</h3>
+        <span class="drawer-close" onclick="closeTombolaDrawer()">&times;</span>
+    </div>
+    <div class="drawer-content">
+
+    <p class="drawer-placeholder">
+        <i class="fas fa-hourglass-half" style="margin-right:8px; color:#D97736;"></i>
+        Regulamentul oficial al tombolei va fi publicat aici în curând.
+    </p>
+    <!-- TODO: Înlocuiește acest bloc cu regulamentul complet, odată finalizat -->
+
+    <img src="Imagini/poster.jpg" alt="Afiș Ziua Adopțiilor - Institutul Francez" class="drawer-poster">
+
+</div>
+</aside>
 </body>
 </html>
