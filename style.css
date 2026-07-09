@@ -626,6 +626,9 @@ li.dropdown {
 }
 
 .biz-partner-logo {
+    background-color: #FDF9F3; /* sau #FFFFFF dacă vrei alb pur */
+    border-radius: 50%; /* dacă vrei să rămână cerc */
+    overflow: hidden;
     flex-shrink: 0;
     width: 56px;
     height: 56px;
