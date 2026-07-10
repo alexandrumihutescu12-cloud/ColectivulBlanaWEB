@@ -6,6 +6,8 @@
 <title>Parteneri Afaceri Locale - Colectivul Blană</title>
 <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
 <link rel="stylesheet" href="style.css">
+<script src="flip-helper.js" defer></script>
+<script src="search-parteneri.js" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <meta property="og:image" content="https://colectivulblana.ro/Imagini/urlthumbnail.png">
@@ -74,6 +76,10 @@ lor constant, poveștile de reușită pe care le vedeți aici nu ar fi fost posi
 </p>
 </div>
 
+<div class="partner-search-wrapper">
+  <i class="fas fa-search partner-search-icon"></i>
+  <input type="text" id="partnerSearch" placeholder="Caută un partener..." class="partner-search-input">
+</div>
 <div class="biz-partners-list">
 
 <!-- Yamy Bistro -->
@@ -793,6 +799,7 @@ let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
 document.getElementById("dachshund-body").style.height = scrolled + "%";
 });
 </script>
+
 <script>
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');

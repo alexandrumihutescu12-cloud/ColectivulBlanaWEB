@@ -75,6 +75,11 @@
                 </p>
             </div>
 
+            <div class="partner-search-wrapper">
+  <i class="fas fa-search partner-search-icon"></i>
+  <input type="text" id="ngoSearch" placeholder="Caută un partener..." class="partner-search-input">
+</div>
+
             <div class="partners-list-container">
 
                 <!-- ASOCIAȚIA POLI -->
@@ -199,6 +204,53 @@ window.addEventListener('scroll', function() {
     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
     document.getElementById("dachshund-body").style.height = scrolled + "%";
+});
+</script>
+
+<script>
+function flipFilter(container, cardSelector, matchFn) {
+  const cards = container.querySelectorAll(cardSelector);
+  const firstRects = new Map();
+
+  cards.forEach(card => {
+    firstRects.set(card, card.getBoundingClientRect());
+  });
+
+  cards.forEach(card => {
+    const matches = matchFn(card);
+    card.classList.toggle('search-hidden', !matches);
+  });
+
+  requestAnimationFrame(() => {
+    cards.forEach(card => {
+      if (card.classList.contains('search-hidden')) return;
+
+      const first = firstRects.get(card);
+      const last = card.getBoundingClientRect();
+      const deltaX = first.left - last.left;
+      const deltaY = first.top - last.top;
+
+      if (deltaX || deltaY) {
+        card.style.transition = 'none';
+        card.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1)`;
+        requestAnimationFrame(() => {
+          card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+          card.style.transform = '';
+        });
+      }
+    });
+  });
+}
+
+document.getElementById('ngoSearch').addEventListener('input', function(e) {
+  const query = e.target.value.toLowerCase().trim();
+  const container = document.querySelector('.partners-list-container');
+
+  flipFilter(container, '.partner-card', card => {
+    const name = card.querySelector('h3').textContent.toLowerCase();
+    const desc = card.querySelector('.partner-description').textContent.toLowerCase();
+    return name.includes(query) || desc.includes(query);
+  });
 });
 </script>
 <script>

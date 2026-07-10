@@ -73,7 +73,10 @@
                 Acești așa-zis "neadoptabili" pot fi sprijiniți printr-o <a href="donatii.html">donație</a> sau adopție virtuală pentru a se bucura pe cât de mult posibil de zilele rămase.
             </p>
         </div>
-
+<div class="partner-search-wrapper">
+  <i class="fas fa-search partner-search-icon"></i>
+  <input type="text" id="seniorSearch" placeholder="Caută după nume..." class="partner-search-input">
+</div>
 <div class="container-carduri">
 
             <div class="card">
@@ -593,6 +596,51 @@ const navLinks = document.querySelector('.nav-links');
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
     navLinks.classList.toggle('open');
+});
+</script>
+<script>
+function flipFilter(container, cardSelector, matchFn) {
+  const cards = container.querySelectorAll(cardSelector);
+  const firstRects = new Map();
+
+  cards.forEach(card => {
+    firstRects.set(card, card.getBoundingClientRect());
+  });
+
+  cards.forEach(card => {
+    const matches = matchFn(card);
+    card.classList.toggle('search-hidden', !matches);
+  });
+
+  requestAnimationFrame(() => {
+    cards.forEach(card => {
+      if (card.classList.contains('search-hidden')) return;
+
+      const first = firstRects.get(card);
+      const last = card.getBoundingClientRect();
+      const deltaX = first.left - last.left;
+      const deltaY = first.top - last.top;
+
+      if (deltaX || deltaY) {
+        card.style.transition = 'none';
+        card.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1)`;
+        requestAnimationFrame(() => {
+          card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+          card.style.transform = '';
+        });
+      }
+    });
+  });
+}
+
+document.getElementById('seniorSearch').addEventListener('input', function(e) {
+  const query = e.target.value.toLowerCase().trim();
+  const container = document.querySelector('.container-carduri');
+
+  flipFilter(container, '.card', card => {
+    const name = card.querySelector('h2').textContent.toLowerCase();
+    return name.includes(query);
+  });
 });
 </script>
 
