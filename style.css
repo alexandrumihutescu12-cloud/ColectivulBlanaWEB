@@ -1669,7 +1669,7 @@ background-color: #14270a;
 .card-flip,
 .partner-card,
 .card {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .search-hidden {
