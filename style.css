@@ -1758,6 +1758,16 @@ background-color: #14270a;
     gap: 2px;
     line-height: 1.2;
 }
+.arrow {
+    font-size: 10px;
+    margin-left: 4px;
+    color: inherit;
+}
+.social-toggle .arrow {
+    font-size: 10px;
+    margin-left: 4px;
+    color: inherit;
+}
 /* ============================================================
    RESPONSIVE
    ============================================================ */
