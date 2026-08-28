@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voluntari | Colectivul Blană</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ===== Pagina Voluntari ===== */
+
+.volunteer-hero {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: linear-gradient(135deg, #2b2118 0%, #4a3626 100%);
+    color: #fff;
+    padding: 70px 40px;
+    text-align: center;
+    border-radius: 26px;
+    border-left: 6px solid #e8763c;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.volunteer-hero h1 {
+    font-size: 2.6rem;
+    margin-bottom: 14px;
+}
+
+.volunteer-hero h1 .accent {
+    color: #e8a13c;
+}
+
+.volunteer-hero p {
+    max-width: 620px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #e7ddd0;
+    line-height: 1.6;
+}
+
+.volunteer-section {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 46px 42px;
+    background-color: #FDF9F3;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)),
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    border-radius: 26px;
+    border-left: 6px solid #e8763c;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #3f7a5c;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+}
+
+.kicker::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e8763c;
+    display: inline-block;
+}
+
+.volunteer-section h2 {
+    text-align: left;
+    font-size: 1.9rem;
+    margin-bottom: 24px;
+    color: #16301f;
+}
+
+.volunteer-section h2 .accent {
+    color: #e8763c;
+}
+
+/* Carduri "de ce voluntar" — reutilizează spiritul awning-ului de la parteneri */
+.volunteer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 26px;
+}
+
+.volunteer-card {
+    background: #fffaf3;
+    border: 1px solid #eaddc7;
+    border-radius: 14px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(43, 33, 24, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.volunteer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(43, 33, 24, 0.12);
+}
+
+.volunteer-card i {
+    font-size: 2rem;
+    color: #e8a13c;
+    margin-bottom: 14px;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.volunteer-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: #2b2118;
+}
+
+.volunteer-card p {
+    font-size: 0.95rem;
+    color: #6b5c4a;
+    line-height: 1.55;
+}
+
+/* Roluri disponibile */
+.roles-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.role-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: #fff;
+    border-left: 4px solid #e8a13c;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(43, 33, 24, 0.05);
+}
+
+.role-item i {
+    color: #e8a13c;
+    font-size: 1.3rem;
+    margin-top: 3px;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.role-item h4 {
+    margin-bottom: 4px;
+    color: #2b2118;
+    font-size: 1.02rem;
+}
+
+.role-item p {
+    font-size: 0.9rem;
+    color: #6b5c4a;
+    line-height: 1.5;
+}
+
+/* Pași de implicare */
+.steps {
+    counter-reset: step;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.step {
+    position: relative;
+    background: #fffaf3;
+    border-radius: 14px;
+    padding: 30px 20px 22px;
+    text-align: center;
+    border: 1px solid #eaddc7;
+}
+
+.step::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e8a13c;
+    color: #2b2118;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step h4 {
+    margin: 10px 0 8px;
+    color: #2b2118;
+}
+
+.step p {
+    font-size: 0.92rem;
+    color: #6b5c4a;
+    line-height: 1.5;
+}
+
+/* CTA WhatsApp */
+.whatsapp-cta {
+    background: #f3ead9;
+    border-radius: 18px;
+    padding: 50px 30px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 750px;
+}
+
+.whatsapp-cta > i {
+    font-size: 2.6rem;
+    color: #25D366;
+    margin-bottom: 16px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+}
+
+.btn-whatsapp i {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.whatsapp-cta h2 {
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.whatsapp-cta p {
+    color: #6b5c4a;
+    margin-bottom: 26px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 14px 30px;
+    border-radius: 40px;
+    font-size: 1.05rem;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebd5a;
+    transform: translateY(-2px);
+}
+
+.whatsapp-note {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: #948367;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .volunteer-hero h1 { font-size: 2rem; }
+    .whatsapp-cta { padding: 36px 18px; }
+}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+    <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+    <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+
+    <button class="hamburger" id="hamburger" aria-label="Meniu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
+        <li class="dropdown">
+            <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
+                <li><a href="adoptii.html">Adopții</a></li>
+                <li><a href="super-seniori.html">#SuperSeniori</a></li>
+            </ul>
+        </li>
+        <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
+        <li><a href="proiecte.html">Proiecte curente</a></li>
+        <li><a href="voluntari.html" class="active">Voluntari</a></li>
+        <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle social-toggle">
+                <i class="fas fa-paw"></i>
+                <span>Social Media <i class="fas fa-chevron-down arrow"></i></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="https://www.facebook.com/profile.php?id=61592443156840" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://www.tiktok.com/@colectivulblana" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                <li><a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </li>
+    </ul>
+</header>
+
+<main>
+
+    <section class="volunteer-hero">
+        <h1>Devino <span class="accent">voluntar</span> Colectivul Blană</h1>
+        <p>Fiecare oră de implicare contează. De la plimbat câini la evenimente de adopție și campanii foto, avem un loc pentru fiecare tip de ajutor.</p>
+    </section>
+
+    <section class="volunteer-section">
+        <p class="kicker">De ce noi</p>
+        <h2>De ce să te <span class="accent">alături</span> echipei?</h2>
+        <div class="volunteer-grid">
+            <div class="volunteer-card">
+                <i class="fas fa-paw"></i>
+                <h3>Impact direct</h3>
+                <p>Ajuți efectiv la reducerea numărului de animale abandonate din Timișoara, nu doar simbolic.</p>
+            </div>
+            <div class="volunteer-card">
+                <i class="fas fa-users"></i>
+                <h3>Comunitate</h3>
+                <p>Te alături unui grup activ de oameni cu aceleași valori, cu care organizăm evenimente și acțiuni.</p>
+            </div>
+            <div class="volunteer-card">
+                <i class="fas fa-clock"></i>
+                <h3>Flexibilitate</h3>
+                <p>Alegi tu cât timp aloci, de la câteva ore pe lună la implicare constantă.</p>
+            </div>
+            <div class="volunteer-card">
+                <i class="fas fa-heart"></i>
+                <h3>Fără experiență necesară</h3>
+                <p>Te ghidăm noi. Contează entuziasmul, nu experiența anterioară cu animale.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="volunteer-section">
+        <p class="kicker">Oportunități</p>
+        <h2>Roluri în care <span class="accent">poți ajuta</span></h2>
+        <div class="roles-list">
+            <div class="role-item">
+                <i class="fas fa-dog"></i>
+                <div>
+                    <h4>Plimbare și socializare câini</h4>
+                    <p>Vizite la adăpost sau la partenerii ONG pentru plimbat și socializat animale.</p>
+                </div>
+            </div>
+            <div class="role-item">
+                <i class="fas fa-camera"></i>
+                <div>
+                    <h4>Foto/video</h4>
+                    <p>Fotografii de calitate pentru anunțuri de adopție și conținut social media.</p>
+                </div>
+            </div>
+            <div class="role-item">
+                <i class="fas fa-truck"></i>
+                <div>
+                    <h4>Transport</h4>
+                    <p>Transport animale la castrare, vaccinare sau către noii proprietari.</p>
+                </div>
+            </div>
+            <div class="role-item">
+                <i class="fas fa-bullhorn"></i>
+                <div>
+                    <h4>Promovare & social media</h4>
+                    <p>Ajutor cu postări, distribuire campanii și scriere de conținut.</p>
+                </div>
+            </div>
+            <div class="role-item">
+                <i class="fas fa-hand-holding-heart"></i>
+                <div>
+                    <h4>Evenimente</h4>
+                    <p>Sprijin logistic la standuri de adopție, târguri și evenimente caritabile.</p>
+                </div>
+            </div>
+            <div class="role-item">
+                <i class="fas fa-file-alt"></i>
+                <div>
+                    <h4>Administrativ</h4>
+                    <p>Ajutor cu documente, aplicații pentru granturi sau organizare internă.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="volunteer-section">
+        <p class="kicker">Proces simplu</p>
+        <h2>Cum <span class="accent">te implici?</span></h2>
+        <div class="steps">
+            <div class="step">
+                <h4>Intri în grup</h4>
+                <p>Te alături grupului nostru de WhatsApp pentru voluntari.</p>
+            </div>
+            <div class="step">
+                <h4>Te prezinți</h4>
+                <p>Ne spui pe scurt ce te-ar interesa să faci și cât timp poți aloca.</p>
+            </div>
+            <div class="step">
+                <h4>Primești detalii</h4>
+                <p>Îți trimitem informații despre acțiunile și evenimentele apropiate.</p>
+            </div>
+            <div class="step">
+                <h4>Participi</h4>
+                <p>Te alături primei acțiuni și devii parte din echipă.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="volunteer-section">
+        <div class="whatsapp-cta">
+            <i class="fab fa-whatsapp"></i>
+            <h2>Alătură-te grupului de voluntari</h2>
+            <p>Toată comunicarea cu voluntarii se face prin grupul nostru de WhatsApp, acolo anunțăm acțiunile, evenimentele și cerințele curente.</p>
+            <a href="https://chat.whatsapp.com/KwSfz8pXI5jICGJwj7C2hC?s=cl&p=a&mlu=4" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> Intră în grupul de voluntari
+            </a>
+            <p class="whatsapp-note">Grup deschis tuturor celor interesați să ajute, fără obligații de participare permanentă.</p>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
