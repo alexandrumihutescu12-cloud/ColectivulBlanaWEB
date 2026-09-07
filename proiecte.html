@@ -15,6 +15,266 @@
 <meta property="og:description" content="Conectăm asociațiile de protecție a animalelor cu afacerile locale din Timișoara.">
 <meta property="og:url" content="https://colectivulblana.ro">
 <meta property="og:type" content="website">
+
+<style>
+/* ============ BUTON CALENDAR ============ */
+.btn-calendar {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #e8763c;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 28px;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.btn-calendar:hover {
+    background: #d3652d;
+    transform: translateY(-2px);
+}
+
+/* ============ MODAL CALENDAR ============ */
+.calendar-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 25, 15, 0.65);
+    z-index: 99999;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.calendar-modal-overlay::-webkit-scrollbar {
+    display: none;
+}
+
+.calendar-modal-overlay.open {
+    display: flex;
+}
+
+.calendar-modal {
+    background-color: #FDF9F3;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)),
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    border-radius: 24px;
+    border-left: 6px solid #e8763c;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    max-width: 1100px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 34px 30px;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.calendar-modal::-webkit-scrollbar {
+    display: none;
+}
+
+.calendar-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: #ffece0;
+    color: #d97736;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.calendar-modal-close:hover {
+    background: #ffd9bd;
+}
+
+.calendar-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #3f7a5c;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    margin-bottom: 10px;
+}
+
+.calendar-kicker::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e8763c;
+    display: inline-block;
+}
+
+.calendar-title h2 {
+    font-size: 1.8rem;
+    color: #16301f;
+    margin: 0 0 6px 0;
+}
+
+.calendar-title p {
+    color: #4A5A43;
+    font-size: 0.95rem;
+    max-width: 620px;
+}
+
+.calendar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 26px;
+}
+
+.calendar-nav button {
+    background: #ffece0;
+    color: #d97736;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.calendar-nav button:hover {
+    background: #ffd9bd;
+}
+
+.calendar-nav-label {
+    font-weight: 700;
+    color: #16301f;
+    font-size: 1.1rem;
+    min-width: 170px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.months-grid {
+    max-width: 360px;
+    margin: 18px auto 0;
+}
+
+.month-card {
+    display: none;
+    background-color: #fffaf3;
+    border-radius: 18px;
+    border: 1px solid #eaddc7;
+    padding: 18px 16px 16px;
+}
+
+.month-card.active {
+    display: block;
+}
+
+.month-card h3 {
+    margin: 0 0 12px 0;
+    color: #16301f;
+    font-size: 1.05rem;
+    text-transform: capitalize;
+}
+
+.day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.day-names span {
+    text-align: center;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #8a7a63;
+    text-transform: uppercase;
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.day-cell {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    color: #4A5A43;
+    border-radius: 8px;
+}
+
+.day-cell.empty {
+    visibility: hidden;
+}
+
+.day-cell.event {
+    background-color: #ffece0;
+    color: #d97736;
+    font-weight: 700;
+    border: 1.5px solid #d97736;
+    cursor: default;
+}
+
+.event-list {
+    list-style: none;
+    margin: 14px 0 0 0;
+    padding: 10px 0 0 0;
+    border-top: 1px dashed #eaddc7;
+}
+
+.event-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.83rem;
+    color: #4A5A43;
+    padding: 4px 0;
+}
+
+.event-list .event-date {
+    min-width: 32px;
+    height: 32px;
+    background-color: #ffece0;
+    color: #d97736;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.event-list .event-label {
+    font-style: italic;
+    color: #9a8a72;
+}
+</style>
 </head>
 <body>
 
@@ -76,6 +336,9 @@
         concretă, pas cu pas, animal cu animal. Aici vezi exact unde ajunge fiecare 
         gest de sprijin.
     </p>
+    <button class="btn-calendar" onclick="openCalendarModal()">
+        <i class="fas fa-calendar-days"></i> Calendar evenimente
+    </button>
 </div>
 
             <div class="partners-list-container">
@@ -93,7 +356,46 @@
             Singura soluție eficientă și umană împotriva abandonului este prevenția. Cu ajutorul acestei ambulanțe veterinare mobile, ajungem direct în satele de lângă Timișoara pentru a oferi campanii gratuite de sterilizare, microcipare și educare pentru comunitățile rurale defavorizate.
         </p>
 
-       
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-paw"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">
+            🐾 Festivalul de Adopții Blană
+        </h4>
+
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>19 septembrie</strong>, între <strong>10:00 și 18:00</strong>, curtea Institutului Francez se transformă în cel mai vesel festival dedicat iubitorilor de animale, familiilor și faptelor bune. Evenimentul e organizat de Colectivul Blană, cu atmosferă întreținută de DJ Zorle. Te așteaptă zeci de blănoși care își caută o familie iubitoare, asociații și experți în îngrijirea și protecția animalelor, activități pentru copii, gustări gratuite, drinks și o tombolă caritabilă cu premii de la parteneri. Intrare liberă, dar donațiile sunt binevenite și îți aduc șansa la premii. Ia-ți prietenii și familia și hai să le oferim animalelor șansa la o viață mai bună — sau măcar o zi plină de iubire, chiar dacă nu intenționezi să adopți.
+        </p>
+
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+
+            <a href="https://www.instagram.com/p/Dc09e9xDKdo/?img_index=1" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fab fa-instagram" style="margin-right:5px;"></i>
+                Detalii Eveniment
+            </a>
+
+            <a href="https://maps.app.goo.gl/UkDPXPcjcvGbpxFJA" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+
+            <a href="https://www.instagram.com/p/Dc3U0PBDEhp/?img_index=1" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-newspaper" style="margin-right:5px;"></i>
+                Articol în presă
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
        
 <div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
@@ -237,6 +539,151 @@
         </section>
     </main>
 
+    <!-- ============ MODAL CALENDAR EVENIMENTE ============ -->
+    <div class="calendar-modal-overlay" id="calendarModalOverlay" onclick="closeCalendarModalOnBackdrop(event)">
+        <div class="calendar-modal">
+            <button class="calendar-modal-close" onclick="closeCalendarModal()" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <div class="calendar-title">
+                <p class="calendar-kicker">Ce urmează</p>
+                <h2>Calendar <span style="color:#e8763c;">evenimente</span></h2>
+                <p>Datele marcate cu portocaliu sunt rezervate pentru evenimente Colectivul Blană. Detaliile pentru fiecare vor fi publicate pe măsură ce se apropie.</p>
+            </div>
+
+            <div class="calendar-nav">
+                <button onclick="prevCalendarMonth()" aria-label="Luna anterioară"><i class="fas fa-chevron-left"></i></button>
+                <span class="calendar-nav-label" id="calendarMonthLabel">Septembrie 2026</span>
+                <button onclick="nextCalendarMonth()" aria-label="Luna următoare"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="months-grid">
+
+                <!-- Septembrie 2026 -->
+                <div class="month-card active" data-month="2026-09">
+                    <h3>Septembrie 2026</h3>
+                    <div class="day-names">
+                        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                    </div>
+                    <div class="days-grid">
+                        <div class="day-cell empty"></div><div class="day-cell empty"></div>
+                        <div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div><div class="day-cell">4</div><div class="day-cell">5</div>
+                        <div class="day-cell">6</div><div class="day-cell">7</div><div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div><div class="day-cell">11</div><div class="day-cell">12</div>
+                        <div class="day-cell">13</div><div class="day-cell">14</div><div class="day-cell">15</div><div class="day-cell">16</div><div class="day-cell">17</div><div class="day-cell">18</div>
+                        <div class="day-cell event" data-date="2026-09-19" title="Festivalul de Adopții Blană">19</div>
+                        <div class="day-cell">20</div><div class="day-cell">21</div><div class="day-cell">22</div><div class="day-cell">23</div><div class="day-cell">24</div>
+                        <div class="day-cell event" data-date="2026-09-25" title="THOR – Lecția despre incluziune">25</div>
+                        <div class="day-cell event" data-date="2026-09-26" title="Fauna sălbatică urbană">26</div>
+                        <div class="day-cell">27</div><div class="day-cell">28</div>
+                        <div class="day-cell event" data-date="2026-09-29" title="NU ÎNTOARCE PRIVIREA">29</div>
+                        <div class="day-cell">30</div>
+                    </div>
+                    <ul class="event-list">
+                        <li><span class="event-date">19</span> <span class="event-label">Festivalul de Adopții Blană</span></li>
+                        <li><span class="event-date">25</span> <span class="event-label">THOR – Lecția despre incluziune</span></li>
+                        <li><span class="event-date">26</span> <span class="event-label">Fauna sălbatică urbană</span></li>
+                        <li><span class="event-date">29</span> <span class="event-label">NU ÎNTOARCE PRIVIREA</span></li>
+                    </ul>
+                </div>
+
+                <!-- Octombrie 2026 -->
+                <div class="month-card" data-month="2026-10">
+                    <h3>Octombrie 2026</h3>
+                    <div class="day-names">
+                        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                    </div>
+                    <div class="days-grid">
+                        <div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div>
+                        <div class="day-cell">1</div><div class="day-cell">2</div>
+                        <div class="day-cell event" data-date="2026-10-03" title="Detalii în curând">3</div>
+                        <div class="day-cell">4</div>
+                        <div class="day-cell event" data-date="2026-10-05" title="Detalii în curând">5</div>
+                        <div class="day-cell">6</div><div class="day-cell">7</div><div class="day-cell">8</div><div class="day-cell">9</div>
+                        <div class="day-cell event" data-date="2026-10-10" title="Detalii în curând">10</div>
+                        <div class="day-cell">11</div><div class="day-cell">12</div><div class="day-cell">13</div>
+                        <div class="day-cell event" data-date="2026-10-14" title="Detalii în curând">14</div>
+                        <div class="day-cell">15</div><div class="day-cell">16</div>
+                        <div class="day-cell event" data-date="2026-10-17" title="Detalii în curând">17</div>
+                        <div class="day-cell">18</div>
+                        <div class="day-cell event" data-date="2026-10-19" title="Detalii în curând">19</div>
+                        <div class="day-cell">20</div><div class="day-cell">21</div><div class="day-cell">22</div>
+                        <div class="day-cell event" data-date="2026-10-23" title="Detalii în curând">23</div>
+                        <div class="day-cell event" data-date="2026-10-24" title="Detalii în curând">24</div>
+                        <div class="day-cell">25</div><div class="day-cell">26</div><div class="day-cell">27</div>
+                        <div class="day-cell event" data-date="2026-10-28" title="Detalii în curând">28</div>
+                        <div class="day-cell">29</div><div class="day-cell">30</div>
+                        <div class="day-cell event" data-date="2026-10-31" title="Detalii în curând">31</div>
+                    </div>
+                    <ul class="event-list">
+                        <li><span class="event-date">3</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">5</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">10</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">14</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">17</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">19</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">23</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">24</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">28</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">31</span> <span class="event-label">Detalii în curând</span></li>
+                    </ul>
+                </div>
+
+                <!-- Noiembrie 2026 -->
+                <div class="month-card" data-month="2026-11">
+                    <h3>Noiembrie 2026</h3>
+                    <div class="day-names">
+                        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                    </div>
+                    <div class="days-grid">
+                        <div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div><div class="day-cell">4</div><div class="day-cell">5</div><div class="day-cell">6</div>
+                        <div class="day-cell event" data-date="2026-11-07" title="Detalii în curând">7</div>
+                        <div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div>
+                        <div class="day-cell event" data-date="2026-11-11" title="Detalii în curând">11</div>
+                        <div class="day-cell">12</div><div class="day-cell">13</div><div class="day-cell">14</div>
+                        <div class="day-cell">15</div><div class="day-cell">16</div><div class="day-cell">17</div><div class="day-cell">18</div><div class="day-cell">19</div><div class="day-cell">20</div>
+                        <div class="day-cell event" data-date="2026-11-21" title="Detalii în curând">21</div>
+                        <div class="day-cell">22</div><div class="day-cell">23</div>
+                        <div class="day-cell event" data-date="2026-11-24" title="Detalii în curând">24</div>
+                        <div class="day-cell">25</div>
+                        <div class="day-cell event" data-date="2026-11-26" title="Detalii în curând">26</div>
+                        <div class="day-cell">27</div><div class="day-cell">28</div>
+                        <div class="day-cell">29</div><div class="day-cell">30</div>
+                    </div>
+                    <ul class="event-list">
+                        <li><span class="event-date">7</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">11</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">21</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">24</span> <span class="event-label">Detalii în curând</span></li>
+                        <li><span class="event-date">26</span> <span class="event-label">Detalii în curând</span></li>
+                    </ul>
+                </div>
+
+                <!-- Decembrie 2026 -->
+                <div class="month-card" data-month="2026-12">
+                    <h3>Decembrie 2026</h3>
+                    <div class="day-names">
+                        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                    </div>
+                    <div class="days-grid">
+                        <div class="day-cell empty"></div><div class="day-cell empty"></div>
+                        <div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div>
+                        <div class="day-cell event" data-date="2026-12-04" title="Detalii în curând">4</div>
+                        <div class="day-cell">5</div>
+                        <div class="day-cell">6</div><div class="day-cell">7</div><div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div><div class="day-cell">11</div><div class="day-cell">12</div>
+                        <div class="day-cell">13</div><div class="day-cell">14</div><div class="day-cell">15</div><div class="day-cell">16</div><div class="day-cell">17</div><div class="day-cell">18</div><div class="day-cell">19</div>
+                        <div class="day-cell">20</div><div class="day-cell">21</div><div class="day-cell">22</div><div class="day-cell">23</div><div class="day-cell">24</div><div class="day-cell">25</div><div class="day-cell">26</div>
+                        <div class="day-cell">27</div><div class="day-cell">28</div><div class="day-cell">29</div><div class="day-cell">30</div><div class="day-cell">31</div>
+                    </div>
+                    <ul class="event-list">
+                        <li><span class="event-date">4</span> <span class="event-label">Detalii în curând</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div><!-- /content-wrap -->
 
 <footer>
@@ -285,6 +732,53 @@ function closeTombolaDrawer() {
     document.getElementById('dachshund-scroll-wrapper').classList.remove('hidden-by-drawer');
     document.body.style.overflow = '';
 }
+</script>
+
+<script>
+const calendarMonths = [
+    { key: '2026-09', label: 'Septembrie 2026' },
+    { key: '2026-10', label: 'Octombrie 2026' },
+    { key: '2026-11', label: 'Noiembrie 2026' },
+    { key: '2026-12', label: 'Decembrie 2026' }
+];
+let calendarMonthIndex = 0;
+
+function showCalendarMonth(index) {
+    calendarMonthIndex = (index + calendarMonths.length) % calendarMonths.length;
+    document.querySelectorAll('.month-card').forEach(function (card) {
+        card.classList.toggle('active', card.getAttribute('data-month') === calendarMonths[calendarMonthIndex].key);
+    });
+    document.getElementById('calendarMonthLabel').textContent = calendarMonths[calendarMonthIndex].label;
+}
+
+function prevCalendarMonth() {
+    showCalendarMonth(calendarMonthIndex - 1);
+}
+
+function nextCalendarMonth() {
+    showCalendarMonth(calendarMonthIndex + 1);
+}
+
+function openCalendarModal() {
+    document.getElementById('calendarModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showCalendarMonth(0);
+}
+
+function closeCalendarModal() {
+    document.getElementById('calendarModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function closeCalendarModalOnBackdrop(event) {
+    if (event.target.id === 'calendarModalOverlay') {
+        closeCalendarModal();
+    }
+}
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeCalendarModal();
+});
 </script>
 
 <div id="tombola-overlay" class="drawer-overlay" onclick="closeTombolaDrawer()"></div>
