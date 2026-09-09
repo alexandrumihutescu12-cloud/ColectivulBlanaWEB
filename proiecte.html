@@ -273,6 +273,424 @@
 .event-list .event-label {
     font-style: italic;
     color: #9a8a72;
+    flex: 1;
+}
+
+.btn-inscrie {
+    background: #e8763c;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+}
+
+.btn-inscrie:hover {
+    background: #d3652d;
+}
+
+.btn-info {
+    background: #ffece0;
+    color: #d97736;
+    border: none;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.btn-info:hover {
+    background: #ffd9bd;
+}
+
+/* ============ MODAL INFO EVENIMENT ============ */
+.info-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 25, 15, 0.7);
+    z-index: 100001;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.info-modal-overlay::-webkit-scrollbar {
+    display: none;
+}
+
+.info-modal-overlay.open {
+    display: flex;
+}
+
+.info-modal {
+    background-color: #FDF9F3;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)),
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    border-radius: 24px;
+    border-left: 6px solid #e8763c;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    max-width: 540px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 34px 30px;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.info-modal::-webkit-scrollbar {
+    display: none;
+}
+
+.info-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: #ffece0;
+    color: #d97736;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.info-modal-close:hover {
+    background: #ffd9bd;
+}
+
+.info-modal h2 {
+    font-size: 1.3rem;
+    color: #16301f;
+    margin: 0 0 14px 0;
+    padding-right: 30px;
+}
+
+.info-modal p {
+    font-size: 0.92rem;
+    color: #4A5A43;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+}
+
+.info-modal-btn-inscrie {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e8763c;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 11px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s ease;
+}
+
+.info-modal-btn-inscrie:hover {
+    background: #d3652d;
+}
+
+
+/* ============ MODAL ÎNSCRIERE ============ */
+.registration-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 25, 15, 0.7);
+    z-index: 100000;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.registration-modal-overlay::-webkit-scrollbar {
+    display: none;
+}
+
+.registration-modal-overlay.open {
+    display: flex;
+}
+
+.registration-modal {
+    background-color: #FDF9F3;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)),
+        url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    background-blend-mode: color-burn, normal;
+    border-radius: 24px;
+    border-left: 6px solid #e8763c;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 34px 30px;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.registration-modal::-webkit-scrollbar {
+    display: none;
+}
+
+.registration-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: #ffece0;
+    color: #d97736;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.registration-modal-close:hover {
+    background: #ffd9bd;
+}
+
+.registration-modal h2 {
+    font-size: 1.4rem;
+    color: #16301f;
+    margin: 0 0 4px 0;
+}
+
+#registrationEventName {
+    color: #e8763c;
+}
+
+.registration-seats {
+    font-size: 0.85rem;
+    color: #4A5A43;
+    margin: 0 0 20px 0;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #16301f;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid #eaddc7;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    background: #fffefb;
+    color: #2b2118;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #e8763c;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 12px;
+    font-size: 0.78rem;
+    color: #4A5A43;
+    line-height: 1.4;
+}
+
+.form-checkbox input {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.btn-submit-inscriere {
+    width: 100%;
+    background: #e8763c;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 13px;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.25s ease;
+}
+
+.btn-submit-inscriere:hover {
+    background: #d3652d;
+}
+
+.btn-submit-inscriere:disabled {
+    background: #d8c9b4;
+    cursor: not-allowed;
+}
+
+.form-message {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    display: none;
+}
+
+.form-message.show {
+    display: block;
+}
+
+.form-message.ok {
+    background: #e6f4e1;
+    color: #2f6b25;
+}
+
+.form-message.error {
+    background: #fde8e0;
+    color: #b8461f;
+}
+
+.form-support-note {
+    margin-top: 14px;
+    font-size: 0.75rem;
+    color: #9a8a72;
+    text-align: center;
+}
+
+.form-support-note a {
+    color: #d97736;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.form-support-note a:hover {
+    text-decoration: underline;
+}
+
+.form-group input:disabled,
+.form-checkbox input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.companions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.companion-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.companion-row input[type="text"] {
+    flex: 1;
+    box-sizing: border-box;
+    padding: 9px 12px;
+    border: 1px solid #eaddc7;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    background: #fffefb;
+    color: #2b2118;
+}
+
+.companion-row input[type="text"]:focus {
+    outline: none;
+    border-color: #e8763c;
+}
+
+.btn-remove-companion {
+    background: #fde8e0;
+    color: #b8461f;
+    border: none;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: background 0.2s ease;
+}
+
+.btn-remove-companion:hover {
+    background: #fbd4c4;
+}
+
+.btn-add-companion {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1.5px dashed #d9c4a5;
+    color: #a4713a;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-add-companion:hover {
+    background: #fdf1e2;
+    border-color: #e8763c;
+}
+
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
 }
 </style>
 </head>
@@ -581,9 +999,24 @@
                     </div>
                     <ul class="event-list">
                         <li><span class="event-date">19</span> <span class="event-label">Festivalul de Adopții Blană</span></li>
-                        <li><span class="event-date">25</span> <span class="event-label">THOR – Lecția despre incluziune</span></li>
-                        <li><span class="event-date">26</span> <span class="event-label">Fauna sălbatică urbană</span></li>
-                        <li><span class="event-date">29</span> <span class="event-label">NU ÎNTOARCE PRIVIREA</span></li>
+                        <li>
+                            <span class="event-date">25</span>
+                            <span class="event-label">THOR – Lecția despre incluziune</span>
+                            <button class="btn-info" onclick="openEventInfoModal(25)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(25)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">26</span>
+                            <span class="event-label">Fauna sălbatică urbană</span>
+                            <button class="btn-info" onclick="openEventInfoModal(26)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(26)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">29</span>
+                            <span class="event-label">NU ÎNTOARCE PRIVIREA</span>
+                            <button class="btn-info" onclick="openEventInfoModal(29)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(29)">Înscrie-te</button>
+                        </li>
                     </ul>
                 </div>
 
@@ -684,6 +1117,211 @@
         </div>
     </div>
 
+    <!-- ============ MODALE ÎNSCRIERE — câte unul separat pentru fiecare eveniment ============ -->
+
+    <!-- 25 Septembrie — THOR – Lecția despre incluziune -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-25" onclick="closeRegistrationModalOnBackdrop(event, 25)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(25)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-25">THOR – Lecția despre incluziune</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-25">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-25">
+                <div class="form-group">
+                    <label for="reg-nume-25">Nume</label>
+                    <input type="text" id="reg-nume-25" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-25">Prenume</label>
+                    <input type="text" id="reg-prenume-25" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-25">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-25" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-25">Adresă de email</label>
+                    <input type="email" id="reg-email-25" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-25">Vârstă</label>
+                    <input type="number" id="reg-varsta-25" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-25"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(25)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-25">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-25" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-25" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-25" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-25">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-25"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- 26 Septembrie — Fauna sălbatică urbană -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-26" onclick="closeRegistrationModalOnBackdrop(event, 26)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(26)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-26">Fauna sălbatică urbană</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-26">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-26">
+                <div class="form-group">
+                    <label for="reg-nume-26">Nume</label>
+                    <input type="text" id="reg-nume-26" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-26">Prenume</label>
+                    <input type="text" id="reg-prenume-26" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-26">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-26" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-26">Adresă de email</label>
+                    <input type="email" id="reg-email-26" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-26">Vârstă</label>
+                    <input type="number" id="reg-varsta-26" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-26"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(26)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-26">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-26" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-26" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-26" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-26">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-26"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- 29 Septembrie — NU ÎNTOARCE PRIVIREA -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-29" onclick="closeRegistrationModalOnBackdrop(event, 29)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(29)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-29">NU ÎNTOARCE PRIVIREA</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-29">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-29">
+                <div class="form-group">
+                    <label for="reg-nume-29">Nume</label>
+                    <input type="text" id="reg-nume-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-29">Prenume</label>
+                    <input type="text" id="reg-prenume-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-29">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-29">Adresă de email</label>
+                    <input type="email" id="reg-email-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-29">Vârstă</label>
+                    <input type="number" id="reg-varsta-29" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-29"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(29)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-29">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-29" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-29" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-29" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-29">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-29"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============ MODAL INFO EVENIMENT (conținut populat dinamic din JS) ============ -->
+    <div class="info-modal-overlay" id="infoModalOverlay" onclick="closeEventInfoModalOnBackdrop(event)">
+        <div class="info-modal">
+            <button class="info-modal-close" onclick="closeEventInfoModal()" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <h2 id="infoModalTitle"></h2>
+            <div id="infoModalBody"></div>
+            <button class="info-modal-btn-inscrie" id="infoModalInscrieBtn">
+                <i class="fas fa-pen"></i> Înscrie-te la eveniment
+            </button>
+        </div>
+    </div>
+
 </div><!-- /content-wrap -->
 
 <footer>
@@ -742,7 +1380,7 @@ const calendarMonths = [
     { key: '2026-12', label: 'Decembrie 2026' }
 ];
 let calendarMonthIndex = 0;
-
+ 
 function showCalendarMonth(index) {
     calendarMonthIndex = (index + calendarMonths.length) % calendarMonths.length;
     document.querySelectorAll('.month-card').forEach(function (card) {
@@ -750,39 +1388,270 @@ function showCalendarMonth(index) {
     });
     document.getElementById('calendarMonthLabel').textContent = calendarMonths[calendarMonthIndex].label;
 }
-
+ 
 function prevCalendarMonth() {
     showCalendarMonth(calendarMonthIndex - 1);
 }
-
+ 
 function nextCalendarMonth() {
     showCalendarMonth(calendarMonthIndex + 1);
 }
-
+ 
 function openCalendarModal() {
     document.getElementById('calendarModalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
     showCalendarMonth(0);
 }
-
+ 
 function closeCalendarModal() {
     document.getElementById('calendarModalOverlay').classList.remove('open');
     document.body.style.overflow = '';
 }
-
+ 
 function closeCalendarModalOnBackdrop(event) {
     if (event.target.id === 'calendarModalOverlay') {
         closeCalendarModal();
     }
 }
-
+ 
 document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeCalendarModal();
+    if (e.key === 'Escape') {
+        closeCalendarModal();
+        [25, 26, 29].forEach(closeRegistrationModal);
+        closeEventInfoModal();
+    }
+});
+ 
+/* ============ INFO EVENIMENT (descriere scurtă, buton "i") ============ */
+ 
+const EVENT_INFO = {
+    25: {
+        title: 'THOR – Lecția despre incluziune',
+        paragraphs: [
+            'Un atelier inspirat de povestea lui Thor, un câine paralizat pe trenul posterior care se deplasează cu ajutorul unui cărucior adaptat și care, în ciuda dizabilității, e unul dintre cei mai veseli locuitori ai curții Asociației Bucuriilor Măriucăi.',
+            'Pornind de la exemplul lui, discutăm despre diferența dintre milă și empatie, despre cum adaptarea mediului poate reda independența, și despre faptul că o dizabilitate nu definește valoarea unei ființe.',
+            'Scopul atelierului e să crească empatia și înțelegerea față de persoanele și animalele cu dizabilități, și să arate, practic, ce înseamnă o comunitate incluzivă.'
+        ]
+    },
+    26: {
+        title: 'Fauna sălbatică urbană',
+        paragraphs: [
+            'O întâlnire-dialog, nu o simplă prezentare, despre animalele sălbatice pe care le întâlnim în oraș — arici, păsări rănite, vulpi, porumbei, țestoase, dar și animale exotice sau domestice abandonate.',
+            'Vorbim despre ce faci corect când găsești un animal în dificultate, despre legislația de protecție a animalelor și a speciilor sălbatice, despre braconaj și trafic ilegal, și despre rolul autorităților și al ONG-urilor de salvare.',
+            'Vine cu jocuri, demonstrații practice, un concurs cu premii și un invitat special — o rățușcă.'
+        ]
+    },
+    29: {
+        title: 'NU ÎNTOARCE PRIVIREA',
+        paragraphs: [
+            'Un atelier despre primul pas pe care îl poate face oricine atunci când întâlnește un animal abandonat — să oprești, să pui apă, să fotografiezi, să suni după ajutor, să nu treci mai departe.',
+            'Nu își propune să facă din participanți salvatori, ci să le arate limitele și responsabilitățile unui cetățean obișnuit, și când e nevoie să ceri ajutorul autorităților sau al unui ONG.',
+            'La final, participanții pleacă cu încrederea că pot contribui, chiar dacă nu fac parte dintr-o asociație.'
+        ]
+    }
+};
+ 
+function openEventInfoModal(id) {
+    const info = EVENT_INFO[id];
+    document.getElementById('infoModalTitle').textContent = info.title;
+    document.getElementById('infoModalBody').innerHTML = info.paragraphs.map(function (p) {
+        return '<p>' + p + '</p>';
+    }).join('');
+    document.getElementById('infoModalInscrieBtn').onclick = function () {
+        closeEventInfoModal();
+        openRegistrationModal(id);
+    };
+    document.getElementById('infoModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+ 
+function closeEventInfoModal() {
+    document.getElementById('infoModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+ 
+function closeEventInfoModalOnBackdrop(event) {
+    if (event.target.id === 'infoModalOverlay') {
+        closeEventInfoModal();
+    }
+}
+ 
+/* ============ ÎNSCRIERE LA EVENIMENT (formulare separate per eveniment) ============ */
+ 
+// Înlocuiește cu URL-ul tău de Web App din Google Apps Script (se termină în /exec)
+const APPS_SCRIPT_URL = 'PUNE_AICI_URL_UL_TAU_DE_APPS_SCRIPT';
+ 
+const REGISTRATION_EVENTS = {
+    25: '25 Septembrie - THOR – Lecția despre incluziune',
+    26: '26 Septembrie - Fauna sălbatică urbană',
+    29: '29 Septembrie - NU ÎNTOARCE PRIVIREA'
+};
+ 
+function regEl(field, id) {
+    return document.getElementById(field + '-' + id);
+}
+ 
+function addCompanionField(id) {
+    const list = document.getElementById('companionsList-' + id);
+    const row = document.createElement('div');
+    row.className = 'companion-row';
+ 
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'companion-name-input';
+    input.placeholder = 'Numele însoțitorului';
+ 
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'btn-remove-companion';
+    removeBtn.setAttribute('aria-label', 'Elimină însoțitor');
+    removeBtn.innerHTML = '<i class="fas fa-xmark"></i>';
+    removeBtn.onclick = function () { row.remove(); };
+ 
+    row.appendChild(input);
+    row.appendChild(removeBtn);
+    list.appendChild(row);
+    input.focus();
+}
+ 
+function getCompanionNames(id) {
+    return Array.from(document.querySelectorAll('#companionsList-' + id + ' .companion-name-input'))
+        .map(function (el) { return el.value.trim(); })
+        .filter(function (name) { return name.length > 0; });
+}
+ 
+function setFormDisabled(id, disabled) {
+    document.querySelectorAll('#registrationForm-' + id + ' input').forEach(function (el) {
+        el.disabled = disabled;
+    });
+}
+ 
+function openRegistrationModal(id) {
+    const form = document.getElementById('registrationForm-' + id);
+    const msg = regEl('registrationMessage', id);
+    const submitBtn = regEl('registrationSubmitBtn', id);
+    const seatsInfo = regEl('registrationSeatsInfo', id);
+ 
+    form.reset();
+    document.getElementById('companionsList-' + id).innerHTML = '';
+    setFormDisabled(id, false);
+    msg.classList.remove('show', 'ok', 'error');
+    msg.textContent = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Trimite înscrierea';
+    seatsInfo.textContent = 'Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).';
+ 
+    document.getElementById('registrationModalOverlay-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+ 
+    // Verifică live câte locuri mai sunt libere; dacă s-au ocupat, blochează tot formularul
+    if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('PUNE_AICI') === -1) {
+        fetch(APPS_SCRIPT_URL)
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                const eventName = REGISTRATION_EVENTS[id];
+                if (data.status === 'ok' && data.locuriRamase && data.locuriRamase[eventName] !== undefined) {
+                    const ramase = data.locuriRamase[eventName];
+                    if (ramase > 0) {
+                        seatsInfo.textContent = ramase + ' locuri rămase din 20.';
+                    } else {
+                        seatsInfo.textContent = 'Toate locurile sunt ocupate — nu mai sunt disponibile înscrieri.';
+                        setFormDisabled(id, true);
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Locuri epuizate';
+                    }
+                }
+            })
+            .catch(function () { /* păstrăm mesajul implicit dacă verificarea eșuează */ });
+    }
+}
+ 
+function closeRegistrationModal(id) {
+    document.getElementById('registrationModalOverlay-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+}
+ 
+function closeRegistrationModalOnBackdrop(event, id) {
+    if (event.target.id === 'registrationModalOverlay-' + id) {
+        closeRegistrationModal(id);
+    }
+}
+ 
+function handleRegistrationSubmit(id, e) {
+    e.preventDefault();
+ 
+    const submitBtn = regEl('registrationSubmitBtn', id);
+    const msg = regEl('registrationMessage', id);
+ 
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('PUNE_AICI') !== -1) {
+        msg.textContent = 'Formularul nu e conectat încă la Google Sheets (lipsește URL-ul de Apps Script). Scrie-ne la colectivulblana@gmail.com.';
+        msg.className = 'form-message show error';
+        return;
+    }
+ 
+    const insotitoriNume = getCompanionNames(id);
+ 
+    const payload = {
+        eveniment: REGISTRATION_EVENTS[id],
+        nume: regEl('reg-nume', id).value.trim(),
+        prenume: regEl('reg-prenume', id).value.trim(),
+        telefon: regEl('reg-telefon', id).value.trim(),
+        email: regEl('reg-email', id).value.trim(),
+        varsta: regEl('reg-varsta', id).value,
+        insotitoriNume: insotitoriNume,
+        website: regEl('reg-website', id).value,
+        confirmare18: regEl('reg-confirmare18', id).checked,
+        consimtamant: regEl('reg-consimtamant', id).checked
+    };
+ 
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Se trimite...';
+    msg.classList.remove('show', 'ok', 'error');
+ 
+    fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+    })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            msg.textContent = data.message || 'A apărut o eroare. Dacă problema persistă, scrie-ne la colectivulblana@gmail.com.';
+ 
+            if (data.status === 'ok') {
+                msg.className = 'form-message show ok';
+                submitBtn.textContent = 'Înscris cu succes';
+                setFormDisabled(id, true);
+                submitBtn.disabled = true;
+            } else if (data.status === 'full') {
+                // Locurile s-au ocupat chiar în timp ce completa formularul
+                msg.className = 'form-message show error';
+                setFormDisabled(id, true);
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Locuri epuizate';
+            } else {
+                // Include și cazul "deja înscris cu acest email"
+                msg.className = 'form-message show error';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Trimite înscrierea';
+            }
+        })
+        .catch(function () {
+            msg.textContent = 'Nu am putut trimite înscrierea. Verifică conexiunea, sau scrie-ne la colectivulblana@gmail.com dacă problema persistă.';
+            msg.className = 'form-message show error';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Trimite înscrierea';
+        });
+}
+ 
+[25, 26, 29].forEach(function (id) {
+    document.getElementById('registrationForm-' + id).addEventListener('submit', function (e) {
+        handleRegistrationSubmit(id, e);
+    });
 });
 </script>
-
+ 
 <div id="tombola-overlay" class="drawer-overlay" onclick="closeTombolaDrawer()"></div>
-
+ 
 <aside id="tombola-drawer" class="side-drawer">
     <div class="drawer-header">
         <h3>Regulament Tombolă</h3>
