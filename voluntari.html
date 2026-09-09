@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuperSeniori - Colectivul Blană</title>
+    <title>Voluntari - Colectivul Blană</title>
     <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <meta property="og:image" content="https://colectivulblana.ro/Imagini/logocolectiv.png">
-    <meta property="og:title" content="SuperSeniori - Colectivul Blană">
-    <meta property="og:description" content="Câinii noștri seniori care nu pot fi adoptați, dar aduc bucurie în fiecare zi.">
-    <meta property="og:url" content="https://colectivulblana.ro/superseniori.html">
+    <meta property="og:title" content="Voluntari - Colectivul Blană">
+    <meta property="og:description" content="Devino voluntar Colectivul Blană — fiecare oră de implicare contează.">
+    <meta property="og:url" content="https://colectivulblana.ro/voluntari.html">
     <meta property="og:type" content="website">
-</head>
-<body><style>
+
+<style>
 /* ===== Pagina Voluntari ===== */
 
 .volunteer-hero {
@@ -94,7 +94,6 @@
     color: #e8763c;
 }
 
-/* Carduri "de ce voluntar" — reutilizează spiritul awning-ului de la parteneri */
 .volunteer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -136,7 +135,6 @@
     line-height: 1.55;
 }
 
-/* Roluri disponibile */
 .roles-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -175,7 +173,6 @@
     line-height: 1.5;
 }
 
-/* Pași de implicare */
 .steps {
     counter-reset: step;
     display: grid;
@@ -221,7 +218,6 @@
     line-height: 1.5;
 }
 
-/* CTA WhatsApp */
 .whatsapp-cta {
     background: #f3ead9;
     border-radius: 18px;
@@ -300,7 +296,7 @@
         <span></span>
         <span></span>
     </button>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
         <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
         <li class="dropdown">
             <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <i class="fas fa-chevron-down arrow"></i></a>
@@ -447,6 +443,33 @@
     </section>
 
 </main>
+
+<script>
+window.addEventListener('scroll', function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    document.getElementById("dachshund-body").style.height = scrolled + "%";
+});
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+setInterval(nextSlide, 3000);
+</script>
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+});
+</script>
 
 </body>
 </html>
