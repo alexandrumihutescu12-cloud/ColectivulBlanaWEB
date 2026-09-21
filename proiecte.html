@@ -1816,6 +1816,74 @@
             </div>
         </div>
     </div>
+        <!-- 29 Septembrie — NU ÎNTOARCE PRIVIREA -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-29" onclick="closeRegistrationModalOnBackdrop(event, 29)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(29)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-29">NU ÎNTOARCE PRIVIREA</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-29">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-29">
+                <div class="form-group">
+                    <label for="reg-nume-29">Nume</label>
+                    <input type="text" id="reg-nume-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-29">Prenume</label>
+                    <input type="text" id="reg-prenume-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-29">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-29">Adresă de email</label>
+                    <input type="email" id="reg-email-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-29">Vârstă</label>
+                    <input type="number" id="reg-varsta-29" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-29"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(29)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-29">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-29" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-29" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-29" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-29">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-29"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
 
     <!-- ============ MODAL INFO EVENIMENT (conținut populat dinamic din JS) ============ -->
     <div class="info-modal-overlay" id="infoModalOverlay" onclick="closeEventInfoModalOnBackdrop(event)">
