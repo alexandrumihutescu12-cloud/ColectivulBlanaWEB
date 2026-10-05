@@ -1980,10 +1980,21 @@ function nextCalendarMonth() {
     showCalendarMonth(calendarMonthIndex + 1);
 }
 
+function getCurrentMonthIndex() {
+    const now = new Date();
+    const key = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+
+    const index = calendarMonths.findIndex(function (m) { return m.key === key; });
+    if (index !== -1) return index;
+
+    // Luna curentă nu e în calendar: înainte de prima lună -> prima, după ultima -> ultima
+    return key < calendarMonths[0].key ? 0 : calendarMonths.length - 1;
+}
+
 function openCalendarModal() {
     document.getElementById('calendarModalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
-    showCalendarMonth(0);
+    showCalendarMonth(getCurrentMonthIndex());
 }
 
 function closeCalendarModal() {
