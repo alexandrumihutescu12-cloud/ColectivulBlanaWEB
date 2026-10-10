@@ -39,57 +39,58 @@ body {
 
 
 /* ============================================================
-   NAVBAR
+   MENIU LATERAL
    ============================================================ */
+:root { --sidebar-w: 260px; }
+
+body { padding-left: var(--sidebar-w); }
+
 .navbar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 92%;
-    max-width: 1250px;
-    margin: 20px auto 0 auto;
-    padding: 12px 40px;
-    border-radius: 50px;
-    
-    background-color: #FDF9F3; 
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), 
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px 14px 20px;
+
+    background-color: #faf8f5;
+    background-image:
+        linear-gradient(rgba(238, 237, 236, 0.2), rgba(212, 211, 207, 0.2)),
         url("https://www.transparenttextures.com/patterns/cream-paper.png");
     background-blend-mode: color-burn, normal;
-    
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    position: sticky;
-    top: 20px;
-    z-index: 1050;
-    gap: 20px;
+
+    border-right: 1px solid rgba(26, 51, 14, 0.12);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+    overflow-y: auto;
+    z-index: 1000;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 51, 14, 0.25) transparent;
 }
 
-.nav-links {
-    list-style: none;
+/* Logo */
+.sidebar-brand {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    gap: 25px;
-    flex-grow: 0;
+    gap: 10px;
+    text-decoration: none;
+    padding: 6px 0 18px;
+    border-bottom: 1px solid rgba(26, 51, 14, 0.15);
 }
 
 .logo-img {
-    height: 45px;
-    width: auto;
+    width: 72px;
+    height: auto;
     object-fit: contain;
-    transition: transform 0.3s ease;
 }
 
 span.logo-text {
     font-family: 'Nunito', sans-serif;
-    font-size: 26px;
+    font-size: 1.25rem;
     font-weight: 900;
     color: #1A330E;
-    letter-spacing: 0.1px;
-    display: inline-block;
-    vertical-align: middle;
+    text-align: center;
 }
 
 span.logo-text .accent {
@@ -98,38 +99,39 @@ span.logo-text .accent {
     font-weight: 900;
 }
 
+/* Linkuri */
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .nav-links a {
-    white-space: nowrap;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    text-decoration: none;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: 12px;
     color: #1A330E;
+    font-size: 0.95rem;
     font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.3px;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
-.nav-links a:hover {
-    color: #629E53;
-}
+.nav-links a:hover { background: rgba(26, 51, 14, 0.08); color: #629E53; }
+.nav-links a.active { background: rgba(232, 118, 60, 0.16); color: #b85c1d; }
+.nav-ico { width: 18px; text-align: center; color: #D97736; flex-shrink: 0; }
 
-.btn-donatie {
+.nav-links a.btn-donatie {
     background: linear-gradient(135deg, #629E53 0%, #4A7A3E 100%);
-    color: #F5EFEB !important;
-    padding: 10px 22px;
-    border-radius: 25px;
-    border: none;
-    box-shadow: 0 4px 15px rgba(98, 158, 83, 0.3);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    font-weight: 700;
+    color: #F5EFEB;
+    margin: 8px 0;
+    box-shadow: 0 6px 16px rgba(98, 158, 83, 0.35);
 }
-
-.btn-donatie:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 6px 25px rgba(98, 158, 83, 0.5);
-    background: linear-gradient(135deg, #1A330E 0%, #629E53 100%);
-}
+.nav-links a.btn-donatie .nav-ico { color: #F5EFEB; }
+.nav-links a.btn-donatie:hover { background: linear-gradient(135deg, #1A330E 0%, #629E53 100%); color: #fff; }
 
 .btn-instagram {
     font-size: 22px;
@@ -139,72 +141,92 @@ span.logo-text .accent {
     transition: color 0.3s ease, transform 0.3s ease;
     padding: 5px;
 }
+.btn-instagram:hover { color: #629E53; transform: scale(1.15); }
 
-.btn-instagram:hover {
-    color: #629E53;
-    transform: scale(1.15);
+/* Submeniuri (acordeon, se deschid prin click) */
+.dropdown-toggle .arrow {
+    margin-left: auto;
+    font-size: 0.75rem;
+    transition: transform 0.25s ease;
 }
-
-
-/* ============================================================
-   DROPDOWN
-   ============================================================ */
-.dropdown,
-li.dropdown {
-    position: relative;
-}
+.dropdown.open > .dropdown-toggle .arrow { transform: rotate(180deg); }
 
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #F5EFEB;
-    min-width: 220px;
+    display: none;
     list-style: none;
-    padding: 10px 0;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    margin-top: 10px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    margin: 4px 0 6px 20px;
+    padding: 4px 0 4px 10px;
+    border-left: 2px solid rgba(217, 119, 54, 0.5);
 }
+.dropdown.open > .dropdown-menu { display: block; }
+.dropdown-menu a { font-size: 0.88rem; font-weight: 500; padding: 8px 12px; }
+.dropdown-menu a i { width: 16px; text-align: center; color: #D97736; }
 
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+/* Hamburger + fundal: ascunse pe desktop */
+.hamburger { display: none; }
+.sidebar-backdrop { display: none; }
+
+@media (max-width: 900px) {
+    body { padding-left: 0; }
+
+    .navbar {
+        transform: translateX(-100%);
+        box-shadow: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .navbar.open {
+        transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        position: fixed;
+        top: 14px; left: 14px;
+        z-index: 1100;
+        width: 44px; height: 44px;
+        border: 1px solid rgba(26, 51, 14, 0.15);
+        border-radius: 12px;
+        background: #faf8f5;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        transition: left 0.3s ease, background 0.3s ease;
+    }
+    .hamburger span {
+        display: block;
+        width: 22px; height: 2.5px;
+        background: #1A330E;
+        border-radius: 2px;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .navbar.open .hamburger {
+        left: calc(var(--sidebar-w) - 54px);
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+    }
+    .navbar.open .hamburger span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .navbar.open .hamburger span:nth-child(2) { opacity: 0; }
+    .navbar.open .hamburger span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .sidebar-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 25, 15, 0.55);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 999;
+    }
+    .sidebar-backdrop.show { opacity: 1; pointer-events: auto; }
+
+    #content-wrap { padding-top: 68px; }
 }
-
-.dropdown-menu li a {
-    display: block;
-    padding: 10px 20px;
-    color: #1A330E;
-    font-weight: 500;
-    font-size: 15px;
-    text-decoration: none;
-    background: transparent;
-}
-
-.dropdown-menu li a:hover {
-    background-color: #EFEAE4;
-    color: #629E53;
-}
-
-.dropdown-toggle .arrow {
-    font-size: 10px;
-    margin-left: 5px;
-    display: inline-block;
-    color: #1A330E;
-    transition: transform 0.4s ease;
-}
-
-.dropdown:hover .dropdown-toggle .arrow {
-    transform: rotate(180deg);
-}
-
-
 /* ============================================================
    SECȚIUNEA DESPRE NOI (index)
    ============================================================ */

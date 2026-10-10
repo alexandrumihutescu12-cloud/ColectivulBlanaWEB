@@ -34,36 +34,40 @@
         </div>
     </div>
 
-<header class="navbar">
-    <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
-    <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-    <button class="hamburger" id="hamburger" aria-label="Meniu">
+<header class="navbar" id="sidebar">
+    <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
     </button>
+
+    <a href="index.html" class="sidebar-brand">
+        <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+        <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+    </a>
+
     <ul class="nav-links">
-        <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
+        <li><a href="index.html#povestea-noastra"><i class="fas fa-book-open nav-ico"></i> Povestea noastră</a></li>
         <li class="dropdown">
-            <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <i class="fas fa-chevron-down arrow"></i></a>
+            <a href="parteneri-ong.html" class="dropdown-toggle"><i class="fas fa-handshake-angle nav-ico"></i> Parteneri ONG <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
                 <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
                 <li><a href="adoptii.html">Adopții</a></li>
                 <li><a href="super-seniori.html">#SuperSeniori</a></li>
             </ul>
         </li>
-        <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
-        <li><a href="proiecte.html">Proiecte curente</a></li>
-        <li><a href="voluntari.html" class="active">Voluntari</a></li>
-        <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+        <li><a href="parteneri-afaceri.html"><i class="fas fa-store nav-ico"></i> Parteneri afaceri locale</a></li>
+        <li><a href="proiecte.html" class="active"><i class="fas fa-diagram-project nav-ico"></i> Proiecte curente</a></li>
+        <li><a href="voluntari.html"><i class="fas fa-people-group nav-ico"></i> Voluntari</a></li>
+        <li><a href="donatii.html" class="btn-donatie"><i class="fas fa-heart nav-ico"></i> Donații</a></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle social-toggle">
-                <i class="fas fa-paw"></i>
-                <span>Social Media <i class="fas fa-chevron-down arrow"></i></span>
+                <i class="fas fa-paw nav-ico"></i> Social Media <i class="fas fa-chevron-down arrow"></i>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="https://www.facebook.com/profile.php?id=61593772950930" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=61593568241003" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
                 <li><a href="https://www.tiktok.com/@colectivulblana" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a></li>
                 <li><a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
             </ul>
@@ -1514,6 +1518,36 @@ hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
 });
 </script>
+<script>
+(function () {
+    var sidebar = document.getElementById('sidebar');
+    var hamburger = document.getElementById('hamburger');
+    var backdrop = document.getElementById('sidebarBackdrop');
 
+    function setOpen(open) {
+        sidebar.classList.toggle('open', open);
+        backdrop.classList.toggle('show', open);
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', function () { setOpen(!sidebar.classList.contains('open')); });
+    backdrop.addEventListener('click', function () { setOpen(false); });
+
+    sidebar.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            toggle.parentElement.classList.toggle('open');
+        });
+    });
+
+    sidebar.querySelectorAll('.dropdown-menu a, .nav-links > li:not(.dropdown) > a').forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+    });
+
+    var active = sidebar.querySelector('.dropdown-menu a.active');
+    if (active) active.closest('.dropdown').classList.add('open');
+})();
+</script>
 </body>
 </html>

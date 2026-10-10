@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta property="og:image" content="https://colectivulblana.ro/Imagini/urlthumbnail.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -173,36 +173,40 @@
         </div>
     </div>
 
-    <header class="navbar">
-    <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
-    <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-    <button class="hamburger" id="hamburger" aria-label="Meniu">
+<header class="navbar" id="sidebar">
+    <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
     </button>
+
+    <a href="index.html" class="sidebar-brand">
+        <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+        <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+    </a>
+
     <ul class="nav-links">
-        <li><a href="index.html#povestea-noastra">Povestea noastră</a></li>
+        <li><a href="index.html#povestea-noastra"><i class="fas fa-book-open nav-ico"></i> Povestea noastră</a></li>
         <li class="dropdown">
-            <a href="parteneri-ong.html" class="dropdown-toggle">Parteneri ONG <i class="fas fa-chevron-down arrow"></i></a>
+            <a href="parteneri-ong.html" class="dropdown-toggle"><i class="fas fa-handshake-angle nav-ico"></i> Parteneri ONG <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
                 <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
                 <li><a href="adoptii.html">Adopții</a></li>
                 <li><a href="super-seniori.html">#SuperSeniori</a></li>
             </ul>
         </li>
-        <li><a href="parteneri-afaceri.html">Parteneri afaceri locale</a></li>
-        <li><a href="proiecte.html" class="active">Proiecte curente</a></li>
-        <li><a href="voluntari.html">Voluntari</a></li>
-        <li><a href="donatii.html" class="btn-donatie">Donații</a></li>
+        <li><a href="parteneri-afaceri.html"><i class="fas fa-store nav-ico"></i> Parteneri afaceri locale</a></li>
+        <li><a href="proiecte.html" class="active"><i class="fas fa-diagram-project nav-ico"></i> Proiecte curente</a></li>
+        <li><a href="voluntari.html"><i class="fas fa-people-group nav-ico"></i> Voluntari</a></li>
+        <li><a href="donatii.html" class="btn-donatie"><i class="fas fa-heart nav-ico"></i> Donații</a></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle social-toggle">
-                <i class="fas fa-paw"></i>
-                <span>Social Media <i class="fas fa-chevron-down arrow"></i></span>
+                <i class="fas fa-paw nav-ico"></i> Social Media <i class="fas fa-chevron-down arrow"></i>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="https://www.facebook.com/profile.php?id=61593772950930" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=61593568241003" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
                 <li><a href="https://www.tiktok.com/@colectivulblana" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a></li>
                 <li><a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
             </ul>
@@ -481,7 +485,7 @@
     <div style="flex: 1;">
         <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Fauna sălbatică urbană</h4>
         <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
-            Sâmbătă, <strong>24 octombrie</strong>, între <strong>18:00 și 20:00</strong>.<br> O întâlnire-dialog, nu o simplă prezentare, despre animalele sălbatice pe care le întâlnim în oraș — arici, păsări rănite, vulpi, porumbei, țestoase, dar și animale exotice sau domestice abandonate. Vorbim despre ce faci corect când găsești un animal în dificultate, despre legislația de protecție a animalelor și a speciilor sălbatice, despre braconaj și trafic ilegal, și despre rolul autorităților și al ONG-urilor de salvare. Vine cu jocuri, demonstrații practice, un concurs cu premii și un invitat special — o rățușcă.
+            Sâmbătă, <strong>24 octombrie</strong>, între <strong>14:00 și 16:00</strong>.<br> O întâlnire-dialog, nu o simplă prezentare, despre animalele sălbatice pe care le întâlnim în oraș — arici, păsări rănite, vulpi, porumbei, țestoase, dar și animale exotice sau domestice abandonate. Vorbim despre ce faci corect când găsești un animal în dificultate, despre legislația de protecție a animalelor și a speciilor sălbatice, despre braconaj și trafic ilegal, și despre rolul autorităților și al ONG-urilor de salvare. Vine cu jocuri, demonstrații practice, un concurs cu premii și un invitat special — o rățușcă.
         </p>
         <div style="display:flex; gap:15px; flex-wrap:wrap;">
             <a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
@@ -525,7 +529,7 @@
     <div style="flex: 1;">
         <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Curs educațional pentru proprietari de câini și pisici</h4>
         <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
-            Sâmbătă, <strong>31 octombrie</strong>, între <strong>18:00 și 20:00</strong>.<br> Vrei să înțelegi mai bine ce îți transmite animalul tău și să știi cum să îi oferi cea mai bună îngrijire? Te invităm la un curs în care vom descoperi împreună cum „vorbesc” câinii și pisicile prin limbajul corporal, cum le putem înțelege mai bine nevoile și cum putem preveni problemele de comportament. Vom afla și ce putem face în situații de urgență până ajungem la medicul veterinar, cum alegem hrana potrivită și cum citim corect etichetele produselor. Vom vorbi, de asemenea, despre socializarea puilor și pisicilor și despre cum putem introduce un nou animal în familie într-un mod cât mai liniștit și fără stres. Un curs pentru toți cei care vor să își înțeleagă mai bine companionii și să fie mai pregătiți pentru nevoile lor de zi cu zi.
+            Sâmbătă, <strong>31 octombrie</strong>, între <strong>14:00 și 16:00</strong>.<br> Vrei să înțelegi mai bine ce îți transmite animalul tău și să știi cum să îi oferi cea mai bună îngrijire? Te invităm la un curs în care vom descoperi împreună cum „vorbesc” câinii și pisicile prin limbajul corporal, cum le putem înțelege mai bine nevoile și cum putem preveni problemele de comportament. Vom afla și ce putem face în situații de urgență până ajungem la medicul veterinar, cum alegem hrana potrivită și cum citim corect etichetele produselor. Vom vorbi, de asemenea, despre socializarea puilor și pisicilor și despre cum putem introduce un nou animal în familie într-un mod cât mai liniștit și fără stres. Un curs pentru toți cei care vor să își înțeleagă mai bine companionii și să fie mai pregătiți pentru nevoile lor de zi cu zi.
         </p>
         <div style="display:flex; gap:15px; flex-wrap:wrap;">
             <a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
@@ -1512,7 +1516,7 @@
             </button>
 
             <h2>Înscriere: <span id="registrationEventName-28">Workshop de fotografie cu suflet</span></h2>
-            <p class="registration-seats" id="registrationSeatsInfo-28">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+            <p class="registration-seats" id="registrationSeatsInfo-28">Capacitate: 10 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
 
             <form id="registrationForm-28">
                 <div class="form-group">
@@ -1686,15 +1690,39 @@ window.addEventListener('scroll', function() {
 });
 </script>
 <script>
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.querySelector('.nav-links');
+(function () {
+    var sidebar = document.getElementById('sidebar');
+    var hamburger = document.getElementById('hamburger');
+    var backdrop = document.getElementById('sidebarBackdrop');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    navLinks.classList.toggle('open');
-});
+    function setOpen(open) {
+        sidebar.classList.toggle('open', open);
+        backdrop.classList.toggle('show', open);
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', function () { setOpen(!sidebar.classList.contains('open')); });
+    backdrop.addEventListener('click', function () { setOpen(false); });
+
+    // Submeniuri: click pe titlu = deschide/închide
+    sidebar.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            toggle.parentElement.classList.toggle('open');
+        });
+    });
+
+    // Pe mobil, după ce alegi un link, meniul se închide
+    sidebar.querySelectorAll('.dropdown-menu a, .nav-links > li:not(.dropdown) > a').forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+    });
+
+    // Deschide automat submeniul care conține pagina activă
+    var active = sidebar.querySelector('.dropdown-menu a.active');
+    if (active) active.closest('.dropdown').classList.add('open');
+})();
 </script>
-
 <script>
 function openTombolaDrawer(e) {
     if (e) e.preventDefault();
@@ -1877,7 +1905,7 @@ const EVENT_INFO = {
     24: {
         title: "Fauna sălbatică urbană",
         data: "Sâmbătă, 24 octombrie 2026",
-        ora: '18:00 – 20:00',
+        ora: '14:00 – 16:00',
         locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
         locatieUrl: EVENT_LOCATIE_URL_2,
         paragraphs: [
@@ -1900,7 +1928,7 @@ const EVENT_INFO = {
     31: {
         title: "Curs educațional pentru proprietari de câini și pisici",
         data: "Sâmbătă, 31 octombrie 2026",
-        ora: '18:00 – 20:00',
+        ora: '14:00 – 16:00',
         locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
         locatieUrl: EVENT_LOCATIE_URL_2,
         paragraphs: [
@@ -1974,6 +2002,12 @@ const REGISTRATION_EVENTS = {
     31: "31 Octombrie - Curs educațional pentru proprietari de câini și pisici"
 };
 
+const CAPACITATE_IMPLICITA = 20;
+const CAPACITATE_EVENIMENT = { 28: 10 };
+
+function capacitateEv(id) {
+    return CAPACITATE_EVENIMENT[id] || CAPACITATE_IMPLICITA;
+}
 function regEl(field, id) {
     return document.getElementById(field + '-' + id);
 }
@@ -2026,7 +2060,7 @@ function openRegistrationModal(id) {
     msg.textContent = '';
     submitBtn.disabled = false;
     submitBtn.textContent = 'Trimite înscrierea';
-    seatsInfo.textContent = 'Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).';
+    seatsInfo.textContent = 'Capacitate: ' + capacitateEv(id) + ' de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).';
 
     document.getElementById('registrationModalOverlay-' + id).classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -2040,7 +2074,7 @@ function openRegistrationModal(id) {
                 if (data.status === 'ok' && data.locuriRamase && data.locuriRamase[eventName] !== undefined) {
                     const ramase = data.locuriRamase[eventName];
                     if (ramase > 0) {
-                        seatsInfo.textContent = ramase + ' locuri rămase din 20.';
+                        seatsInfo.textContent = ramase + ' locuri rămase din ' + capacitateEv(id) + '.';
                     } else {
                         seatsInfo.textContent = 'Toate locurile sunt ocupate — nu mai sunt disponibile înscrieri.';
                         setFormDisabled(id, true);
@@ -2156,17 +2190,70 @@ function handleRegistrationSubmit(id, e) {
 (function () {
     var LUNI = { ianuarie:0, februarie:1, martie:2, aprilie:3, mai:4, iunie:5, iulie:6, august:7, septembrie:8, octombrie:9, noiembrie:10, decembrie:11 };
     var AN = 2026;
-    var azi = new Date(); azi.setHours(0, 0, 0, 0);
+    var MINUTE_DUPA_SFARSIT = 30;
+
+    // Ora curentă în România, indiferent de fusul browserului
+    function acum() {
+        return new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Bucharest' })).getTime();
+    }
+
+    // Momentul de final: ultima oră din text ("14:00 – 16:00"). Fără interval de ore -> sfârșitul zilei.
+    function sfarsit(an, luna, zi, textOra) {
+        var ore = (textOra || '').match(/\d{1,2}:\d{2}/g);
+        var h = 23, m = 59;
+        if (ore && ore.length > 1) {
+            var p = ore[ore.length - 1].split(':');
+            h = parseInt(p[0], 10); m = parseInt(p[1], 10);
+        }
+        return new Date(an, luna, zi, h, m, 0).getTime();
+    }
+
+    function incheiat(endTs) {
+        return acum() >= endTs + MINUTE_DUPA_SFARSIT * 60000;
+    }
+
+    /* ============ 1. MENIURILE EXPANDABILE ============ */
+
+    function marcheazaIncheiat(acc) {
+        acc.classList.add('ended');
+        acc.dataset.done = '1';
+
+        var when = acc.querySelector('.event-acc-when');
+        var badge = document.createElement('span');
+        badge.className = 'event-acc-badge';
+        badge.textContent = 'Încheiat';
+        when.after(badge);
+
+        var body = acc.querySelector('.event-acc-body');
+        var nota = document.createElement('div');
+        nota.className = 'event-ended-note';
+        nota.textContent = 'Evenimentul s-a încheiat. Mulțumim de participare! 🐾';
+        body.insertBefore(nota, body.firstChild);
+
+        body.querySelectorAll('a[onclick*="openRegistrationModal"]').forEach(function (a) { a.remove(); });
+
+        // Mută-l după ultimul meniu din aceeași listă
+        var parent = acc.parentNode;
+        var toate = parent.querySelectorAll(':scope > .event-acc');
+        var ultimul = toate[toate.length - 1];
+        if (ultimul !== acc) parent.insertBefore(acc, ultimul.nextSibling);
+    }
+
+    function refreshMeniuri() {
+        document.querySelectorAll('.event-acc[data-end]').forEach(function (acc) {
+            if (acc.dataset.done) return;
+            var end = parseInt(acc.dataset.end, 10);
+            if (end && incheiat(end)) marcheazaIncheiat(acc);
+        });
+    }
 
     document.querySelectorAll('.partner-card .partner-info').forEach(function (info) {
-        // Blocurile de eveniment = div-urile cu <h4> din interior
         var items = Array.prototype.filter.call(info.children, function (el) {
             return el.tagName === 'DIV' && el.querySelector('h4');
         });
         if (!items.length) return;
 
-        var ref = items[items.length - 1].nextElementSibling; // logo-uri finanțare / status
-        var viitoare = [], trecute = [];
+        var ref = items[items.length - 1].nextElementSibling;
 
         items.forEach(function (item) {
             var iconEl = item.children[0].querySelector('i');
@@ -2179,23 +2266,23 @@ function handleRegistrationSubmit(id, e) {
             var p = textDiv.querySelector('p');
             var txt = p.textContent.replace(/\s+/g, ' ');
 
-            // Data: "Sâmbătă, 11 iulie" (sau doar "11 iulie")
-            var dataTxt = '', incheiat = false;
-            var m = txt.match(/(?:([A-ZĂÂÎȘȚ][a-zăâîșț]+),\s*)?(\d{1,2})\s+(ianuarie|februarie|martie|aprilie|mai|iunie|iulie|august|septembrie|octombrie|noiembrie|decembrie)/i);
-            if (m) {
-                dataTxt = (m[1] ? m[1] + ', ' : '') + m[2] + ' ' + m[3].toLowerCase();
-                incheiat = new Date(AN, LUNI[m[3].toLowerCase()], parseInt(m[2], 10)) < azi;
-            }
-
             // Ora: "între 10:00 și 18:00" / "16:00-23:00" / "ora 21:30"
             var oraTxt = '', h;
             if ((h = txt.match(/între\s+(\d{1,2}:\d{2})\s+și\s+(\d{1,2}:\d{2})/))) oraTxt = h[1] + ' – ' + h[2];
             else if ((h = txt.match(/(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})/))) oraTxt = h[1] + ' – ' + h[2];
             else if ((h = txt.match(/ora\s+(\d{1,2}:\d{2})/))) oraTxt = h[1];
             else if (/anun/i.test(txt)) oraTxt = 'ora și locația vor fi anunțate';
+
+            // Data: "Sâmbătă, 11 iulie" (sau doar "11 iulie")
+            var dataTxt = '', endTs = 0;
+            var m = txt.match(/(?:([A-ZĂÂÎȘȚ][a-zăâîșț]+),\s*)?(\d{1,2})\s+(ianuarie|februarie|martie|aprilie|mai|iunie|iulie|august|septembrie|octombrie|noiembrie|decembrie)/i);
+            if (m) {
+                dataTxt = (m[1] ? m[1] + ', ' : '') + m[2] + ' ' + m[3].toLowerCase();
+                endTs = sfarsit(AN, LUNI[m[3].toLowerCase()], parseInt(m[2], 10), oraTxt);
+            }
             var meta = dataTxt + (oraTxt ? ' · ' + oraTxt : '');
 
-            // Suma strânsă (dacă există), afișată și în antet
+            // Suma strânsă (dacă există)
             var fonduri = '';
             textDiv.querySelectorAll('p').forEach(function (pp) {
                 var f = pp.textContent.match(/Fonduri strânse:\s*([\d.,]+\s*RON)/i);
@@ -2203,7 +2290,8 @@ function handleRegistrationSubmit(id, e) {
             });
 
             var acc = document.createElement('details');
-            acc.className = 'event-acc' + (incheiat ? ' ended' : '');
+            acc.className = 'event-acc';
+            acc.dataset.end = endTs;
 
             var sum = document.createElement('summary');
             sum.innerHTML =
@@ -2211,7 +2299,6 @@ function handleRegistrationSubmit(id, e) {
                 '<div class="event-acc-head">' +
                     '<div class="event-acc-title"></div>' +
                     '<div class="event-acc-meta"><span class="event-acc-when"></span>' +
-                        (incheiat ? '<span class="event-acc-badge">Încheiat</span>' : '') +
                         (fonduri ? '<span class="event-acc-funds"></span>' : '') +
                     '</div>' +
                 '</div>' +
@@ -2223,78 +2310,116 @@ function handleRegistrationSubmit(id, e) {
 
             var body = document.createElement('div');
             body.className = 'event-acc-body';
-            if (incheiat) {
-                var nota = document.createElement('div');
-                nota.className = 'event-ended-note';
-                nota.textContent = 'Evenimentul s-a încheiat. Mulțumim de participare! 🐾';
-                body.appendChild(nota);
-            }
             h4.remove();
             while (textDiv.firstChild) body.appendChild(textDiv.firstChild);
-
-            if (incheiat) {
-                body.querySelectorAll('a[onclick*="openRegistrationModal"]').forEach(function (a) { a.remove(); });
-            }
             acc.appendChild(body);
 
             item.remove();
-            (incheiat ? trecute : viitoare).push(acc);
-        });
-
-        viitoare.concat(trecute).forEach(function (acc) {
             info.insertBefore(acc, ref);
         });
     });
+
+    /* ============ 2. CALENDARUL ============ */
+
+    function refreshCalendar() {
+        document.querySelectorAll('.month-card').forEach(function (card) {
+            var parts = card.getAttribute('data-month').split('-');
+            var an = parseInt(parts[0], 10), luna = parseInt(parts[1], 10) - 1;
+            var zileIncheiate = {};
+
+            card.querySelectorAll('.event-list li').forEach(function (li) {
+                var dateEl = li.querySelector('.event-date');
+                if (!dateEl) return;
+                var zi = parseInt(dateEl.textContent, 10);
+
+                // Ora de final vine din EVENT_INFO (butonul "i"); fără buton -> sfârșitul zilei
+                var infoBtn = li.querySelector('.btn-info');
+                var idMatch = infoBtn && infoBtn.getAttribute('onclick').match(/\d+/);
+                var id = idMatch ? parseInt(idMatch[0], 10) : null;
+                var ora = id && EVENT_INFO[id] ? EVENT_INFO[id].ora : '';
+
+                var inc = incheiat(sfarsit(an, luna, zi, ora));
+                zileIncheiate[zi] = inc;
+
+                if (inc && !li.classList.contains('past')) {
+                    li.classList.add('past');
+                    var inscrie = li.querySelector('.btn-inscrie');
+                    if (inscrie) {
+                        var badge = document.createElement('span');
+                        badge.className = 'event-past-badge';
+                        badge.textContent = 'Încheiat';
+                        inscrie.replaceWith(badge);
+                    }
+                }
+            });
+
+            card.querySelectorAll('.day-cell.event').forEach(function (cell) {
+                var zi = parseInt(cell.textContent, 10);
+                if (zileIncheiate[zi]) cell.classList.add('past');
+            });
+        });
+    }
+
+    /* ============ 3. FEREASTRA "i" ȘI FORMULARUL ============ */
+
+    function evenimentIncheiat(id) {
+        var info = EVENT_INFO[id];
+        var m = info && info.data && info.data.match(/(\d{1,2})\s+([a-zăâîșț]+)\s+(\d{4})/i);
+        if (!m || LUNI[m[2].toLowerCase()] === undefined) return false;
+        return incheiat(sfarsit(parseInt(m[3], 10), LUNI[m[2].toLowerCase()], parseInt(m[1], 10), info.ora));
+    }
+
+    var originalInfo = window.openEventInfoModal;
+    window.openEventInfoModal = function (id) {
+        originalInfo(id);
+        document.getElementById('infoModalInscrieBtn').style.display = evenimentIncheiat(id) ? 'none' : '';
+    };
+
+    var originalInscriere = window.openRegistrationModal;
+    window.openRegistrationModal = function (id) {
+        if (evenimentIncheiat(id)) return;   // înscrieri închise
+        originalInscriere(id);
+    };
+
+    /* ============ PORNIRE + REVERIFICARE LA FIECARE MINUT ============ */
+
+    function refreshTot() {
+        refreshMeniuri();
+        refreshCalendar();
+    }
+    refreshTot();
+    setInterval(refreshTot, 60000);
 })();
 </script>
 <script>
 (function () {
-    var LUNI = { ianuarie:0, februarie:1, martie:2, aprilie:3, mai:4, iunie:5, iulie:6, august:7, septembrie:8, octombrie:9, noiembrie:10, decembrie:11 };
-    var azi = new Date(); azi.setHours(0, 0, 0, 0);
+    var sidebar = document.getElementById('sidebar');
+    var hamburger = document.getElementById('hamburger');
+    var backdrop = document.getElementById('sidebarBackdrop');
 
-    // --- 1. Lista de evenimente din calendar ---
-    document.querySelectorAll('.month-card').forEach(function (card) {
-        var parts = card.getAttribute('data-month').split('-');
-        var an = parseInt(parts[0], 10), luna = parseInt(parts[1], 10) - 1;
+    function setOpen(open) {
+        sidebar.classList.toggle('open', open);
+        backdrop.classList.toggle('show', open);
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
 
-        // Zilele marcate în grilă
-        card.querySelectorAll('.day-cell.event').forEach(function (cell) {
-            var zi = parseInt(cell.textContent, 10);
-            if (new Date(an, luna, zi) < azi) cell.classList.add('past');
-        });
+    hamburger.addEventListener('click', function () { setOpen(!sidebar.classList.contains('open')); });
+    backdrop.addEventListener('click', function () { setOpen(false); });
 
-        // Rândurile din listă
-        card.querySelectorAll('.event-list li').forEach(function (li) {
-            var dateEl = li.querySelector('.event-date');
-            if (!dateEl) return;
-            var zi = parseInt(dateEl.textContent, 10);
-            if (new Date(an, luna, zi) >= azi) return;
-
-            li.classList.add('past');
-            var inscrie = li.querySelector('.btn-inscrie');
-            if (inscrie) {
-                var badge = document.createElement('span');
-                badge.className = 'event-past-badge';
-                badge.textContent = 'Încheiat';
-                inscrie.replaceWith(badge);
-            }
+    sidebar.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            toggle.parentElement.classList.toggle('open');
         });
     });
 
-    // --- 2. Fereastra cu detalii (butonul "i") ---
-    var originalOpen = window.openEventInfoModal;
-    window.openEventInfoModal = function (id) {
-        originalOpen(id);
+    sidebar.querySelectorAll('.dropdown-menu a, .nav-links > li:not(.dropdown) > a').forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+    });
 
-        var btn = document.getElementById('infoModalInscrieBtn');
-        var info = EVENT_INFO[id];
-        var m = info && info.data && info.data.match(/(\d{1,2})\s+([a-zăâîșț]+)\s+(\d{4})/i);
-        var trecut = false;
-        if (m && LUNI[m[2].toLowerCase()] !== undefined) {
-            trecut = new Date(parseInt(m[3], 10), LUNI[m[2].toLowerCase()], parseInt(m[1], 10)) < azi;
-        }
-        btn.style.display = trecut ? 'none' : '';
-    };
+    var active = sidebar.querySelector('.dropdown-menu a.active');
+    if (active) active.closest('.dropdown').classList.add('open');
 })();
 </script>
 </body>
