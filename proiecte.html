@@ -2391,36 +2391,6 @@ function handleRegistrationSubmit(id, e) {
     setInterval(refreshTot, 60000);
 })();
 </script>
-<script>
-(function () {
-    var sidebar = document.getElementById('sidebar');
-    var hamburger = document.getElementById('hamburger');
-    var backdrop = document.getElementById('sidebarBackdrop');
 
-    function setOpen(open) {
-        sidebar.classList.toggle('open', open);
-        backdrop.classList.toggle('show', open);
-        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        document.body.style.overflow = open ? 'hidden' : '';
-    }
-
-    hamburger.addEventListener('click', function () { setOpen(!sidebar.classList.contains('open')); });
-    backdrop.addEventListener('click', function () { setOpen(false); });
-
-    sidebar.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
-        toggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            toggle.parentElement.classList.toggle('open');
-        });
-    });
-
-    sidebar.querySelectorAll('.dropdown-menu a, .nav-links > li:not(.dropdown) > a').forEach(function (a) {
-        a.addEventListener('click', function () { setOpen(false); });
-    });
-
-    var active = sidebar.querySelector('.dropdown-menu a.active');
-    if (active) active.closest('.dropdown').classList.add('open');
-})();
-</script>
 </body>
 </html>

@@ -170,12 +170,12 @@ span.logo-text .accent {
     body { padding-left: 0; }
 
     .navbar {
-        transform: translateX(-100%);
+        left: calc(var(--sidebar-w) * -1 - 30px);
         box-shadow: none;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: left 0.3s ease, box-shadow 0.3s ease;
     }
     .navbar.open {
-        transform: translateX(0);
+        left: 0;
         box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
     }
 
@@ -2020,75 +2020,6 @@ background-color: #14270a;
     #dachshund-scroll-wrapper {
         display: none;
     }
-
-    .navbar {
-        width: 100%;
-        margin: 0;
-        border-radius: 0;
-        top: 0;
-        padding: 15px 20px;
-        position: relative;
-        flex-wrap: wrap;
-    }
-
-    .nav-links {
-        display: none !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        width: 100% !important;
-        gap: 10px !important;
-        padding: 15px 0 5px 0 !important;
-    }
-
-    .nav-links.open {
-        display: flex !important;
-    }
-
-    .nav-links a {
-        font-size: 16px;
-        padding: 5px 0;
-    }
-
-    .nav-links li {
-        width: 100%;
-    }
-
-    .btn-donatie {
-        display: inline-block !important;
-        width: auto !important;
-        padding: 8px 16px !important;
-        font-size: 14px !important;
-    }
-
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        padding: 5px;
-        background: none;
-        border: none;
-    }
-
-    .hamburger span {
-        display: block;
-        width: 25px;
-        height: 3px;
-        background-color: #1A330E;
-        border-radius: 3px;
-        transition: all 0.3s ease;
-    }
-
-    .hamburger.open span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    .hamburger.open span:nth-child(2) {
-        opacity: 0;
-    }
-    .hamburger.open span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
     .dropdown-menu {
         position: static;
         opacity: 1;
