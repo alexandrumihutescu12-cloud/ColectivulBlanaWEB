@@ -1,0 +1,2450 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proiecte Curente - Colectivul Blană</title>
+    <link rel="icon" type="image/png" href="Imagini/logocolectiv.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta property="og:image" content="https://colectivulblana.ro/Imagini/urlthumbnail.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:title" content="Colectivul Blană - ONG">
+<meta property="og:description" content="Conectăm asociațiile de protecție a animalelor cu afacerile locale din Timișoara.">
+<meta property="og:url" content="https://colectivulblana.ro">
+<meta property="og:type" content="website">
+
+<style>
+/* ============ BUTON CALENDAR ============ */
+.btn-calendar { display: inline-flex; align-items: center; gap: 10px; background: #e8763c; color: #fff; border: none; font-weight: 700; font-size: 1rem; padding: 14px 28px; border-radius: 40px; cursor: pointer; margin-top: 20px; transition: background 0.25s ease, transform 0.25s ease; }
+.btn-calendar:hover { background: #d3652d; transform: translateY(-2px); }
+
+/* ============ MODAL CALENDAR ============ */
+.calendar-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(20, 25, 15, 0.65); z-index: 99999; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.calendar-modal-overlay::-webkit-scrollbar { display: none; }
+.calendar-modal-overlay.open { display: flex; }
+.calendar-modal { background-color: #FDF9F3; background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), url("https://www.transparenttextures.com/patterns/cream-paper.png"); background-blend-mode: color-burn, normal; border-radius: 24px; border-left: 6px solid #e8763c; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); max-width: 1100px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 34px 30px; position: relative; scrollbar-width: none; -ms-overflow-style: none; }
+.calendar-modal::-webkit-scrollbar { display: none; }
+.calendar-modal-close { position: absolute; top: 18px; right: 18px; background: #ffece0; color: #d97736; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease; }
+.calendar-modal-close:hover { background: #ffd9bd; }
+.calendar-kicker { display: inline-flex; align-items: center; gap: 7px; color: #3f7a5c; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; font-size: 0.82rem; margin-bottom: 10px; }
+.calendar-kicker::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #e8763c; display: inline-block; }
+.calendar-title h2 { font-size: 1.8rem; color: #16301f; margin: 0 0 6px 0; }
+.calendar-title p { color: #4A5A43; font-size: 0.95rem; max-width: 620px; }
+.calendar-nav { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 26px; }
+.calendar-nav button { background: #ffece0; color: #d97736; border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; transition: background 0.2s ease; }
+.calendar-nav button:hover { background: #ffd9bd; }
+.calendar-nav-label { font-weight: 700; color: #16301f; font-size: 1.1rem; min-width: 170px; text-align: center; text-transform: capitalize; }
+.months-grid { max-width: 360px; margin: 18px auto 0; }
+.month-card { display: none; background-color: #fffaf3; border-radius: 18px; border: 1px solid #eaddc7; padding: 18px 16px 16px; }
+.month-card.active { display: block; }
+.month-card h3 { margin: 0 0 12px 0; color: #16301f; font-size: 1.05rem; text-transform: capitalize; }
+.day-names { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 6px; }
+.day-names span { text-align: center; font-size: 0.68rem; font-weight: 700; color: #8a7a63; text-transform: uppercase; }
+.days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.day-cell { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; color: #4A5A43; border-radius: 8px; }
+.day-cell.empty { visibility: hidden; }
+.day-cell.event { background-color: #ffece0; color: #d97736; font-weight: 700; border: 1.5px solid #d97736; cursor: default; }
+.event-list { list-style: none; margin: 14px 0 0 0; padding: 10px 0 0 0; border-top: 1px dashed #eaddc7; }
+.event-list li { display: flex; align-items: center; gap: 10px; font-size: 0.83rem; color: #4A5A43; padding: 4px 0; }
+.event-list .event-date { min-width: 32px; height: 32px; background-color: #ffece0; color: #d97736; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
+.event-list .event-label { font-style: italic; color: #9a8a72; flex: 1; }
+.btn-inscrie { background: #e8763c; color: #fff; border: none; font-weight: 700; font-size: 0.75rem; padding: 6px 14px; border-radius: 20px; cursor: pointer; white-space: nowrap; transition: background 0.2s ease; }
+.btn-inscrie:hover { background: #d3652d; }
+.btn-info { background: #ffece0; color: #d97736; border: none; width: 24px; height: 24px; min-width: 24px; border-radius: 50%; cursor: pointer; font-size: 0.72rem; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease; }
+.btn-info:hover { background: #ffd9bd; }
+
+/* ============ MODAL INFO EVENIMENT ============ */
+.info-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(20, 25, 15, 0.7); z-index: 100001; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.info-modal-overlay::-webkit-scrollbar { display: none; }
+.info-modal-overlay.open { display: flex; }
+.info-modal { background-color: #FDF9F3; background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), url("https://www.transparenttextures.com/patterns/cream-paper.png"); background-blend-mode: color-burn, normal; border-radius: 24px; border-left: 6px solid #e8763c; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); max-width: 540px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 34px 30px; position: relative; scrollbar-width: none; -ms-overflow-style: none; }
+.info-modal::-webkit-scrollbar { display: none; }
+.info-modal-close { position: absolute; top: 18px; right: 18px; background: #ffece0; color: #d97736; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease; }
+.info-modal-close:hover { background: #ffd9bd; }
+.info-modal h2 { font-size: 1.3rem; color: #16301f; margin: 0 0 14px 0; padding-right: 30px; }
+.info-modal p { font-size: 0.92rem; color: #4A5A43; line-height: 1.6; margin: 0 0 12px 0; }
+.info-modal-btn-inscrie { display: inline-flex; align-items: center; gap: 8px; background: #e8763c; color: #fff; border: none; font-weight: 700; font-size: 0.9rem; padding: 11px 22px; border-radius: 30px; cursor: pointer; margin-top: 8px; transition: background 0.2s ease; }
+.info-modal-btn-inscrie:hover { background: #d3652d; }
+.event-meta { background: #fff6ec; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.event-meta-row { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: #4A5A43; padding: 4px 0; }
+.event-meta-row i { color: #d97736; width: 16px; text-align: center; flex-shrink: 0; }
+.event-meta-row a { color: #d97736; font-weight: 700; text-decoration: none; }
+.event-meta-row a:hover { text-decoration: underline; }
+
+/* ============ MODAL ÎNSCRIERE ============ */
+.registration-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(20, 25, 15, 0.7); z-index: 100000; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.registration-modal-overlay::-webkit-scrollbar { display: none; }
+.registration-modal-overlay.open { display: flex; }
+.registration-modal { background-color: #FDF9F3; background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.75)), url("https://www.transparenttextures.com/patterns/cream-paper.png"); background-blend-mode: color-burn, normal; border-radius: 24px; border-left: 6px solid #e8763c; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 34px 30px; position: relative; scrollbar-width: none; -ms-overflow-style: none; }
+.registration-modal::-webkit-scrollbar { display: none; }
+.registration-modal-close { position: absolute; top: 18px; right: 18px; background: #ffece0; color: #d97736; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease; }
+.registration-modal-close:hover { background: #ffd9bd; }
+.registration-modal h2 { font-size: 1.4rem; color: #16301f; margin: 0 0 4px 0; }
+.registration-modal h2 span { color: #e8763c; }
+.registration-seats { font-size: 0.85rem; color: #4A5A43; margin: 0 0 20px 0; }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 0.82rem; font-weight: 700; color: #16301f; margin-bottom: 5px; }
+.form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"], .form-group input[type="number"] { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #eaddc7; border-radius: 10px; font-size: 0.9rem; background: #fffefb; color: #2b2118; }
+.form-group input:focus { outline: none; border-color: #e8763c; }
+.form-checkbox { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 12px; font-size: 0.78rem; color: #4A5A43; line-height: 1.4; }
+.form-checkbox input { margin-top: 3px; flex-shrink: 0; }
+.btn-submit-inscriere { width: 100%; background: #e8763c; color: #fff; border: none; font-weight: 700; font-size: 1rem; padding: 13px; border-radius: 40px; cursor: pointer; margin-top: 6px; transition: background 0.25s ease; }
+.btn-submit-inscriere:hover { background: #d3652d; }
+.btn-submit-inscriere:disabled { background: #d8c9b4; cursor: not-allowed; }
+.form-message { margin-top: 14px; padding: 12px 14px; border-radius: 10px; font-size: 0.85rem; display: none; }
+.form-message.show { display: block; }
+.form-message.ok { background: #e6f4e1; color: #2f6b25; }
+.form-message.error { background: #fde8e0; color: #b8461f; }
+.form-support-note { margin-top: 14px; font-size: 0.75rem; color: #9a8a72; text-align: center; }
+.form-support-note a { color: #d97736; font-weight: 700; text-decoration: none; }
+.form-support-note a:hover { text-decoration: underline; }
+.form-group input:disabled, .form-checkbox input:disabled { opacity: 0.5; cursor: not-allowed; }
+.companions-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+.companion-row { display: flex; align-items: center; gap: 8px; }
+.companion-row input[type="text"] { flex: 1; box-sizing: border-box; padding: 9px 12px; border: 1px solid #eaddc7; border-radius: 10px; font-size: 0.88rem; background: #fffefb; color: #2b2118; }
+.companion-row input[type="text"]:focus { outline: none; border-color: #e8763c; }
+.btn-remove-companion { background: #fde8e0; color: #b8461f; border: none; width: 30px; height: 30px; min-width: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: background 0.2s ease; }
+.btn-remove-companion:hover { background: #fbd4c4; }
+.btn-add-companion { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1.5px dashed #d9c4a5; color: #a4713a; font-size: 0.82rem; font-weight: 700; padding: 8px 14px; border-radius: 20px; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+.btn-add-companion:hover { background: #fdf1e2; border-color: #e8763c; }
+.hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; height: 0; overflow: hidden; }
+
+/* ============ FOOTER FINANȚARE (logo-uri + text) ============ */
+.funding-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; padding-top: 18px; border-top: 1px solid #eaddc7; }
+.funding-logo { height: 42px; width: auto; max-width: 90px; object-fit: contain; flex-shrink: 0; }
+.funding-text { flex: 1; text-align: center; font-size: 0.7rem; font-weight: 300; color: #8a7a63; line-height: 1.45; letter-spacing: 0.2px; margin: 0; }
+/* Doar în modalul calendarului, logo-urile sunt puțin mai mari */
+.calendar-modal .funding-logo { height: 58px; max-width: 120px; }
+@media (max-width: 480px) {
+    .funding-footer { flex-direction: column; gap: 10px; }
+    .funding-text { order: 2; }
+    .funding-footer .funding-logo:last-child { order: 3; }
+}
+
+/* ============ FLIP AUTOMAT ICONIȚĂ (O Comunitate 2026 ↔ Colectivul Blană) ============ */
+.icon-flip-box { width: 90px; height: 90px; min-width: 90px; margin-right: 25px; flex-shrink: 0; perspective: 700px; }
+.icon-flip-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; animation: iconFlip 10s infinite; }
+.icon-flip-face { position: absolute; inset: 0; backface-visibility: hidden; background-color: #EAF4E8; border-radius: 15px; display: flex; align-items: center; justify-content: center; padding: 10px; box-sizing: border-box; overflow: hidden; }
+.icon-flip-face img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.icon-flip-face.icon-flip-back { transform: rotateY(180deg); }
+@keyframes iconFlip {
+    0%, 42% { transform: rotateY(0deg); }
+    50%, 92% { transform: rotateY(180deg); }
+    100% { transform: rotateY(360deg); }
+}
+/* ============ EVENIMENTE EXPANDABILE ============ */
+.event-acc { background: #fffaf5; border: 1px solid #f7e6d7; border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.event-acc summary { list-style: none; display: flex; align-items: center; gap: 14px; padding: 12px 14px; cursor: pointer; }
+.event-acc summary::-webkit-details-marker { display: none; }
+.event-acc summary:hover { background: #fff3e8; }
+.event-acc-icon { background: #ffece0; color: #d97736; min-width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+.event-acc-head { flex: 1; min-width: 0; }
+.event-acc-title { font-weight: 700; color: #1A330E; font-size: 15px; line-height: 1.3; }
+.event-acc-meta { font-size: 12.5px; color: #8a7a63; margin-top: 3px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.event-acc-badge { background: #e9e2d4; color: #7a6c55; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: .4px; }
+.event-acc-chevron { color: #d97736; font-size: 13px; transition: transform .25s ease; flex-shrink: 0; }
+.event-acc[open] .event-acc-chevron { transform: rotate(180deg); }
+.event-acc[open] summary { border-bottom: 1px dashed #f0dcc6; }
+.event-acc-body { padding: 14px 16px 16px 70px; }
+.event-ended-note { background: #eef6ec; color: #2f6b25; font-size: 13px; font-weight: 600; padding: 9px 12px; border-radius: 10px; margin-bottom: 12px; }
+.event-acc.ended { background: #f8f5ef; }
+.event-acc.ended .event-acc-icon { background: #ece6da; color: #9a8a72; }
+.event-acc.ended .event-acc-title { color: #6b6455; }
+@media (max-width: 600px) { .event-acc-body { padding-left: 16px; } }
+.event-acc-funds { color: #2f6b25; font-weight: 700; font-size: 12px; background: #e6f4e1; padding: 2px 8px; border-radius: 10px; }
+/* ============ CALENDAR: EVENIMENTE TRECUTE ============ */
+.day-cell.event.past { background-color: #efe9de; color: #9a8a72; border-color: #cfc3ae; font-weight: 600; }
+.event-list li.past .event-date { background-color: #efe9de; color: #9a8a72; }
+.event-list li.past .event-label { color: #9a8a72; font-style: normal; }
+.event-past-badge { background: #e9e2d4; color: #7a6c55; font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 10px; text-transform: uppercase; letter-spacing: .4px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div id="content-wrap">
+
+    <div id="dachshund-scroll-wrapper">
+        <img src="Imagini/dachshund_rear.png" id="dachshund-rear" alt="Rear">
+        <div id="dachshund-body">
+            <img src="Imagini/dachshund_head.png" id="dachshund-head" alt="Head">
+        </div>
+    </div>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<header class="navbar" id="sidebar">
+    <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <a href="index.html" class="sidebar-brand">
+        <img src="Imagini/logocolectiv.png" alt="Logo Colectiv" class="logo-img">
+        <span class="logo-text">Colectivul <span class="accent">Blană</span></span>
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="index.html#povestea-noastra"><i class="fas fa-book-open nav-ico"></i> Povestea noastră</a></li>
+        <li class="dropdown">
+            <a href="parteneri-ong.html" class="dropdown-toggle"><i class="fas fa-handshake-angle nav-ico"></i> Parteneri ONG <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="parteneri-ong.html">Listă Parteneri ONG</a></li>
+                <li><a href="adoptii.html">Adopții</a></li>
+                <li><a href="super-seniori.html">#SuperSeniori</a></li>
+            </ul>
+        </li>
+        <li><a href="parteneri-afaceri.html"><i class="fas fa-store nav-ico"></i> Parteneri afaceri locale</a></li>
+        <li><a href="proiecte.html" class="active"><i class="fas fa-diagram-project nav-ico"></i> Proiecte curente</a></li>
+        <li><a href="voluntari.html"><i class="fas fa-people-group nav-ico"></i> Voluntari</a></li>
+        <li><a href="donatii.html" class="btn-donatie"><i class="fas fa-heart nav-ico"></i> Donații</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle social-toggle">
+                <i class="fas fa-paw nav-ico"></i> Social Media <i class="fas fa-chevron-down arrow"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="https://www.facebook.com/profile.php?id=61593568241003" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://www.tiktok.com/@colectivulblana" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                <li><a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </li>
+    </ul>
+</header>
+
+    <main>
+        <section class="partners-section">
+            <div class="partners-intro">
+    <span class="subtitle">Ce Facem Împreună</span>
+    <h2>Proiecte Curente și Campanii Active</h2>
+    <p>
+        În spatele fiecărui proiect stă o nevoie reală, descoperită pe teren, în 
+        Timișoara și în satele din împrejurimi. Nu construim campanii din birou, 
+        mergem acolo unde durerea e cea mai mare și transformăm grija în acțiune 
+        concretă, pas cu pas, animal cu animal. Aici vezi exact unde ajunge fiecare 
+        gest de sprijin.
+    </p>
+    <button class="btn-calendar" onclick="openCalendarModal()">
+        <i class="fas fa-calendar-days"></i> Calendar evenimente
+    </button>
+</div>
+
+            <div class="partners-list-container">
+
+                <div class="partner-card" style="padding:30px; display:flex; align-items: flex-start;">
+    <!-- Iconiță cu flip automat: O Comunitate 2026 ↔ Colectivul Blană -->
+    <div class="icon-flip-box">
+        <div class="icon-flip-inner">
+            <div class="icon-flip-face icon-flip-front">
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026">
+            </div>
+            <div class="icon-flip-face icon-flip-back">
+                <img src="Imagini/logocolectiv.png" alt="Colectivul Blană">
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Proiect -->
+    <div class="partner-info" style="flex:1;">
+        <h3 style="margin-top:0; color:#2D4A22; font-size:20px;">O Comunitate 2026: Oraș prietenos cu animalele</h3>
+        <p class="partner-description" style="line-height:1.6; color:#555; margin-bottom: 15px;">
+            Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara, este un program educațional comunitar care folosește relația om-animal ca instrument de dezvoltare a empatiei, responsabilității civice și coeziunii sociale în Timișoara. Cele 19 de activități vizează peste 400 de participanți din toate categoriile de vârstă și includ: târguri de adopții colaborative, ateliere educaționale interactive și artistice, și cursuri educaționale despre protecția și îngrijirea animalelor.
+        </p>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-paw"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Festivalul de Adopții Blană</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>19 septembrie</strong>, între <strong>10:00 și 18:00</strong>, curtea Institutului Francez se transformă în cel mai vesel festival dedicat iubitorilor de animale, familiilor și faptelor bune. Evenimentul e organizat de Colectivul Blană, cu atmosferă întreținută de DJ Zorle. Te așteaptă zeci de blănoși care își caută o familie iubitoare, asociații și experți în îngrijirea și protecția animalelor, activități pentru copii, gustări gratuite, drinks și o tombolă caritabilă cu premii de la parteneri. Intrare liberă, dar donațiile sunt binevenite și îți aduc șansa la premii. Ia-ți prietenii și familia și hai să le oferim animalelor șansa la o viață mai bună — sau măcar o zi plină de iubire, chiar dacă nu intenționezi să adopți.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://www.instagram.com/p/Dc09e9xDKdo/?img_index=1" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fab fa-instagram" style="margin-right:5px;"></i>
+                Detalii Eveniment
+            </a>
+
+            <a href="https://maps.app.goo.gl/UkDPXPcjcvGbpxFJA" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+
+            <a href="https://www.instagram.com/p/Dc3U0PBDEhp/?img_index=1" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-newspaper" style="margin-right:5px;"></i>
+                Articol în presă
+            </a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-dog"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 THOR – Lecția despre incluziune</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Vineri, <strong>25 septembrie</strong>, între <strong>18:00 și 20:00</strong>, la Centrul de zi pentru Copii cu Dizabilități Podul Lung. Un atelier inspirat de povestea lui Thor, un câine paralizat pe trenul posterior care se deplasează cu ajutorul unui cărucior adaptat și care, în ciuda dizabilității, e unul dintre cei mai veseli locuitori ai curții Asociației Bucuriilor Măriucăi. Pornind de la exemplul lui, discutăm despre diferența dintre milă și empatie, despre cum adaptarea mediului poate reda independența, și despre faptul că o dizabilitate nu definește valoarea unei ființe. Scopul atelierului e să crească empatia și înțelegerea față de persoanele și animalele cu dizabilități, și să arate, practic, ce înseamnă o comunitate incluzivă.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x47456762f41ce63d:0x7546de6b0107ab52" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(25); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-dove"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Fauna sălbatică urbană</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>26 septembrie</strong>, între <strong>14:00 și 16:00</strong>, la Centrul de zi pentru Copii cu Dizabilități Podul Lung. O întâlnire-dialog, nu o simplă prezentare, despre animalele sălbatice pe care le întâlnim în oraș — arici, păsări rănite, vulpi, porumbei, țestoase, dar și animale exotice sau domestice abandonate. Vorbim despre ce faci corect când găsești un animal în dificultate, despre legislația de protecție a animalelor și a speciilor sălbatice, despre braconaj și trafic ilegal, și despre rolul autorităților și al ONG-urilor de salvare. Vine cu jocuri, demonstrații practice, un concurs cu premii și un invitat special — o rățușcă.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x47456762f41ce63d:0x7546de6b0107ab52" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(26); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-hands-helping"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 NU ÎNTOARCE PRIVIREA</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Marți, <strong>29 septembrie</strong>, între <strong>18:00 și 20:00</strong>, la Centrul de zi pentru Copii cu Dizabilități Podul Lung. Un atelier despre primul pas pe care îl poate face oricine atunci când întâlnește un animal abandonat — să oprești, să pui apă, să fotografiezi, să suni după ajutor, să nu treci mai departe. Nu își propune să facă din participanți salvatori, ci să le arate limitele și responsabilitățile unui cetățean obișnuit, și când e nevoie să ceri ajutorul autorităților sau al unui ONG. La final, participanții pleacă cu încrederea că pot contribui, chiar dacă nu fac parte dintr-o asociație.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x47456762f41ce63d:0x7546de6b0107ab52" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(29); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-baby"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Un pui nu apare din senin</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>3 octombrie</strong>, între <strong>14:00 și 16:00</strong>.<br> De cele mai multe ori oamenii văd doar puii: patru căței abandonați, șase pisoi într-o cutie sau un cuib găsit într-un șanț. Foarte puțini se întreabă însă de unde au apărut. În spatele fiecărui pui abandonat există aproape întotdeauna aceeași poveste: un animal nesterilizat. Atelierul nu vorbește despre sterilizare ca despre o obligație, ci despre responsabilitate și despre felul în care aceasta poate însemna mai puțină suferință, mai puține abandonuri, mai puține accidente și mai puține animale care ajung să moară pe marginea drumului. Participanții vor descoperi că fiecare dintre noi poate rupe acest cerc.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x47456762f41ce63d:0x7546de6b0107ab52" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(3); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-book-open"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Povestea animalului meu</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Luni, <strong>5 octombrie</strong>, între <strong>18:00 și 20:00</strong>.<br> Fiecare animal are o poveste. Unele au fost abandonate, altele salvate, altele au crescut alături de o familie. Când copiii ascultă și spun povești, învață să înțeleagă emoțiile celorlalți. Atelierul creează un spațiu în care poveștile despre animale devin un exercițiu de empatie și înțelegere.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x47456762f41ce63d:0x7546de6b0107ab52" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(5); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-heart-pulse"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Curs educațional pentru proprietari de câini și pisici</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>10 octombrie</strong>, între <strong>14:00 și 16:00</strong>.<br> Vrei să înțelegi mai bine ce îți transmite animalul tău și să știi cum să îi oferi cea mai bună îngrijire? Te invităm la un curs în care vom descoperi împreună cum „vorbesc” câinii și pisicile prin limbajul corporal, cum le putem înțelege mai bine nevoile și cum putem preveni problemele de comportament. Vom afla și ce putem face în situații de urgență până ajungem la medicul veterinar, cum alegem hrana potrivită și cum citim corect etichetele produselor. Vom vorbi, de asemenea, despre socializarea puilor și pisicilor și despre cum putem introduce un nou animal în familie într-un mod cât mai liniștit și fără stres. Un curs pentru toți cei care vor să își înțeleagă mai bine companionii și să fie mai pregătiți pentru nevoile lor de zi cu zi.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x47456762f41ce63d:0x7546de6b0107ab52" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(10); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-paw"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Târg Adopții</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>17 octombrie</strong>, la Centrul de Zi pentru Copii cu Dizabilități Podul Lung. Animăluțe care își caută o căsuță, discuții despre fauna urbană cu rățușca de la Aspada România și gustări de la Yamy Bistro.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:15px;">
+            <a href="https://www.instagram.com/p/DeT3QIFsxbL/" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fab fa-instagram" style="margin-right:5px;"></i>
+                Vezi postarea pe Instagram
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Strada+Cornelia+S%C4%83l%C8%99eanu+17+Timi%C8%99oara" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-paw"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Animalul, prietenul meu</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Luni, <strong>19 octombrie</strong>, între <strong>18:00 și 20:00</strong>.<br> Un atelier creativ de 2 ore în care copiii își lasă imaginația să zburde! Inspirați de animalele prezente și de propriii prieteni necuvântători, cei mici vor inventa povești, vor desena și vor da viață unor personaje unice.
+Prin joacă și creativitate, vom descoperi împreună cât de speciale sunt animalele și vom învăța despre prietenie, empatie și grija față de ele.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(19); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-dove"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Fauna sălbatică urbană</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>24 octombrie</strong>, între <strong>14:00 și 16:00</strong>.<br> O întâlnire-dialog, nu o simplă prezentare, despre animalele sălbatice pe care le întâlnim în oraș — arici, păsări rănite, vulpi, porumbei, țestoase, dar și animale exotice sau domestice abandonate. Vorbim despre ce faci corect când găsești un animal în dificultate, despre legislația de protecție a animalelor și a speciilor sălbatice, despre braconaj și trafic ilegal, și despre rolul autorităților și al ONG-urilor de salvare. Vine cu jocuri, demonstrații practice, un concurs cu premii și un invitat special — o rățușcă.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(24); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-camera"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Workshop de fotografie cu suflet</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Miercuri, <strong>28 octombrie</strong>, între <strong>18:00 și 20:00</strong>.<br> Fotografia poate surprinde o relație, nu doar o imagine. Atelierul îi ajută pe participanți să descopere cum pot transmite emoție, grijă și prietenie prin fotografie, dezvoltându-și creativitatea și comunicarea vizuală. La final, vor învăța noțiuni de bază despre fotografia cu animale, vor observa emoțiile și comportamentul lor și vor realiza imagini care spun o poveste.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(28); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-heart-pulse"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Curs educațional pentru proprietari de câini și pisici</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>31 octombrie</strong>, între <strong>14:00 și 16:00</strong>.<br> Vrei să înțelegi mai bine ce îți transmite animalul tău și să știi cum să îi oferi cea mai bună îngrijire? Te invităm la un curs în care vom descoperi împreună cum „vorbesc” câinii și pisicile prin limbajul corporal, cum le putem înțelege mai bine nevoile și cum putem preveni problemele de comportament. Vom afla și ce putem face în situații de urgență până ajungem la medicul veterinar, cum alegem hrana potrivită și cum citim corect etichetele produselor. Vom vorbi, de asemenea, despre socializarea puilor și pisicilor și despre cum putem introduce un nou animal în familie într-un mod cât mai liniștit și fără stres. Un curs pentru toți cei care vor să își înțeleagă mai bine companionii și să fie mai pregătiți pentru nevoile lor de zi cu zi.
+        </p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+                <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+                Vezi locația
+            </a>
+            <a href="#" onclick="openRegistrationModal(31); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+        </div>
+    </div>
+</div>
+
+
+        
+<!-- ===== NOIEMBRIE ===== -->
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+<div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;"><i class="fas fa-child"></i></div>
+<div style="flex: 1;">
+<h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Atelier interactiv cu animale: COPIII NU FAC CE LE SPUNEM. FAC CE NE VĂD PE NOI FĂCÂND.</h4>
+<p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">Sâmbătă, <strong>7 noiembrie</strong>, între <strong>14:00 și 16:00</strong>.<br> Copiii care își văd părinții oprind mașina pentru un animal rănit, ducând o pisică la sterilizat sau punând un bol cu apă într-o zi toridă nu consideră aceste gesturi ceva extraordinar, ci normale. Pentru că empatia nu se învață din discursuri, ci din exemple. Atelierul organizat de Asociația Bucuriile Măriucăi nu e despre cum educăm copiii, ci despre cum ne educăm pe noi, adulții, ca ei să aibă modele sănătoase. Vei descoperi gesturi simple prin care poți cultiva empatia în familie și cum contribuie relația cu animalele la inteligența emoțională a celor mici.</p>
+<div style="display:flex; gap:15px; flex-wrap:wrap;">
+<a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-map-marker-alt" style="margin-right:5px;"></i> Vezi locația</a>
+<a href="#" onclick="openRegistrationModal(1107); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+</div>
+</div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+<div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;"><i class="fas fa-stethoscope"></i></div>
+<div style="flex: 1;">
+<h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Curs educativ veterinar: De la abandon la responsabilitate</h4>
+<p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">Miercuri, <strong>11 noiembrie</strong>, între <strong>18:00 și 20:00</strong>.<br> De ce ajung atât de multe animale abandonate și ce putem face concret ca să oprim asta? Cursul de la abandon la responsabilitate pornește de la cauzele reale ale abandonului și de la impactul lui asupra animalelor și comunității. Vei afla ce înseamnă, juridic și moral, să deții un animal și cei 4 piloni ai responsabilității: sterilizarea, identificarea, angajamentul pe termen lung și adopția responsabilă. Vei pleca pregătit să iei decizii despre adopție bazate pe realitate, nu pe impuls, și să contribui la schimbarea mentalității din comunitatea ta.</p>
+<div style="display:flex; gap:15px; flex-wrap:wrap;">
+<a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-map-marker-alt" style="margin-right:5px;"></i> Vezi locația</a>
+<a href="#" onclick="openRegistrationModal(1111); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+</div>
+</div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+<div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;"><i class="fas fa-paw"></i></div>
+<div style="flex: 1;">
+<h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Târg de Adopții</h4>
+<p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">Sâmbătă, <strong>21 noiembrie</strong>, între <strong>11:00 și 16:00</strong>. Locație externă. Detalii în curând.</p>
+</div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+<div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;"><i class="fas fa-stethoscope"></i></div>
+<div style="flex: 1;">
+<h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Curs educativ veterinar: De la abandon la responsabilitate</h4>
+<p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">Marți, <strong>24 noiembrie</strong>, între <strong>18:00 și 20:00</strong>.<br> De ce ajung atât de multe animale abandonate și ce putem face concret ca să oprim asta? Cursul de la abandon la responsabilitate pornește de la cauzele reale ale abandonului și de la impactul lui asupra animalelor și comunității. Vei afla ce înseamnă, juridic și moral, să deții un animal și cei 4 piloni ai responsabilității: sterilizarea, identificarea, angajamentul pe termen lung și adopția responsabilă. Vei pleca pregătit să iei decizii despre adopție bazate pe realitate, nu pe impuls, și să contribui la schimbarea mentalității din comunitatea ta.</p>
+<div style="display:flex; gap:15px; flex-wrap:wrap;">
+<a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-map-marker-alt" style="margin-right:5px;"></i> Vezi locația</a>
+<a href="#" onclick="openRegistrationModal(1124); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+</div>
+</div>
+</div>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+<div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;"><i class="fas fa-house"></i></div>
+<div style="flex: 1;">
+<h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🐾 Atelier interactiv cu animale: Familia nu se cumpără, se construiește</h4>
+<p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">Joi, <strong>26 noiembrie</strong>, între <strong>18:00 și 20:00</strong>.<br> „Aveți un cățel mic, alb și pufos?" e întrebarea pe care o auzim cel mai des. Rar auzim cea care contează: „Care dintre câinii voștri s-ar potrivi familiei mele?" Pentru noi, adopția nu înseamnă alegerea celui mai frumos animal, ci întâlnirea dintre două caractere care se potrivesc. Un animal nu e un cadou, o jucărie sau un moft, ci un membru al familiei pentru următorii 10-15 ani. Atelierul își propune să schimbe felul în care alegem să adoptăm și să arate ce înseamnă, pe termen lung, să primești un animal în familie.</p>
+<div style="display:flex; gap:15px; flex-wrap:wrap;">
+<a href="https://maps.app.goo.gl/6kunAE5zqKrcaF7r6" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-map-marker-alt" style="margin-right:5px;"></i> Vezi locația</a>
+<a href="#" onclick="openRegistrationModal(1126); return false;" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;"><i class="fas fa-pen" style="margin-right:5px;"></i> Înscrie-te</a>
+</div>
+</div>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:20px; padding-top:16px; border-top:1px solid #eaddc7;">
+    <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" style="height:46px; width:auto; max-width:100px; object-fit:contain; flex-shrink:0;">
+    <p style="flex:1; text-align:center; font-size:11px; font-weight:300; color:#9a8a72; line-height:1.4; margin:0;">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+    <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" style="height:46px; width:auto; max-width:100px; object-fit:contain; flex-shrink:0;">
+</div>
+
+    </div>
+</div>
+
+                <div class="partner-card" style="padding:30px; display:flex; align-items: flex-start;">
+    <!-- Iconița Proiect Principal -->
+    <div style="background-color:#EAF4E8; color:#629E53; min-width:70px; height:70px; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:32px; margin-right:25px;">
+        <i class="fas fa-ambulance"></i>
+    </div>
+    
+    <!-- Info Proiect -->
+    <div class="partner-info" style="flex:1;">
+        <h3 style="margin-top:0; color:#2D4A22; font-size:20px;">Clinica mobilă: Sterilizări în sate și împrejurimi</h3>
+        <p class="partner-description" style="line-height:1.6; color:#555; margin-bottom: 15px;">
+            Singura soluție eficientă și umană împotriva abandonului este prevenția. Cu ajutorul acestei ambulanțe veterinare mobile, ajungem direct în satele de lângă Timișoara pentru a oferi campanii gratuite de sterilizare, microcipare și educare pentru comunitățile rurale defavorizate.
+        </p>
+
+<div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+
+    <!-- Iconiță Eveniment -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-paw"></i>
+    </div>
+
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">
+            🐾 Eveniment: Ziua Adopțiilor la Institutul Francez
+        </h4>
+
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom:8px;">
+            Sâmbătă, <strong>11 iulie</strong>, între <strong>10:00 și 18:00</strong>, te așteptăm la Institutul Francez pentru o zi dedicată prietenilor noștri necuvântători. Vei putea cunoaște căței și pisici care își caută o familie, iar pe parcursul zilei te vei bucura de cafea, mâncare bună, băuturi și o tombolă cu premii. Vino să susții o cauză frumoasă și, cine știe, poate chiar să îți găsești noul cel mai bun prieten!
+        </p>
+                <p style="margin: 0; font-size: 14px; color: #629E53; font-weight: bold;">Fonduri strânse: 2.600,00 RON. Mulțumim tuturor pentru donații!❤️</p>
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+
+    <a href="https://www.instagram.com/p/DaPiQXNMk8x/" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+        <i class="fab fa-instagram" style="margin-right:5px;"></i>
+        Detalii Eveniment
+    </a>
+
+    <a href="https://maps.google.com/?q=Institutul+Francez+Timișoara" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+        <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+        Vezi locația
+    </a>
+
+    <a href="#" onclick="openTombolaDrawer(event)" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+        <i class="fas fa-scroll" style="margin-right:5px;"></i>
+        Regulament Tombolă
+    </a>
+
+</div>
+
+    </div>
+
+</div>
+
+<!-- Subdiviziune Eveniment 2: Proiecție Film Cinema -->
+    <div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+    <!-- Iconița Eveniment (Film/Cinema) -->
+    <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+        <i class="fas fa-film"></i>
+    </div>
+    <!-- Text Eveniment -->
+    <div style="flex: 1;">
+        <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🎬 Eveniment: Proiecție film „Al cui câine sunt?”</h4>
+        <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom: 8px;">
+            Miercuri, 8 iulie, începând cu ora 21:30. Te așteptăm la o proiecție specială în aer liber / cinema, unde o parte din fonduri sau vizibilitate merge către susținerea campaniei noastre de sterilizări.
+        </p>
+
+        <!-- TODO: Aici poți adăuga suma strânsă ulterior -->
+                <p style="margin: 0; font-size: 14px; color: #629E53; font-weight: bold;">Fonduri strânse: 1.050,00 RON. Mulțumim tuturor pentru donații!❤️</p>
+
+
+        <!-- Link-uri -->
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="https://cinema-timisoara.ro/filme/al-cui-caine-sunt/2026-07-08-21-30/?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" style="font-size: 13px; color: #D97736; font-weight: bold; text-decoration: none; display: flex; align-items: center;">
+                <i class="fas fa-ticket-alt" style="margin-right: 5px;"></i> Detalii & Bilete Cinema
+            </a>
+            <a href="https://www.tion.ro/cinema/haideti-cu-cateii-la-film-pentru-o-cauza-caritabila-la-cinema-studio-timisoara-2307612/" target="_blank" style="font-size: 13px; color: #D97736; font-weight: bold; text-decoration: none; display: flex; align-items: center;">
+                <i class="fas fa-newspaper" style="margin-right: 5px;"></i> Articol TION
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Str.+Nicolaus+Lenau+nr.+2,+Timișoara" target="_blank" style="font-size:13px; color:#D97736; font-weight:bold; text-decoration:none; display:flex; align-items:center;">
+    <i class="fas fa-map-marker-alt" style="margin-right:5px;"></i>
+    Vezi locația
+</a>
+        </div>
+    </div>
+</div>
+ <!-- Subdiviziune Eveniment -->
+        <div style="display: flex; align-items: flex-start; background-color: #fffaf5; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f7e6d7;">
+            <!-- Iconița Eveniment -->
+            <div style="background-color: #ffece0; color: #d97736; min-width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px;">
+                <i class="fas fa-music"></i>
+            </div>
+            <!-- Text Eveniment -->
+            <div style="flex: 1;">
+                <h4 style="margin:0 0 5px 0; color:#1A330E; font-size:16px;">🔥 Eveniment: BOS.CHETĂ.REALĂ.</h4>
+                <p style="margin:0; font-size:14px; color:#4A5A43; line-height:1.5; margin-bottom: 8px;">
+                    Sâmbătă, 27 iunie, 16:00-23:00, la Șag. Petrecere caritabilă fără etichete, dedicată strângerii de fonduri pentru ambulanța mobilă.
+                </p>
+                
+                <!-- TODO: Aici poți adăuga suma strânsă ulterior -->
+                <p style="margin: 0; font-size: 14px; color: #629E53; font-weight: bold;">Fonduri strânse: 6.000,00 RON. Mulțumim tuturor pentru donații!❤️</p>
+
+                <!-- Link-uri -->
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a href="https://www.pressalert.ro/2026/06/petrecere-caritabila-inedita-langa-timisoara-pentru-o-asociatie-care-salveaza-animalute-abandonate/" target="_blank" style="font-size: 13px; color: #D97736; font-weight: bold; text-decoration: none; display: flex; align-items: center;">
+                        <i class="fas fa-newspaper" style="margin-right: 5px;"></i> Citește în presă
+                    </a>
+                    <a href="https://www.instagram.com/p/DZ9zHRLjrbZ/?img_index=1" target="_blank" style="font-size: 13px; color: #D97736; font-weight: bold; text-decoration: none; display: flex; align-items: center;">
+                        <i class="fab fa-instagram" style="margin-right: 5px;"></i> Vezi detalii Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Status -->
+        <span style="display:inline-block; background-color:#629E53; color:white; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:bold; text-transform:uppercase;">
+            <i class="fas fa-sync-alt fa-spin"></i> În desfășurare
+        </span>
+    </div>
+</div>
+
+                <div class="partner-card" style="padding:30px;">
+                    <div style="background-color:#EAF4E8; color:#629E53; min-width:70px; height:70px; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:32px; margin-right:25px;">
+                        <i class="fas fa-paintbrush"></i>
+                    </div>
+                    <div class="partner-info" style="flex:1;">
+                        <h3 style="margin-top:0; color:#2D4A22; font-size:20px;">Spațiul educațional „Strada Veselă"</h3>
+                        <p class="partner-description" style="line-height:1.6; color:#555;">
+                            Transformăm un container maritim într-un spațiu modern, cald și sigur, dedicat activităților de interacțiune între animăluțe și copii. Aici vor avea loc ateliere educaționale, terapie asistată de animale și activități care îi învață pe cei mici empatia, responsabilitatea și respectul față de viață.
+                        </p>
+                        <span style="display:inline-block; background-color:#2D4A22; color:white; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:bold; text-transform:uppercase; margin-top:5px;">
+                            <i class="fas fa-hammer"></i> În amenajare
+                        </span>
+                    </div>
+                </div>
+
+                <div class="partner-card" style="padding:30px;">
+                    <div style="background-color:#EAF4E8; color:#629E53; min-width:70px; height:70px; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:32px; margin-right:25px;">
+                        <i class="fas fa-soap"></i>
+                    </div>
+                    <div class="partner-info" style="flex:1;">
+                        <h3 style="margin-top:0; color:#2D4A22; font-size:20px;">Sănătate și siguranță în adăpost: Bucuriile Măriucăi</h3>
+                        <p class="partner-description" style="line-height:1.6; color:#555;">
+                            Sănătatea blănoșilor dintr-un adăpost depinde direct de igienă. Susținem asociația Bucuriile Măriucăi prin achiziția de echipamente profesionale de curățenie și dezinfectare industrială. Acest proiect asigură un mediu steril, prevenirea bolilor contagioase și condiții sigure pentru refacerea fiecărui suflet salvat.
+                        </p>
+                        <span style="display:inline-block; background-color:#629E53; color:white; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:bold; text-transform:uppercase; margin-top:5px;">
+                            <i class="fas fa-shopping-cart"></i> Diverse achiziții
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ MODAL CALENDAR EVENIMENTE ============ -->
+    <div class="calendar-modal-overlay" id="calendarModalOverlay" onclick="closeCalendarModalOnBackdrop(event)">
+        <div class="calendar-modal">
+            <button class="calendar-modal-close" onclick="closeCalendarModal()" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <div class="calendar-title">
+                <p class="calendar-kicker">Ce urmează</p>
+                <h2>Calendar <span style="color:#e8763c;">evenimente</span></h2>
+                <p>Datele marcate cu portocaliu sunt rezervate pentru evenimente Colectivul Blană. Detaliile pentru fiecare vor fi publicate pe măsură ce se apropie.</p>
+            </div>
+
+            <div class="calendar-nav">
+                <button onclick="prevCalendarMonth()" aria-label="Luna anterioară"><i class="fas fa-chevron-left"></i></button>
+                <span class="calendar-nav-label" id="calendarMonthLabel">Septembrie 2026</span>
+                <button onclick="nextCalendarMonth()" aria-label="Luna următoare"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="months-grid">
+
+                <!-- Septembrie 2026 -->
+                <div class="month-card active" data-month="2026-09">
+                    <h3>Septembrie 2026</h3>
+                    <div class="day-names">
+                        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                    </div>
+                    <div class="days-grid">
+<div class="day-cell empty"></div><div class="day-cell empty"></div>
+<div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div><div class="day-cell">4</div><div class="day-cell">5</div><div class="day-cell">6</div><div class="day-cell">7</div><div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div><div class="day-cell">11</div><div class="day-cell">12</div><div class="day-cell">13</div><div class="day-cell">14</div><div class="day-cell">15</div><div class="day-cell">16</div><div class="day-cell">17</div><div class="day-cell">18</div><div class="day-cell event" data-date="2026-09-19" title="Festivalul de Adopții Blană">19</div>
+<div class="day-cell">20</div><div class="day-cell">21</div><div class="day-cell">22</div><div class="day-cell">23</div><div class="day-cell">24</div><div class="day-cell event" data-date="2026-09-25" title="THOR – Lecția despre incluziune">25</div>
+<div class="day-cell event" data-date="2026-09-26" title="Fauna sălbatică urbană">26</div>
+<div class="day-cell">27</div><div class="day-cell">28</div><div class="day-cell event" data-date="2026-09-29" title="NU ÎNTOARCE PRIVIREA">29</div>
+<div class="day-cell">30</div>
+                    </div>
+                    <ul class="event-list">
+                        <li><span class="event-date">19</span> <span class="event-label">Festivalul de Adopții Blană</span></li>
+                        <li>
+                            <span class="event-date">25</span>
+                            <span class="event-label">THOR – Lecția despre incluziune</span>
+                            <button class="btn-info" onclick="openEventInfoModal(25)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(25)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">26</span>
+                            <span class="event-label">Fauna sălbatică urbană</span>
+                            <button class="btn-info" onclick="openEventInfoModal(26)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(26)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">29</span>
+                            <span class="event-label">NU ÎNTOARCE PRIVIREA</span>
+                            <button class="btn-info" onclick="openEventInfoModal(29)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(29)">Înscrie-te</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Octombrie 2026 -->
+                <div class="month-card" data-month="2026-10">
+                    <h3>Octombrie 2026</h3>
+                    <div class="day-names">
+                        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                    </div>
+                    <div class="days-grid">
+<div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div>
+<div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell event" data-date="2026-10-03" title="Un pui nu apare din senin">3</div>
+<div class="day-cell">4</div><div class="day-cell event" data-date="2026-10-05" title="Povestea animalului meu">5</div>
+<div class="day-cell">6</div><div class="day-cell">7</div><div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell event" data-date="2026-10-10" title="Curs educațional pentru proprietari de câini și pisici">10</div>
+<div class="day-cell">11</div><div class="day-cell">12</div><div class="day-cell">13</div><div class="day-cell">14</div><div class="day-cell">15</div><div class="day-cell">16</div><div class="day-cell event" data-date="2026-10-17" title="Târg Adopții">17</div>
+<div class="day-cell">18</div><div class="day-cell event" data-date="2026-10-19" title="Animalul, prietenul meu">19</div>
+<div class="day-cell">20</div><div class="day-cell">21</div><div class="day-cell">22</div><div class="day-cell">23</div>
+<div class="day-cell event" data-date="2026-10-24" title="Fauna sălbatică urbană">24</div>
+<div class="day-cell">25</div><div class="day-cell">26</div><div class="day-cell">27</div><div class="day-cell event" data-date="2026-10-28" title="Workshop de fotografie cu suflet">28</div>
+<div class="day-cell">29</div><div class="day-cell">30</div><div class="day-cell event" data-date="2026-10-31" title="Curs educațional pentru proprietari de câini și pisici">31</div>
+
+                    </div>
+                    <ul class="event-list">
+                        <li>
+                            <span class="event-date">3</span>
+                            <span class="event-label">Un pui nu apare din senin</span>
+                            <button class="btn-info" onclick="openEventInfoModal(3)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(3)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">5</span>
+                            <span class="event-label">Povestea animalului meu</span>
+                            <button class="btn-info" onclick="openEventInfoModal(5)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(5)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">10</span>
+                            <span class="event-label">Curs educațional pentru proprietari de câini și pisici</span>
+                            <button class="btn-info" onclick="openEventInfoModal(10)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(10)">Înscrie-te</button>
+                        </li>
+                        <li><span class="event-date">17</span> <span class="event-label">Târg Adopții</span></li>
+                        <li>
+                            <span class="event-date">19</span>
+                            <span class="event-label">Animalul, prietenul meu</span>
+                            <button class="btn-info" onclick="openEventInfoModal(19)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(19)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">24</span>
+                            <span class="event-label">Fauna sălbatică urbană</span>
+                            <button class="btn-info" onclick="openEventInfoModal(24)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(24)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">28</span>
+                            <span class="event-label">Workshop de fotografie cu suflet</span>
+                            <button class="btn-info" onclick="openEventInfoModal(28)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(28)">Înscrie-te</button>
+                        </li>
+                        <li>
+                            <span class="event-date">31</span>
+                            <span class="event-label">Curs educațional pentru proprietari de câini și pisici</span>
+                            <button class="btn-info" onclick="openEventInfoModal(31)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button>
+                            <button class="btn-inscrie" onclick="openRegistrationModal(31)">Înscrie-te</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Noiembrie 2026 -->
+                <div class="month-card" data-month="2026-11">
+                    <h3>Noiembrie 2026</h3>
+                    <div class="day-names">
+                        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                    </div>
+                    <div class="days-grid">
+
+<div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div><div class="day-cell">4</div><div class="day-cell">5</div><div class="day-cell">6</div><div class="day-cell event" data-date="2026-11-07" title="Atelier interactiv cu animale">7</div>
+<div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div><div class="day-cell event" data-date="2026-11-11" title="Curs educativ veterinar">11</div>
+<div class="day-cell">12</div><div class="day-cell">13</div><div class="day-cell">14</div><div class="day-cell">15</div><div class="day-cell">16</div><div class="day-cell">17</div><div class="day-cell">18</div><div class="day-cell">19</div><div class="day-cell">20</div><div class="day-cell event" data-date="2026-11-21" title="Târg de Adopții">21</div>
+<div class="day-cell">22</div><div class="day-cell">23</div><div class="day-cell event" data-date="2026-11-24" title="Curs educativ veterinar">24</div>
+<div class="day-cell">25</div><div class="day-cell event" data-date="2026-11-26" title="Atelier interactiv cu animale">26</div>
+<div class="day-cell">27</div><div class="day-cell">28</div><div class="day-cell">29</div><div class="day-cell">30</div>
+                    </div>
+                    <ul class="event-list">
+<li><span class="event-date">7</span> <span class="event-label">Atelier interactiv cu animale: COPIII NU FAC CE LE SPUNEM. FAC CE NE VĂD PE NOI FĂCÂND.</span><button class="btn-info" onclick="openEventInfoModal(1107)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button><button class="btn-inscrie" onclick="openRegistrationModal(1107)">Înscrie-te</button></li>
+<li><span class="event-date">11</span> <span class="event-label">Curs educativ veterinar: De la abandon la responsabilitate</span><button class="btn-info" onclick="openEventInfoModal(1111)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button><button class="btn-inscrie" onclick="openRegistrationModal(1111)">Înscrie-te</button></li>
+<li><span class="event-date">21</span> <span class="event-label">Târg de Adopții (detalii în curând)</span></li>
+<li><span class="event-date">24</span> <span class="event-label">Curs educativ veterinar: De la abandon la responsabilitate</span><button class="btn-info" onclick="openEventInfoModal(1124)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button><button class="btn-inscrie" onclick="openRegistrationModal(1124)">Înscrie-te</button></li>
+<li><span class="event-date">26</span> <span class="event-label">Atelier interactiv cu animale: Familia nu se cumpără, se construiește</span><button class="btn-info" onclick="openEventInfoModal(1126)" aria-label="Detalii eveniment"><i class="fas fa-info"></i></button><button class="btn-inscrie" onclick="openRegistrationModal(1126)">Înscrie-te</button></li>
+</ul>
+                </div>
+
+                <!-- Decembrie 2026 -->
+                <div class="month-card" data-month="2026-12">
+                    <h3>Decembrie 2026</h3>
+                    <div class="day-names">
+                        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                    </div>
+                    <div class="days-grid">
+<div class="day-cell empty"></div><div class="day-cell empty"></div>
+<div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div><div class="day-cell event" data-date="2026-12-04" title="Detalii în curând">4</div>
+<div class="day-cell">5</div><div class="day-cell">6</div><div class="day-cell">7</div><div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div><div class="day-cell">11</div><div class="day-cell">12</div><div class="day-cell">13</div><div class="day-cell">14</div><div class="day-cell">15</div><div class="day-cell">16</div><div class="day-cell">17</div><div class="day-cell">18</div><div class="day-cell">19</div><div class="day-cell">20</div><div class="day-cell">21</div><div class="day-cell">22</div><div class="day-cell">23</div><div class="day-cell">24</div><div class="day-cell">25</div><div class="day-cell">26</div><div class="day-cell">27</div><div class="day-cell">28</div><div class="day-cell">29</div><div class="day-cell">30</div><div class="day-cell">31</div>
+                    </div>
+                    <ul class="event-list">
+                        <li><span class="event-date">4</span> <span class="event-label">Detalii în curând</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ MODALE ÎNSCRIERE — câte unul separat pentru fiecare eveniment ============ -->
+
+    <!-- 25 Septembrie — THOR – Lecția despre incluziune -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-25" onclick="closeRegistrationModalOnBackdrop(event, 25)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(25)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-25">THOR – Lecția despre incluziune</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-25">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-25">
+                <div class="form-group">
+                    <label for="reg-nume-25">Nume</label>
+                    <input type="text" id="reg-nume-25" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-25">Prenume</label>
+                    <input type="text" id="reg-prenume-25" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-25">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-25" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-25">Adresă de email</label>
+                    <input type="email" id="reg-email-25" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-25">Vârstă</label>
+                    <input type="number" id="reg-varsta-25" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-25"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(25)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-25">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-25" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-25" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-25" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-25">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-25"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 26 Septembrie — Fauna sălbatică urbană -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-26" onclick="closeRegistrationModalOnBackdrop(event, 26)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(26)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-26">Fauna sălbatică urbană</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-26">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-26">
+                <div class="form-group">
+                    <label for="reg-nume-26">Nume</label>
+                    <input type="text" id="reg-nume-26" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-26">Prenume</label>
+                    <input type="text" id="reg-prenume-26" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-26">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-26" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-26">Adresă de email</label>
+                    <input type="email" id="reg-email-26" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-26">Vârstă</label>
+                    <input type="number" id="reg-varsta-26" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-26"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(26)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-26">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-26" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-26" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-26" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-26">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-26"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 29 Septembrie — NU ÎNTOARCE PRIVIREA -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-29" onclick="closeRegistrationModalOnBackdrop(event, 29)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(29)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-29">NU ÎNTOARCE PRIVIREA</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-29">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-29">
+                <div class="form-group">
+                    <label for="reg-nume-29">Nume</label>
+                    <input type="text" id="reg-nume-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-29">Prenume</label>
+                    <input type="text" id="reg-prenume-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-29">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-29">Adresă de email</label>
+                    <input type="email" id="reg-email-29" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-29">Vârstă</label>
+                    <input type="number" id="reg-varsta-29" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-29"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(29)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-29">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-29" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-29" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-29" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-29">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-29"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 3 Octombrie — Un pui nu apare din senin -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-3" onclick="closeRegistrationModalOnBackdrop(event, 3)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(3)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-3">Un pui nu apare din senin</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-3">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-3">
+                <div class="form-group">
+                    <label for="reg-nume-3">Nume</label>
+                    <input type="text" id="reg-nume-3" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-3">Prenume</label>
+                    <input type="text" id="reg-prenume-3" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-3">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-3" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-3">Adresă de email</label>
+                    <input type="email" id="reg-email-3" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-3">Vârstă</label>
+                    <input type="number" id="reg-varsta-3" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-3"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(3)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-3">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-3" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-3" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-3" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-3">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-3"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 5 Octombrie — Povestea animalului meu -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-5" onclick="closeRegistrationModalOnBackdrop(event, 5)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(5)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-5">Povestea animalului meu</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-5">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-5">
+                <div class="form-group">
+                    <label for="reg-nume-5">Nume</label>
+                    <input type="text" id="reg-nume-5" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-5">Prenume</label>
+                    <input type="text" id="reg-prenume-5" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-5">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-5" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-5">Adresă de email</label>
+                    <input type="email" id="reg-email-5" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-5">Vârstă</label>
+                    <input type="number" id="reg-varsta-5" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-5"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(5)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-5">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-5" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-5" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-5" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-5">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-5"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 10 Octombrie — Curs educațional pentru proprietari de câini și pisici -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-10" onclick="closeRegistrationModalOnBackdrop(event, 10)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(10)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-10">Curs educațional pentru proprietari de câini și pisici</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-10">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-10">
+                <div class="form-group">
+                    <label for="reg-nume-10">Nume</label>
+                    <input type="text" id="reg-nume-10" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-10">Prenume</label>
+                    <input type="text" id="reg-prenume-10" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-10">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-10" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-10">Adresă de email</label>
+                    <input type="email" id="reg-email-10" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-10">Vârstă</label>
+                    <input type="number" id="reg-varsta-10" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-10"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(10)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-10">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-10" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-10" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-10" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-10">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-10"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 19 Octombrie — Animalul, prietenul meu -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-19" onclick="closeRegistrationModalOnBackdrop(event, 19)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(19)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-19">Animalul, prietenul meu</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-19">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-19">
+                <div class="form-group">
+                    <label for="reg-nume-19">Nume</label>
+                    <input type="text" id="reg-nume-19" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-19">Prenume</label>
+                    <input type="text" id="reg-prenume-19" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-19">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-19" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-19">Adresă de email</label>
+                    <input type="email" id="reg-email-19" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-19">Vârstă</label>
+                    <input type="number" id="reg-varsta-19" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-19"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(19)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-19">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-19" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-19" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-19" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-19">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-19"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 24 Octombrie — Fauna sălbatică urbană -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-24" onclick="closeRegistrationModalOnBackdrop(event, 24)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(24)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-24">Fauna sălbatică urbană</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-24">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-24">
+                <div class="form-group">
+                    <label for="reg-nume-24">Nume</label>
+                    <input type="text" id="reg-nume-24" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-24">Prenume</label>
+                    <input type="text" id="reg-prenume-24" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-24">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-24" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-24">Adresă de email</label>
+                    <input type="email" id="reg-email-24" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-24">Vârstă</label>
+                    <input type="number" id="reg-varsta-24" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-24"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(24)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-24">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-24" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-24" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-24" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-24">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-24"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 28 Octombrie — Workshop de fotografie cu suflet -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-28" onclick="closeRegistrationModalOnBackdrop(event, 28)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(28)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-28">Workshop de fotografie cu suflet</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-28">Capacitate: 10 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-28">
+                <div class="form-group">
+                    <label for="reg-nume-28">Nume</label>
+                    <input type="text" id="reg-nume-28" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-28">Prenume</label>
+                    <input type="text" id="reg-prenume-28" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-28">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-28" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-28">Adresă de email</label>
+                    <input type="email" id="reg-email-28" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-28">Vârstă</label>
+                    <input type="number" id="reg-varsta-28" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-28"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(28)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-28">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-28" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-28" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-28" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-28">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-28"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 31 Octombrie — Curs educațional pentru proprietari de câini și pisici -->
+    <div class="registration-modal-overlay" id="registrationModalOverlay-31" onclick="closeRegistrationModalOnBackdrop(event, 31)">
+        <div class="registration-modal">
+            <button class="registration-modal-close" onclick="closeRegistrationModal(31)" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h2>Înscriere: <span id="registrationEventName-31">Curs educațional pentru proprietari de câini și pisici</span></h2>
+            <p class="registration-seats" id="registrationSeatsInfo-31">Capacitate: 20 de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>
+
+            <form id="registrationForm-31">
+                <div class="form-group">
+                    <label for="reg-nume-31">Nume</label>
+                    <input type="text" id="reg-nume-31" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-prenume-31">Prenume</label>
+                    <input type="text" id="reg-prenume-31" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telefon-31">Număr de telefon</label>
+                    <input type="tel" id="reg-telefon-31" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email-31">Adresă de email</label>
+                    <input type="email" id="reg-email-31" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-varsta-31">Vârstă</label>
+                    <input type="number" id="reg-varsta-31" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Însoțitori (opțional — doar numele)</label>
+                    <div class="companions-list" id="companionsList-31"></div>
+                    <button type="button" class="btn-add-companion" onclick="addCompanionField(31)">
+                        <i class="fas fa-plus"></i> Adaugă însoțitor
+                    </button>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                    <label for="reg-website-31">Nu completa acest câmp</label>
+                    <input type="text" id="reg-website-31" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-confirmare18-31" required>
+                    Confirm că am peste 18 ani.
+                </label>
+
+                <label class="form-checkbox">
+                    <input type="checkbox" id="reg-consimtamant-31" required>
+                    Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.
+                </label>
+
+                <button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-31">Trimite înscrierea</button>
+
+                <div class="form-message" id="registrationMessage-31"></div>
+
+                <p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>
+            </form>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ MODAL INFO EVENIMENT (conținut populat dinamic din JS) ============ -->
+    <div class="info-modal-overlay" id="infoModalOverlay" onclick="closeEventInfoModalOnBackdrop(event)">
+        <div class="info-modal">
+            <button class="info-modal-close" onclick="closeEventInfoModal()" aria-label="Închide">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <h2 id="infoModalTitle"></h2>
+            <div id="infoModalBody"></div>
+            <button class="info-modal-btn-inscrie" id="infoModalInscrieBtn">
+                <i class="fas fa-pen"></i> Înscrie-te la eveniment
+            </button>
+
+            <div class="funding-footer">
+                <img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">
+                <p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>
+                <img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">
+            </div>
+        </div>
+    </div>
+
+</div><!-- /content-wrap -->
+
+<footer>
+    <div class="footer-content">
+        <h3>Colectivul Blană</h3>
+        <p>Email: <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a></p>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/colectivulblana/" target="_blank" rel="noopener noreferrer" class="social-link insta-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <p class="copyright">&copy; 2026 Colectivul Blană. Toate drepturile rezervate.</p>
+    </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    document.getElementById("dachshund-body").style.height = scrolled + "%";
+});
+</script>
+<script>
+(function () {
+    var sidebar = document.getElementById('sidebar');
+    var hamburger = document.getElementById('hamburger');
+    var backdrop = document.getElementById('sidebarBackdrop');
+
+    function setOpen(open) {
+        sidebar.classList.toggle('open', open);
+        backdrop.classList.toggle('show', open);
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', function () { setOpen(!sidebar.classList.contains('open')); });
+    backdrop.addEventListener('click', function () { setOpen(false); });
+
+    // Submeniuri: click pe titlu = deschide/închide
+    sidebar.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            toggle.parentElement.classList.toggle('open');
+        });
+    });
+
+    // Pe mobil, după ce alegi un link, meniul se închide
+    sidebar.querySelectorAll('.dropdown-menu a, .nav-links > li:not(.dropdown) > a').forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+    });
+
+    // Deschide automat submeniul care conține pagina activă
+    var active = sidebar.querySelector('.dropdown-menu a.active');
+    if (active) active.closest('.dropdown').classList.add('open');
+})();
+</script>
+<script>
+function openTombolaDrawer(e) {
+    if (e) e.preventDefault();
+    document.getElementById('tombola-drawer').classList.add('open');
+    document.getElementById('tombola-overlay').classList.add('active');
+    document.getElementById('dachshund-scroll-wrapper').classList.add('hidden-by-drawer');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeTombolaDrawer() {
+    document.getElementById('tombola-drawer').classList.remove('open');
+    document.getElementById('tombola-overlay').classList.remove('active');
+    document.getElementById('dachshund-scroll-wrapper').classList.remove('hidden-by-drawer');
+    document.body.style.overflow = '';
+}
+</script>
+
+<script>
+/* Modale de înscriere generate pentru noiembrie */
+[1107, 1111, 1124, 1126].forEach(function (id) {
+    var titluri = {
+        1107: "Atelier interactiv cu animale: Copiii nu fac ce le spunem",
+        1111: "Curs educativ veterinar: De la abandon la responsabilitate",
+        1124: "Curs educativ veterinar: De la abandon la responsabilitate",
+        1126: "Atelier interactiv cu animale: Familia nu se cumpără, se construiește"
+    };
+    var cap = id === 1124 ? 10 : 20;
+    var el = document.createElement('div');
+    el.className = 'registration-modal-overlay';
+    el.id = 'registrationModalOverlay-' + id;
+    el.setAttribute('onclick', 'closeRegistrationModalOnBackdrop(event, ' + id + ')');
+    el.innerHTML =
+    '<div class="registration-modal">' +
+      '<button class="registration-modal-close" onclick="closeRegistrationModal(' + id + ')" aria-label="Închide"><i class="fas fa-xmark"></i></button>' +
+      '<h2>Înscriere: <span id="registrationEventName-' + id + '">' + titluri[id] + '</span></h2>' +
+      '<p class="registration-seats" id="registrationSeatsInfo-' + id + '">Capacitate: ' + cap + ' de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).</p>' +
+      '<form id="registrationForm-' + id + '">' +
+        '<div class="form-group"><label for="reg-nume-' + id + '">Nume</label><input type="text" id="reg-nume-' + id + '" required></div>' +
+        '<div class="form-group"><label for="reg-prenume-' + id + '">Prenume</label><input type="text" id="reg-prenume-' + id + '" required></div>' +
+        '<div class="form-group"><label for="reg-telefon-' + id + '">Număr de telefon</label><input type="tel" id="reg-telefon-' + id + '" required></div>' +
+        '<div class="form-group"><label for="reg-email-' + id + '">Adresă de email</label><input type="email" id="reg-email-' + id + '" required></div>' +
+        '<div class="form-group"><label for="reg-varsta-' + id + '">Vârstă</label><input type="number" id="reg-varsta-' + id + '" min="1" max="120" required></div>' +
+        '<div class="form-group"><label>Însoțitori (opțional — doar numele)</label><div class="companions-list" id="companionsList-' + id + '"></div>' +
+          '<button type="button" class="btn-add-companion" onclick="addCompanionField(' + id + ')"><i class="fas fa-plus"></i> Adaugă însoțitor</button></div>' +
+        '<div class="hp-field" aria-hidden="true"><label for="reg-website-' + id + '">Nu completa acest câmp</label><input type="text" id="reg-website-' + id + '" name="website" tabindex="-1" autocomplete="off"></div>' +
+        '<label class="form-checkbox"><input type="checkbox" id="reg-confirmare18-' + id + '" required> Confirm că am peste 18 ani.</label>' +
+        '<label class="form-checkbox"><input type="checkbox" id="reg-consimtamant-' + id + '" required> Sunt de acord cu prelucrarea datelor mele personale (nume, prenume, telefon, email, vârstă) de către Colectivul Blană, în scop de sondaj în cadrul proiectului „O Comunitate". Semnarea listei de prezență la eveniment reprezintă confirmarea acestui acord.</label>' +
+        '<button type="submit" class="btn-submit-inscriere" id="registrationSubmitBtn-' + id + '">Trimite înscrierea</button>' +
+        '<div class="form-message" id="registrationMessage-' + id + '"></div>' +
+        '<p class="form-support-note">Ai probleme la înscrierea online? Scrie-ne la <a href="mailto:colectivulblana@gmail.com">colectivulblana@gmail.com</a>.</p>' +
+      '</form>' +
+      '<div class="funding-footer">' +
+        '<img src="Imagini/LogoDASMT.png" alt="Direcția de Asistență Socială a Municipiului Timișoara" class="funding-logo">' +
+        '<p class="funding-text">Proiect finanțat prin programul „O Comunitate 2026" de Direcția de Asistență Socială a Municipiului Timișoara</p>' +
+        '<img src="Imagini/logoOComunitate2026.png" alt="O Comunitate 2026" class="funding-logo">' +
+      '</div>' +
+    '</div>';
+    document.body.appendChild(el);
+});
+
+const calendarMonths = [
+    { key: '2026-09', label: 'Septembrie 2026' },
+    { key: '2026-10', label: 'Octombrie 2026' },
+    { key: '2026-11', label: 'Noiembrie 2026' },
+    { key: '2026-12', label: 'Decembrie 2026' }
+];
+let calendarMonthIndex = 0;
+
+function showCalendarMonth(index) {
+    calendarMonthIndex = (index + calendarMonths.length) % calendarMonths.length;
+    document.querySelectorAll('.month-card').forEach(function (card) {
+        card.classList.toggle('active', card.getAttribute('data-month') === calendarMonths[calendarMonthIndex].key);
+    });
+    document.getElementById('calendarMonthLabel').textContent = calendarMonths[calendarMonthIndex].label;
+}
+
+function prevCalendarMonth() {
+    showCalendarMonth(calendarMonthIndex - 1);
+}
+
+function nextCalendarMonth() {
+    showCalendarMonth(calendarMonthIndex + 1);
+}
+
+function getCurrentMonthIndex() {
+    const now = new Date();
+    const key = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+
+    const index = calendarMonths.findIndex(function (m) { return m.key === key; });
+    if (index !== -1) return index;
+
+    // Luna curentă nu e în calendar: înainte de prima lună -> prima, după ultima -> ultima
+    return key < calendarMonths[0].key ? 0 : calendarMonths.length - 1;
+}
+
+function openCalendarModal() {
+    document.getElementById('calendarModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showCalendarMonth(getCurrentMonthIndex());
+}
+
+function closeCalendarModal() {
+    document.getElementById('calendarModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function closeCalendarModalOnBackdrop(event) {
+    if (event.target.id === 'calendarModalOverlay') {
+        closeCalendarModal();
+    }
+}
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closeCalendarModal();
+        [25, 26, 29, 3, 5, 10, 19, 24, 28, 31, 1107, 1111, 1124, 1126].forEach(closeRegistrationModal);
+        closeEventInfoModal();
+    }
+});
+
+/* ============ INFO EVENIMENT (descriere scurtă, buton "i") ============ */
+
+const EVENT_LOCATIE_URL = 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x47456762f41ce63d:0x7546de6b0107ab52';
+const EVENT_LOCATIE_URL_2 = 'https://maps.app.goo.gl/6kunAE5zqKrcaF7r6';
+
+const EVENT_INFO = {
+    25: {
+        title: "THOR – Lecția despre incluziune",
+        data: "Vineri, 25 septembrie 2026",
+        ora: '18:00 – 20:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL,
+        paragraphs: [
+            "Un atelier inspirat de povestea lui Thor, un câine paralizat pe trenul posterior care se deplasează cu ajutorul unui cărucior adaptat și care, în ciuda dizabilității, e unul dintre cei mai veseli locuitori ai curții Asociației Bucuriilor Măriucăi.",
+            "Pornind de la exemplul lui, discutăm despre diferența dintre milă și empatie, despre cum adaptarea mediului poate reda independența, și despre faptul că o dizabilitate nu definește valoarea unei ființe.",
+            "Scopul atelierului e să crească empatia și înțelegerea față de persoanele și animalele cu dizabilități, și să arate, practic, ce înseamnă o comunitate incluzivă."
+        ]
+    },
+    26: {
+        title: "Fauna sălbatică urbană",
+        data: "Sâmbătă, 26 septembrie 2026",
+        ora: '14:00 – 16:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL,
+        paragraphs: [
+            "O întâlnire-dialog, nu o simplă prezentare, despre animalele sălbatice pe care le întâlnim în oraș — arici, păsări rănite, vulpi, porumbei, țestoase, dar și animale exotice sau domestice abandonate.",
+            "Vorbim despre ce faci corect când găsești un animal în dificultate, despre legislația de protecție a animalelor și a speciilor sălbatice, despre braconaj și trafic ilegal, și despre rolul autorităților și al ONG-urilor de salvare.",
+            "Vine cu jocuri, demonstrații practice, un concurs cu premii și un invitat special — o rățușcă."
+        ]
+    },
+    29: {
+        title: "NU ÎNTOARCE PRIVIREA",
+        data: "Marți, 29 septembrie 2026",
+        ora: '18:00 – 20:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL,
+        paragraphs: [
+            "Un atelier despre primul pas pe care îl poate face oricine atunci când întâlnește un animal abandonat — să oprești, să pui apă, să fotografiezi, să suni după ajutor, să nu treci mai departe.",
+            "Nu își propune să facă din participanți salvatori, ci să le arate limitele și responsabilitățile unui cetățean obișnuit, și când e nevoie să ceri ajutorul autorităților sau al unui ONG.",
+            "La final, participanții pleacă cu încrederea că pot contribui, chiar dacă nu fac parte dintr-o asociație."
+        ]
+    },
+    3: {
+        title: "Un pui nu apare din senin",
+        data: "Sâmbătă, 3 octombrie 2026",
+        ora: '14:00 – 16:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL,
+        paragraphs: [
+            "De cele mai multe ori oamenii văd doar puii. Patru căței abandonați. Șase pisoi într-o cutie. Un cuib găsit într-un șanț. Foarte puțini se întreabă însă de unde au apărut.",
+            "În spatele fiecărui pui abandonat există aproape întotdeauna aceeași poveste: un animal nesterilizat. Nu vrem să vorbim despre sterilizare ca despre o obligație, ci despre responsabilitate.",
+            "Sterilizarea nu înseamnă doar prevenirea înmulțirii. Înseamnă mai puțină suferință, mai puține abandonuri, mai puține accidente și mai puține animale care ajung să moară pe marginea drumului. Atelierul își propune să îi ajute pe participanți să înțeleagă că fiecare dintre noi poate rupe acest cerc."
+        ]
+    },
+    5: {
+        title: "Povestea animalului meu",
+        data: "Luni, 5 octombrie 2026",
+        ora: '18:00 – 20:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL,
+        paragraphs: [
+            "Fiecare animal are o poveste. Unele au fost abandonate, altele salvate, altele au crescut alături de o familie.",
+            "Când copiii ascultă și spun povești, învață să înțeleagă emoțiile celorlalți. Atelierul pornește de la poveștile animalelor și le transformă într-un exercițiu de empatie și înțelegere."
+        ]
+    },
+    10: {
+        title: "Curs educațional pentru proprietari de câini și pisici",
+        data: "Sâmbătă, 10 octombrie 2026",
+        ora: '14:00 – 16:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL,
+        paragraphs: [
+            "Vrei să înțelegi mai bine ce îți transmite animalul tău și să știi cum să îi oferi cea mai bună îngrijire?",
+            "Te invităm la un curs în care vom descoperi împreună cum „vorbesc” câinii și pisicile prin limbajul corporal, cum le putem înțelege mai bine nevoile și cum putem preveni problemele de comportament.",
+            "Vom afla și ce putem face în situații de urgență până ajungem la medicul veterinar, cum alegem hrana potrivită și cum citim corect etichetele produselor. Vom vorbi, de asemenea, despre socializarea puilor și pisicilor și despre cum putem introduce un nou animal în familie într-un mod cât mai liniștit și fără stres.",
+            "Un curs pentru toți cei care vor să își înțeleagă mai bine companionii și să fie mai pregătiți pentru nevoile lor de zi cu zi."
+        ]
+    },
+    19: {
+        title: "Animalul, prietenul meu",
+        data: "Luni, 19 octombrie 2026",
+        ora: '18:00 – 20:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL_2,
+        paragraphs: [
+            "Un atelier creativ de 2 ore în care copiii își lasă imaginația să zburde! Inspirați de animalele prezente și de propriii prieteni necuvântători, cei mici vor inventa povești, vor desena și vor da viață unor personaje unice.",
+            "Prin joacă și creativitate, vom descoperi împreună cât de speciale sunt animalele și vom învăța despre prietenie, empatie și grija față de ele."
+        ]
+    },
+    24: {
+        title: "Fauna sălbatică urbană",
+        data: "Sâmbătă, 24 octombrie 2026",
+        ora: '14:00 – 16:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL_2,
+        paragraphs: [
+            "O întâlnire-dialog, nu o simplă prezentare, despre animalele sălbatice pe care le întâlnim în oraș — arici, păsări rănite, vulpi, porumbei, țestoase, dar și animale exotice sau domestice abandonate.",
+            "Vorbim despre ce faci corect când găsești un animal în dificultate, despre legislația de protecție a animalelor și a speciilor sălbatice, despre braconaj și trafic ilegal, și despre rolul autorităților și al ONG-urilor de salvare.",
+            "Vine cu jocuri, demonstrații practice, un concurs cu premii și un invitat special — o rățușcă."
+        ]
+    },
+    28: {
+        title: "Workshop de fotografie cu suflet",
+        data: "Miercuri, 28 octombrie 2026",
+        ora: '18:00 – 20:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL_2,
+        paragraphs: [
+            "Fotografia poate surprinde o relație, nu doar o imagine. Atelierul îi ajută pe participanți să descopere cum pot transmite emoție, grijă și prietenie prin fotografie, dezvoltându-și creativitatea și comunicarea vizuală.",
+            "La final, vor învăța noțiuni de bază despre fotografia cu animale, vor observa emoțiile și comportamentul lor și vor realiza imagini care spun o poveste."
+        ]
+    },
+    31: {
+        title: "Curs educațional pentru proprietari de câini și pisici",
+        data: "Sâmbătă, 31 octombrie 2026",
+        ora: '14:00 – 16:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL_2,
+        paragraphs: [
+            "Vrei să înțelegi mai bine ce îți transmite animalul tău și să știi cum să îi oferi cea mai bună îngrijire?",
+            "Te invităm la un curs în care vom descoperi împreună cum „vorbesc” câinii și pisicile prin limbajul corporal, cum le putem înțelege mai bine nevoile și cum putem preveni problemele de comportament.",
+            "Vom afla și ce putem face în situații de urgență până ajungem la medicul veterinar, cum alegem hrana potrivită și cum citim corect etichetele produselor. Vom vorbi, de asemenea, despre socializarea puilor și pisicilor și despre cum putem introduce un nou animal în familie într-un mod cât mai liniștit și fără stres.",
+            "Un curs pentru toți cei care vor să își înțeleagă mai bine companionii și să fie mai pregătiți pentru nevoile lor de zi cu zi."
+        ]
+    },
+    1107: {
+        title: "Atelier interactiv cu animale: COPIII NU FAC CE LE SPUNEM. FAC CE NE VĂD PE NOI FĂCÂND.",
+        data: "Sâmbătă, 7 noiembrie 2026",
+        ora: '14:00 – 16:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL_2,
+        paragraphs: [
+    "Copiii care își văd părinții oprind mașina pentru un animal rănit, ducând o pisică la sterilizat sau punând un bol cu apă într-o zi toridă nu consideră aceste gesturi ceva extraordinar, ci normale. Pentru că empatia nu se învață din discursuri, ci din exemple.",
+    "Atelierul organizat de Asociația Bucuriile Măriucăi nu e despre cum educăm copiii, ci despre cum ne educăm pe noi, adulții, ca ei să aibă modele sănătoase. Vei descoperi gesturi simple prin care poți cultiva empatia în familie și cum contribuie relația cu animalele la inteligența emoțională a celor mici."
+]
+    },
+    1111: {
+        title: "Curs educativ veterinar: De la abandon la responsabilitate",
+        data: "Miercuri, 11 noiembrie 2026",
+        ora: '18:00 – 20:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL_2,
+        paragraphs: [
+    "De ce ajung atât de multe animale abandonate și ce putem face concret ca să oprim asta? Cursul pornește de la cauzele reale ale abandonului și de la impactul lui asupra animalelor și comunității.",
+    "Vei afla ce înseamnă, juridic și moral, să deții un animal și cei 4 piloni ai responsabilității: sterilizarea, identificarea, angajamentul pe termen lung și adopția responsabilă.",
+    "Vei pleca pregătit să iei decizii despre adopție bazate pe realitate, nu pe impuls, și să contribui la schimbarea mentalității din comunitatea ta."
+]
+    },
+    1124: {
+        title: "Curs educativ veterinar: De la abandon la responsabilitate",
+        data: "Marți, 24 noiembrie 2026",
+        ora: '18:00 – 20:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL_2,
+        paragraphs: [
+    "De ce ajung atât de multe animale abandonate și ce putem face concret ca să oprim asta? Cursul pornește de la cauzele reale ale abandonului și de la impactul lui asupra animalelor și comunității.",
+    "Vei afla ce înseamnă, juridic și moral, să deții un animal și cei 4 piloni ai responsabilității: sterilizarea, identificarea, angajamentul pe termen lung și adopția responsabilă.",
+    "Vei pleca pregătit să iei decizii despre adopție bazate pe realitate, nu pe impuls, și să contribui la schimbarea mentalității din comunitatea ta."
+]
+
+    },
+    1126: {
+        title: "Atelier interactiv cu animale: Familia nu se cumpără, se construiește",
+        data: "Joi, 26 noiembrie 2026",
+        ora: '18:00 – 20:00',
+        locatie: 'Centrul de zi pentru Copii cu Dizabilități Podul Lung',
+        locatieUrl: EVENT_LOCATIE_URL_2,
+        paragraphs: [
+    "„Aveți un cățel mic, alb și pufos?” e întrebarea pe care o auzim cel mai des. Rar auzim cea care contează: „Care dintre câinii voștri s-ar potrivi familiei mele?”",
+    "Pentru noi, adopția nu înseamnă alegerea celui mai frumos animal, ci întâlnirea dintre două caractere care se potrivesc. Un animal nu e un cadou, o jucărie sau un moft, ci un membru al familiei pentru următorii 10-15 ani.",
+    "Atelierul își propune să schimbe felul în care alegem să adoptăm și să arate ce înseamnă, pe termen lung, să primești un animal în familie."
+]
+
+    }
+};
+
+function openEventInfoModal(id) {
+    const info = EVENT_INFO[id];
+    document.getElementById('infoModalTitle').textContent = info.title;
+
+    let detaliiHtml = '<div class="event-meta">';
+    if (info.data) {
+        detaliiHtml += '<div class="event-meta-row"><i class="fas fa-calendar-day"></i><span>' + info.data + '</span></div>';
+    }
+    if (info.ora) {
+        detaliiHtml += '<div class="event-meta-row"><i class="fas fa-clock"></i><span>' + info.ora + '</span></div>';
+    }
+    if (info.locatie) {
+        detaliiHtml += '<div class="event-meta-row"><i class="fas fa-map-marker-alt"></i><span>' +
+            (info.locatieUrl
+                ? '<a href="' + info.locatieUrl + '" target="_blank" rel="noopener noreferrer">' + info.locatie + '</a>'
+                : info.locatie) +
+            '</span></div>';
+    }
+    detaliiHtml += '</div>';
+
+    document.getElementById('infoModalBody').innerHTML = detaliiHtml + info.paragraphs.map(function (p) {
+        return '<p>' + p + '</p>';
+    }).join('');
+
+    document.getElementById('infoModalInscrieBtn').onclick = function () {
+        closeEventInfoModal();
+        openRegistrationModal(id);
+    };
+    document.getElementById('infoModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeEventInfoModal() {
+    document.getElementById('infoModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function closeEventInfoModalOnBackdrop(event) {
+    if (event.target.id === 'infoModalOverlay') {
+        closeEventInfoModal();
+    }
+}
+
+/* ============ ÎNSCRIERE LA EVENIMENT (formulare separate per eveniment) ============ */
+
+// URL-ul Web App din Google Apps Script (se termină în /exec)
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwG3nd8318Z4ZOFklRxuNONI4HxXj2tHneuelHwJdQu56HIJqLxbQ1-F82UMWOQaLPJ/exec';
+
+const REGISTRATION_EVENTS = {
+    25: "25 Septembrie - THOR – Lecția despre incluziune",
+    26: "26 Septembrie - Fauna sălbatică urbană",
+    29: "29 Septembrie - NU ÎNTOARCE PRIVIREA",
+    3: "3 Octombrie - Un pui nu apare din senin",
+    5: "5 Octombrie - Povestea animalului meu",
+    10: "10 Octombrie - Curs educațional pentru proprietari de câini și pisici",
+    19: "19 Octombrie - Animalul, prietenul meu",
+    24: "24 Octombrie - Fauna sălbatică urbană",
+    28: "28 Octombrie - Workshop de fotografie cu suflet",
+    31: "31 Octombrie - Curs educațional pentru proprietari de câini și pisici",
+    1107: "7 Noiembrie - Atelier interactiv cu animale (Copiii nu fac ce le spunem)",
+    1111: "11 Noiembrie - Curs educativ veterinar (De la abandon la responsabilitate)",
+    1124: "24 Noiembrie - Curs educativ veterinar (De la abandon la responsabilitate)",
+    1126: "26 Noiembrie - Atelier interactiv cu animale (Familia nu se cumpără, se construiește)"
+};
+
+const CAPACITATE_IMPLICITA = 20;
+const CAPACITATE_EVENIMENT = { 28: 10, 1124: 10 };
+
+function capacitateEv(id) {
+    return CAPACITATE_EVENIMENT[id] || CAPACITATE_IMPLICITA;
+}
+function regEl(field, id) {
+    return document.getElementById(field + '-' + id);
+}
+
+function addCompanionField(id) {
+    const list = document.getElementById('companionsList-' + id);
+    const row = document.createElement('div');
+    row.className = 'companion-row';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'companion-name-input';
+    input.placeholder = 'Numele însoțitorului';
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'btn-remove-companion';
+    removeBtn.setAttribute('aria-label', 'Elimină însoțitor');
+    removeBtn.innerHTML = '<i class="fas fa-xmark"></i>';
+    removeBtn.onclick = function () { row.remove(); };
+
+    row.appendChild(input);
+    row.appendChild(removeBtn);
+    list.appendChild(row);
+    input.focus();
+}
+
+function getCompanionNames(id) {
+    return Array.from(document.querySelectorAll('#companionsList-' + id + ' .companion-name-input'))
+        .map(function (el) { return el.value.trim(); })
+        .filter(function (name) { return name.length > 0; });
+}
+
+function setFormDisabled(id, disabled) {
+    document.querySelectorAll('#registrationForm-' + id + ' input').forEach(function (el) {
+        el.disabled = disabled;
+    });
+}
+
+function openRegistrationModal(id) {
+    const form = document.getElementById('registrationForm-' + id);
+    const msg = regEl('registrationMessage', id);
+    const submitBtn = regEl('registrationSubmitBtn', id);
+    const seatsInfo = regEl('registrationSeatsInfo', id);
+
+    form.reset();
+    document.getElementById('companionsList-' + id).innerHTML = '';
+    setFormDisabled(id, false);
+    msg.classList.remove('show', 'ok', 'error');
+    msg.textContent = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Trimite înscrierea';
+    seatsInfo.textContent = 'Capacitate: ' + capacitateEv(id) + ' de locuri (tu + însoțitorii tăi ocupă câte un loc fiecare).';
+
+    document.getElementById('registrationModalOverlay-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Verifică live câte locuri mai sunt libere; dacă s-au ocupat, blochează tot formularul
+    if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('PUNE_AICI') === -1) {
+        fetch(APPS_SCRIPT_URL)
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                const eventName = REGISTRATION_EVENTS[id];
+                if (data.status === 'ok' && data.locuriRamase && data.locuriRamase[eventName] !== undefined) {
+                    const ramase = data.locuriRamase[eventName];
+                    if (ramase > 0) {
+                        seatsInfo.textContent = ramase + ' locuri rămase din ' + capacitateEv(id) + '.';
+                    } else {
+                        seatsInfo.textContent = 'Toate locurile sunt ocupate — nu mai sunt disponibile înscrieri.';
+                        setFormDisabled(id, true);
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Locuri epuizate';
+                    }
+                }
+            })
+            .catch(function () { /* păstrăm mesajul implicit dacă verificarea eșuează */ });
+    }
+}
+
+function closeRegistrationModal(id) {
+    document.getElementById('registrationModalOverlay-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function closeRegistrationModalOnBackdrop(event, id) {
+    if (event.target.id === 'registrationModalOverlay-' + id) {
+        closeRegistrationModal(id);
+    }
+}
+
+function handleRegistrationSubmit(id, e) {
+    e.preventDefault();
+
+    const submitBtn = regEl('registrationSubmitBtn', id);
+    const msg = regEl('registrationMessage', id);
+
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('PUNE_AICI') !== -1) {
+        msg.textContent = 'Formularul nu e conectat încă la Google Sheets (lipsește URL-ul de Apps Script). Scrie-ne la colectivulblana@gmail.com.';
+        msg.className = 'form-message show error';
+        return;
+    }
+
+    const insotitoriNume = getCompanionNames(id);
+
+    const payload = {
+        eveniment: REGISTRATION_EVENTS[id],
+        nume: regEl('reg-nume', id).value.trim(),
+        prenume: regEl('reg-prenume', id).value.trim(),
+        telefon: regEl('reg-telefon', id).value.trim(),
+        email: regEl('reg-email', id).value.trim(),
+        varsta: regEl('reg-varsta', id).value,
+        insotitoriNume: insotitoriNume,
+        website: regEl('reg-website', id).value,
+        confirmare18: regEl('reg-confirmare18', id).checked,
+        consimtamant: regEl('reg-consimtamant', id).checked
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Se trimite...';
+    msg.classList.remove('show', 'ok', 'error');
+
+    fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+    })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            msg.textContent = data.message || 'A apărut o eroare. Dacă problema persistă, scrie-ne la colectivulblana@gmail.com.';
+
+            if (data.status === 'ok') {
+                msg.className = 'form-message show ok';
+                submitBtn.textContent = 'Înscris cu succes';
+                setFormDisabled(id, true);
+                submitBtn.disabled = true;
+            } else if (data.status === 'full') {
+                // Locurile s-au ocupat chiar în timp ce completa formularul
+                msg.className = 'form-message show error';
+                setFormDisabled(id, true);
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Locuri epuizate';
+            } else {
+                // Include și cazul "deja înscris cu acest email"
+                msg.className = 'form-message show error';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Trimite înscrierea';
+            }
+        })
+        .catch(function () {
+            msg.textContent = 'Nu am putut trimite înscrierea. Verifică conexiunea, sau scrie-ne la colectivulblana@gmail.com dacă problema persistă.';
+            msg.className = 'form-message show error';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Trimite înscrierea';
+        });
+}
+
+[25, 26, 29, 3, 5, 10, 19, 24, 28, 31, 1107, 1111, 1124, 1126].forEach(function (id) {
+    document.getElementById('registrationForm-' + id).addEventListener('submit', function (e) {
+        handleRegistrationSubmit(id, e);
+    });
+});
+</script>
+
+<div id="tombola-overlay" class="drawer-overlay" onclick="closeTombolaDrawer()"></div>
+
+<aside id="tombola-drawer" class="side-drawer">
+    <div class="drawer-header">
+        <h3>Regulament Tombolă</h3>
+        <span class="drawer-close" onclick="closeTombolaDrawer()">&times;</span>
+    </div>
+    <div class="drawer-content">
+
+   
+
+    <img src="Imagini/regulament.jpg" alt="Afiș Ziua Adopțiilor - Institutul Francez" class="drawer-poster">
+
+</div>
+</aside>
+<script>
+(function () {
+    var LUNI = { ianuarie:0, februarie:1, martie:2, aprilie:3, mai:4, iunie:5, iulie:6, august:7, septembrie:8, octombrie:9, noiembrie:10, decembrie:11 };
+    var AN = 2026;
+    var MINUTE_DUPA_SFARSIT = 30;
+
+    // Ora curentă în România, indiferent de fusul browserului
+    function acum() {
+        return new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Bucharest' })).getTime();
+    }
+
+    // Momentul de final: ultima oră din text ("14:00 – 16:00"). Fără interval de ore -> sfârșitul zilei.
+    function sfarsit(an, luna, zi, textOra) {
+        var ore = (textOra || '').match(/\d{1,2}:\d{2}/g);
+        var h = 23, m = 59;
+        if (ore && ore.length > 1) {
+            var p = ore[ore.length - 1].split(':');
+            h = parseInt(p[0], 10); m = parseInt(p[1], 10);
+        }
+        return new Date(an, luna, zi, h, m, 0).getTime();
+    }
+
+    function incheiat(endTs) {
+        return acum() >= endTs + MINUTE_DUPA_SFARSIT * 60000;
+    }
+
+    /* ============ 1. MENIURILE EXPANDABILE ============ */
+
+    function marcheazaIncheiat(acc) {
+        acc.classList.add('ended');
+        acc.dataset.done = '1';
+
+        var when = acc.querySelector('.event-acc-when');
+        var badge = document.createElement('span');
+        badge.className = 'event-acc-badge';
+        badge.textContent = 'Încheiat';
+        when.after(badge);
+
+        var body = acc.querySelector('.event-acc-body');
+        var nota = document.createElement('div');
+        nota.className = 'event-ended-note';
+        nota.textContent = 'Evenimentul s-a încheiat. Mulțumim de participare! 🐾';
+        body.insertBefore(nota, body.firstChild);
+
+        body.querySelectorAll('a[onclick*="openRegistrationModal"]').forEach(function (a) { a.remove(); });
+
+        // Mută-l după ultimul meniu din aceeași listă
+        var parent = acc.parentNode;
+        var toate = parent.querySelectorAll(':scope > .event-acc');
+        var ultimul = toate[toate.length - 1];
+        if (ultimul !== acc) parent.insertBefore(acc, ultimul.nextSibling);
+    }
+
+    function refreshMeniuri() {
+        document.querySelectorAll('.event-acc[data-end]').forEach(function (acc) {
+            if (acc.dataset.done) return;
+            var end = parseInt(acc.dataset.end, 10);
+            if (end && incheiat(end)) marcheazaIncheiat(acc);
+        });
+    }
+
+    document.querySelectorAll('.partner-card .partner-info').forEach(function (info) {
+        var items = Array.prototype.filter.call(info.children, function (el) {
+            return el.tagName === 'DIV' && el.querySelector('h4');
+        });
+        if (!items.length) return;
+
+        var ref = items[items.length - 1].nextElementSibling;
+
+        items.forEach(function (item) {
+            var iconEl = item.children[0].querySelector('i');
+            var textDiv = item.children[1];
+            var h4 = textDiv.querySelector('h4');
+            var titlu = h4.textContent
+                .replace(/\p{Extended_Pictographic}/gu, '')
+                .replace(/^\s*Eveniment:\s*/i, '')
+                .trim();
+            var p = textDiv.querySelector('p');
+            var txt = p.textContent.replace(/\s+/g, ' ');
+
+            // Ora: "între 10:00 și 18:00" / "16:00-23:00" / "ora 21:30"
+            var oraTxt = '', h;
+            if ((h = txt.match(/între\s+(\d{1,2}:\d{2})\s+și\s+(\d{1,2}:\d{2})/))) oraTxt = h[1] + ' – ' + h[2];
+            else if ((h = txt.match(/(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})/))) oraTxt = h[1] + ' – ' + h[2];
+            else if ((h = txt.match(/ora\s+(\d{1,2}:\d{2})/))) oraTxt = h[1];
+            else if (/anun/i.test(txt)) oraTxt = 'ora și locația vor fi anunțate';
+
+            // Data: "Sâmbătă, 11 iulie" (sau doar "11 iulie")
+            var dataTxt = '', endTs = 0;
+            var m = txt.match(/(?:([A-ZĂÂÎȘȚ][a-zăâîșț]+),\s*)?(\d{1,2})\s+(ianuarie|februarie|martie|aprilie|mai|iunie|iulie|august|septembrie|octombrie|noiembrie|decembrie)/i);
+            if (m) {
+                dataTxt = (m[1] ? m[1] + ', ' : '') + m[2] + ' ' + m[3].toLowerCase();
+                endTs = sfarsit(AN, LUNI[m[3].toLowerCase()], parseInt(m[2], 10), oraTxt);
+            }
+            var meta = dataTxt + (oraTxt ? ' · ' + oraTxt : '');
+
+            // Suma strânsă (dacă există)
+            var fonduri = '';
+            textDiv.querySelectorAll('p').forEach(function (pp) {
+                var f = pp.textContent.match(/Fonduri strânse:\s*([\d.,]+\s*RON)/i);
+                if (f) fonduri = f[1];
+            });
+
+            var acc = document.createElement('details');
+            acc.className = 'event-acc';
+            acc.dataset.end = endTs;
+
+            var sum = document.createElement('summary');
+            sum.innerHTML =
+                '<div class="event-acc-icon"><i class="' + (iconEl ? iconEl.className : 'fas fa-paw') + '"></i></div>' +
+                '<div class="event-acc-head">' +
+                    '<div class="event-acc-title"></div>' +
+                    '<div class="event-acc-meta"><span class="event-acc-when"></span>' +
+                        (fonduri ? '<span class="event-acc-funds"></span>' : '') +
+                    '</div>' +
+                '</div>' +
+                '<i class="fas fa-chevron-down event-acc-chevron"></i>';
+            sum.querySelector('.event-acc-title').textContent = titlu;
+            sum.querySelector('.event-acc-when').textContent = meta;
+            if (fonduri) sum.querySelector('.event-acc-funds').textContent = fonduri;
+            acc.appendChild(sum);
+
+            var body = document.createElement('div');
+            body.className = 'event-acc-body';
+            h4.remove();
+            while (textDiv.firstChild) body.appendChild(textDiv.firstChild);
+            acc.appendChild(body);
+
+            item.remove();
+            info.insertBefore(acc, ref);
+        });
+    });
+
+    /* ============ 2. CALENDARUL ============ */
+
+    function refreshCalendar() {
+        document.querySelectorAll('.month-card').forEach(function (card) {
+            var parts = card.getAttribute('data-month').split('-');
+            var an = parseInt(parts[0], 10), luna = parseInt(parts[1], 10) - 1;
+            var zileIncheiate = {};
+
+            card.querySelectorAll('.event-list li').forEach(function (li) {
+                var dateEl = li.querySelector('.event-date');
+                if (!dateEl) return;
+                var zi = parseInt(dateEl.textContent, 10);
+
+                // Ora de final vine din EVENT_INFO (butonul "i"); fără buton -> sfârșitul zilei
+                var infoBtn = li.querySelector('.btn-info');
+                var idMatch = infoBtn && infoBtn.getAttribute('onclick').match(/\d+/);
+                var id = idMatch ? parseInt(idMatch[0], 10) : null;
+                var ora = id && EVENT_INFO[id] ? EVENT_INFO[id].ora : '';
+
+                var inc = incheiat(sfarsit(an, luna, zi, ora));
+                zileIncheiate[zi] = inc;
+
+                if (inc && !li.classList.contains('past')) {
+                    li.classList.add('past');
+                    var inscrie = li.querySelector('.btn-inscrie');
+                    if (inscrie) {
+                        var badge = document.createElement('span');
+                        badge.className = 'event-past-badge';
+                        badge.textContent = 'Încheiat';
+                        inscrie.replaceWith(badge);
+                    }
+                }
+            });
+
+            card.querySelectorAll('.day-cell.event').forEach(function (cell) {
+                var zi = parseInt(cell.textContent, 10);
+                if (zileIncheiate[zi]) cell.classList.add('past');
+            });
+        });
+    }
+
+    /* ============ 3. FEREASTRA "i" ȘI FORMULARUL ============ */
+
+    function evenimentIncheiat(id) {
+        var info = EVENT_INFO[id];
+        var m = info && info.data && info.data.match(/(\d{1,2})\s+([a-zăâîșț]+)\s+(\d{4})/i);
+        if (!m || LUNI[m[2].toLowerCase()] === undefined) return false;
+        return incheiat(sfarsit(parseInt(m[3], 10), LUNI[m[2].toLowerCase()], parseInt(m[1], 10), info.ora));
+    }
+
+    var originalInfo = window.openEventInfoModal;
+    window.openEventInfoModal = function (id) {
+        originalInfo(id);
+        document.getElementById('infoModalInscrieBtn').style.display = evenimentIncheiat(id) ? 'none' : '';
+    };
+
+    var originalInscriere = window.openRegistrationModal;
+    window.openRegistrationModal = function (id) {
+        if (evenimentIncheiat(id)) return;   // înscrieri închise
+        originalInscriere(id);
+    };
+
+    /* ============ PORNIRE + REVERIFICARE LA FIECARE MINUT ============ */
+
+    function refreshTot() {
+        refreshMeniuri();
+        refreshCalendar();
+    }
+    refreshTot();
+    setInterval(refreshTot, 60000);
+})();
+</script>
+
+</body>
+</html>
